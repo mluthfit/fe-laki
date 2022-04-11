@@ -15,7 +15,9 @@ class Sidebar extends React.Component {
   openDropdown = function (e) {
     const child = e.target.querySelector(".dropdowns");
     const arrow = e.target.querySelector(".arrow-dropdown");
-    if (child?.className === "dropdowns") {
+    if (!child) return;
+
+    if (child.className === "dropdowns") {
       child.className = "dropdowns open";
       arrow.className = "arrow-dropdown open";
     } else {

@@ -22,6 +22,10 @@
   padding-left: 1rem;
 }
 
+.sidebar li {
+  cursor: pointer;
+}
+
 .sidebar .parent-dropdown {
   position: relative;
 }
