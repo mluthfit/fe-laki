@@ -1,0 +1,12 @@
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--black-color);
+  align-items: center;
+  color: white;
+  padding: .1rem 1.3rem;
+}
+
+.logo {
+  width: 75px;
+}

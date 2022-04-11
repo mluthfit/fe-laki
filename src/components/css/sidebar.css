@@ -1,0 +1,46 @@
+.sidebar {
+  background-color: var(--black-color);
+  width: 30%;
+  max-width: 270px;
+}
+
+.sidebar  ul {
+  list-style: none;
+}
+
+.sidebar > ul {
+  padding-top: 1rem;
+}
+
+.sidebar li {
+  color: var(--yellow-color);
+  padding: 1rem;
+}
+
+.sidebar li:hover {
+  background-color: var(--light-green);
+  font-weight: bold;
+}
+
+.sidebar li.dropdown {
+  position: relative;
+}
+
+.sidebar li.dropdown::after {
+  content: "V";
+  position: absolute;
+  right: 25px;
+}
+
+.sidebar ul.dropdown-child.closed {
+  display: none;
+}
+
+.sidebar ul.dropdown-child.open {
+  display: block;
+}
+
+.sidebar ul.dropdown-child li {
+  border-left: 1px solid var(--yellow-color);
+  margin-left: 1rem;
+}
