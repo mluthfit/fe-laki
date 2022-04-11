@@ -1,0 +1,39 @@
+.home {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 2rem;
+  background-color: var(--grey-color);
+}
+
+.home .down {
+  display: flex;
+  margin-top: 2rem;
+  justify-content: space-between;
+}
+
+.home .menu-home {
+  width: calc(100% - 380px);
+  display: flex;
+  flex-direction: column;
+}
+
+.home .menu-home .title span {
+  display: inline-block;
+  padding: 1rem 1.5rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.home .menu-home .title .open {
+  border-bottom: 2px solid var(--light-green);
+}
+
+.home .content-menu {
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  background-color: white;
+  flex: 1;
+  border-radius: 10px;
+  margin-top: .5rem;
+  padding: 1rem;
+}

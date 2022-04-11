@@ -1,0 +1,71 @@
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--black-color);
+  align-items: center;
+  color: white;
+  padding: .1rem 2rem;
+}
+
+.logo {
+  width: 75px;
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.topbar-right .company {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--light-green);
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  gap: 10px;
+}
+
+.topbar-right .users {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.topbar-right .accounts {
+  position: relative;
+}
+
+.topbar-right .accounts svg {
+  margin: 0 5px;
+}
+
+.accounts .menu-account {
+  position: absolute;
+  background-color: var(--light-green);
+  right: 0;
+  top: 35px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.accounts .menu-account.closed {
+  display: none;
+}
+
+.accounts .menu-account ul {
+  list-style: none;
+}
+
+.accounts .menu-account li {
+  padding: 1rem 3rem;
+}
+
+.accounts .menu-account li:hover {
+  background-color: var(--dark-green);
+}
+
+.topbar-right .notification span,
+.topbar-right .accounts {
+  cursor: pointer;
+}
