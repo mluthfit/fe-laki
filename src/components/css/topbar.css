@@ -10,3 +10,9 @@
 .logo {
   width: 75px;
 }
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}

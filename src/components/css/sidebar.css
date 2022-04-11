@@ -1,7 +1,6 @@
 .sidebar {
   background-color: var(--black-color);
-  width: 30%;
-  max-width: 270px;
+  min-width: 270px;
 }
 
 .sidebar ul {
@@ -17,6 +16,23 @@
 .sidebar > ul > li:hover {
   background-color: var(--light-green);
   font-weight: bold;
+}
+
+.sidebar > ul > li > span {
+  padding-left: 1rem;
+}
+
+.sidebar .parent-dropdown {
+  position: relative;
+}
+
+.sidebar .arrow-dropdown {
+  position: absolute;
+  right: 30px;
+}
+
+.sidebar .arrow-dropdown.open {
+  transform: rotate(90deg) translate(-7px, -7px);
 }
 
 .sidebar ul.dropdowns {
