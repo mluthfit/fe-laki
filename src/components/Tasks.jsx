@@ -1,7 +1,7 @@
 import React from "react";
 import "./css/tasks.css";
 
-class Home extends React.Component {
+class Tasks extends React.Component {
   data = [
     {
       title: "Task 1",
@@ -25,19 +25,15 @@ class Home extends React.Component {
     const tasks = document.querySelector(".tasks");
     if (!tasks) return;
 
-    if (tasks.className.includes("open")) {
-      tasks.classList.remove("open");
-    } else {
-      tasks.classList.add("open");
-    }
+    tasks.classList.toggle("open");
   };
 
   render() {
     return (
       <div className="tasks">
-        {this.data.map((task) => {
+        {this.data.map((task, index) => {
           return (
-            <div className="task">
+            <div className="task" key={index}>
               <div className="task-title">{task.title}</div>
               <div
                 className="task-description"
@@ -80,4 +76,4 @@ class Home extends React.Component {
   }
 }
 
-export default Home;
+export default Tasks;

@@ -2,6 +2,16 @@ import React from "react";
 import "./css/profile.css";
 
 class Profile extends React.Component {
+  constructor(props) {
+    super(props);
+    this.data = props.data;
+    this.isStatus = props?.isStatus;
+  }
+
+  capitalize(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  }
+
   render() {
     return (
       <div className="profile">
@@ -10,22 +20,19 @@ class Profile extends React.Component {
           <div className="logo-profile">
             <img src="https://via.placeholder.com/150" alt="logo" />
           </div>
-          <div>
-            <span className="name">Email</span>
-            <span className="value">kendrick.susanto@example.com</span>
-          </div>
-          <div>
-            <span className="name">Name</span>
-            <span className="value">Kendrick Lamar Susanto</span>
-          </div>
-          <div>
-            <span className="name">Title</span>
-            <span className="value">Finance Manager</span>
-          </div>
-          <div>
-            <span className="name">Company</span>
-            <span className="value">Land Croc Inc.</span>
-          </div>
+          {Object.keys(this.data).map((key, index) => {
+            return (
+              <div key={index} className="profile-item">
+                <span className="key">{this.capitalize(key)}</span>
+                <span className="value">{this.data[key]}</span>
+              </div>
+            );
+          })}
+          {this.isStatus && (
+            <div className="statusBar">
+              <span>{this.isStatus}</span>
+            </div>
+          )}
         </div>
       </div>
     );

@@ -3,6 +3,7 @@ import Topbar from "./components/Topbar";
 import Sidebar from "./components/Sidebar";
 import Home from "./components/Home";
 import Tasks from "./components/Tasks";
+import Employee from "./components/Employee";
 import "./App.css";
 
 class App extends React.Component {
@@ -23,6 +24,7 @@ class App extends React.Component {
           <Sidebar changePage={this.changePage} />
           {this.state.isOpen === "home" && <Home />}
           {this.state.isOpen === "tasks" && <Tasks />}
+          {this.state.isOpen === "employee" && <Employee />}
         </main>
       </div>
     );
