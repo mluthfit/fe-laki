@@ -12,6 +12,11 @@ import {
 import "./css/sidebar.css";
 
 class Sidebar extends React.Component {
+  constructor(props) {
+    super(props);
+    this.changePage = props.changePage;
+  }
+
   openDropdown = function (e) {
     const child = e.target.querySelector(".dropdowns");
     const arrow = e.target.querySelector(".arrow-dropdown");
@@ -30,7 +35,7 @@ class Sidebar extends React.Component {
     return (
       <div className="sidebar">
         <ul>
-          <li>
+          <li onClick={() => this.changePage("home")}>
             <FontAwesomeIcon icon={faHome}></FontAwesomeIcon>
             <span>Home</span>
           </li>
@@ -38,7 +43,7 @@ class Sidebar extends React.Component {
             <FontAwesomeIcon icon={faCamera}></FontAwesomeIcon>
             <span>Presences</span>
           </li>
-          <li>
+          <li onClick={() => this.changePage("tasks")}>
             <FontAwesomeIcon icon={faTasks}></FontAwesomeIcon>
             <span>Tasks</span>
           </li>
