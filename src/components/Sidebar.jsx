@@ -12,25 +12,26 @@ import {
 import "./css/sidebar.css";
 
 class Sidebar extends React.Component {
-  openDropdown = function (e) {
+  constructor(props) {
+    super(props);
+    this.changePage = props.changePage;
+  }
+
+  toggleDropdown = (e) => {
+    e.stopPropagation();
     const child = e.target.querySelector(".dropdowns");
     const arrow = e.target.querySelector(".arrow-dropdown");
     if (!child) return;
 
-    if (child.className === "dropdowns") {
-      child.className = "dropdowns open";
-      arrow.className = "arrow-dropdown open";
-    } else {
-      child.className = "dropdowns";
-      arrow.className = "arrow-dropdown";
-    }
+    child.classList.toggle("open");
+    arrow.classList.toggle("open");
   };
 
   render() {
     return (
       <div className="sidebar">
         <ul>
-          <li>
+          <li onClick={() => this.changePage("home")}>
             <FontAwesomeIcon icon={faHome}></FontAwesomeIcon>
             <span>Home</span>
           </li>
@@ -38,15 +39,15 @@ class Sidebar extends React.Component {
             <FontAwesomeIcon icon={faCamera}></FontAwesomeIcon>
             <span>Presences</span>
           </li>
-          <li>
+          <li onClick={() => this.changePage("tasks")}>
             <FontAwesomeIcon icon={faTasks}></FontAwesomeIcon>
             <span>Tasks</span>
           </li>
-          <li>
+          <li onClick={() => this.changePage("employee")}>
             <FontAwesomeIcon icon={faInfoCircle}></FontAwesomeIcon>
             <span>Employee</span>
           </li>
-          <li onClick={this.openDropdown} className="parent-dropdown">
+          <li onClick={this.toggleDropdown} className="parent-dropdown">
             <FontAwesomeIcon icon={faUserLock}></FontAwesomeIcon>
             <span>SuperUser</span>
             <span className="arrow-dropdown">
@@ -57,7 +58,7 @@ class Sidebar extends React.Component {
               <li>Employee Accounts</li>
             </ul>
           </li>
-          <li onClick={this.openDropdown} className="parent-dropdown">
+          <li onClick={this.toggleDropdown} className="parent-dropdown">
             <FontAwesomeIcon icon={faUserCog}></FontAwesomeIcon>
             <span>Admin</span>
             <span className="arrow-dropdown">

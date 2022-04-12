@@ -6,19 +6,18 @@ import {
   faUser,
   faBell,
   faBuilding,
+  faCog,
+  faSignOut,
 } from "@fortawesome/free-solid-svg-icons";
 import "./css/topbar.css";
 
 class Topbar extends React.Component {
-  openUserDropdown = () => {
+  toggleUserDropdown = (e) => {
+    e.stopPropagation();
     const menuAccount = document.querySelector(".menu-account");
     if (!menuAccount) return;
 
-    if (menuAccount.className === "menu-account closed") {
-      menuAccount.className = "menu-account";
-    } else {
-      menuAccount.className = "menu-account closed";
-    }
+    menuAccount.classList.toggle("open");
   };
 
   render() {
@@ -37,14 +36,23 @@ class Topbar extends React.Component {
               </span>
             </div>
             <div className="accounts">
-              <span className="action-account" onClick={this.openUserDropdown}>
+              <span
+                className="action-account"
+                onClick={this.toggleUserDropdown}
+              >
                 <FontAwesomeIcon icon={faUser} size="lg"></FontAwesomeIcon>
                 <FontAwesomeIcon icon={faAngleDown} size="xs"></FontAwesomeIcon>
               </span>
-              <div className="menu-account closed">
+              <div className="menu-account">
                 <ul>
-                  <li>Profile</li>
-                  <li>Logout</li>
+                  <li>
+                    <FontAwesomeIcon icon={faCog}></FontAwesomeIcon>
+                    <span>Profile</span>
+                  </li>
+                  <li>
+                    <FontAwesomeIcon icon={faSignOut}></FontAwesomeIcon>
+                    <span>Logout</span>
+                  </li>
                 </ul>
               </div>
             </div>

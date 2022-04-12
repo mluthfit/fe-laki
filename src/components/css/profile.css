@@ -41,12 +41,12 @@
   margin: 1.3rem 0;
 }
 
-.profile .content .name {
+.profile .content .key {
   font-weight: bold;
   display: inline-block;
 }
 
-.profile .content .name::after {
+.profile .content .key::after {
   content: "";
   display: block;
   width: 100%;
@@ -56,5 +56,14 @@
 
 .profile .content .value {
   margin-top: .3rem;
+}
+
+.profile .statusBar span {
+  display: inline-block;
+  padding: 0.5rem 1.5rem;
+  background-color: var(--black-color);
+  color: var(--light-green);
+  border-radius: 5px;
+  text-align: center;
 }
 

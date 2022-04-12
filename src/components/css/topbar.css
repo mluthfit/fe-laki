@@ -41,16 +41,17 @@
 }
 
 .accounts .menu-account {
+  display: none;
   position: absolute;
-  background-color: var(--light-green);
+  background-color: var(--dark-green);
   right: 0;
   top: 35px;
   border-radius: 5px;
   overflow: hidden;
 }
 
-.accounts .menu-account.closed {
-  display: none;
+.accounts .menu-account.open {
+  display: block;
 }
 
 .accounts .menu-account ul {
@@ -58,11 +59,19 @@
 }
 
 .accounts .menu-account li {
-  padding: 1rem 3rem;
+  padding: 1rem 2.5rem;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.accounts .menu-account li {
+  color: var(--yellow-color);
 }
 
 .accounts .menu-account li:hover {
-  background-color: var(--dark-green);
+  background-color: var(--light-green);
+  font-weight: bold;
 }
 
 .topbar-right .notification span,

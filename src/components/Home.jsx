@@ -13,12 +13,19 @@ class Home extends React.Component {
     e.target.className = "open";
   };
 
+  user = {
+    email: "kendrick.susanto@example.com",
+    name: "Kendrick Lamar Susanto",
+    title: "Finance Manager",
+    company: "Land Croc Inc.",
+  };
+
   render() {
     return (
       <div className="home">
         <WorkingHours></WorkingHours>
         <div className="down">
-          <Profile></Profile>
+          <Profile data={this.user} />
           <div className="menu-home">
             <div className="title">
               <span className="open" onClick={this.hoverTitle}>
