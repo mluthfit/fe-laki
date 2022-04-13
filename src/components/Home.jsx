@@ -1,44 +1,45 @@
-import React from "react";
+import React, { useState } from "react";
 import WorkingHours from "./WorkingHours";
 import Profile from "./Profile";
 import "./css/home.css";
 
-class Home extends React.Component {
-  hoverTitle = (e) => {
-    const title = document.querySelectorAll(".title span");
-    title.forEach((item) => {
-      item.classList.remove("open");
+const Home = () => {
+  const [subMenu, setSubMenu] = useState("Statistics");
+
+  const onChangeSubMenu = (event) => {
+    const menus = document.querySelectorAll(".title span");
+    menus.forEach((menu) => {
+      menu.classList.remove("open");
     });
 
-    e.target.className = "open";
+    event.target.className = "open";
+    setSubMenu(event.target.innerText);
   };
 
-  user = {
+  const user = {
     email: "kendrick.susanto@example.com",
     name: "Kendrick Lamar Susanto",
     title: "Finance Manager",
     company: "Land Croc Inc.",
   };
 
-  render() {
-    return (
-      <div className="home">
-        <WorkingHours></WorkingHours>
-        <div className="down">
-          <Profile data={this.user} />
-          <div className="menu-home">
-            <div className="title">
-              <span className="open" onClick={this.hoverTitle}>
-                Statistics
-              </span>
-              <span onClick={this.hoverTitle}>Task</span>
-            </div>
-            <div className="content-menu">Test</div>
+  return (
+    <div className="home">
+      <WorkingHours></WorkingHours>
+      <div className="down">
+        <Profile data={user} />
+        <div className="menu-home">
+          <div className="title">
+            <span className="open" onClick={onChangeSubMenu}>
+              Statistics
+            </span>
+            <span onClick={onChangeSubMenu}>Task</span>
           </div>
+          <div className="content-menu">{subMenu}</div>
         </div>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default Home;

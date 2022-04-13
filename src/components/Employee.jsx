@@ -2,8 +2,8 @@ import React from "react";
 import Profile from "./Profile";
 import "./css/employee.css";
 
-class Employee extends React.Component {
-  employeeList = [
+const Employee = () => {
+  const employees = [
     {
       name: "John Doe",
       title: "CEO",
@@ -21,22 +21,20 @@ class Employee extends React.Component {
     },
   ];
 
-  render() {
-    return (
-      <div className="employee">
-        {this.employeeList.map((employee, index) => {
-          return (
-            <div key={index} className="employee-item">
-              <Profile
-                data={{ name: employee.name, title: employee.title }}
-                isStatus={employee.status}
-              />
-            </div>
-          );
-        })}
-      </div>
-    );
-  }
-}
+  return (
+    <div className="employee">
+      {employees.map((employee, index) => {
+        return (
+          <div key={index}>
+            <Profile
+              data={{ name: employee.name, title: employee.title }}
+              status={employee.status}
+            />
+          </div>
+        );
+      })}
+    </div>
+  );
+};
 
 export default Employee;

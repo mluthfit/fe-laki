@@ -96,6 +96,7 @@
   padding: .5rem;
   border-radius: 5px;
   outline: none;
+  font-family: 'Lato', sans-serif;
 }
 
 .tasks .inputContainer textarea {
