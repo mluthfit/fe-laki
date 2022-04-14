@@ -8,10 +8,12 @@ import {
   faBuilding,
   faCog,
   faSignOut,
+  faBars,
 } from "@fortawesome/free-solid-svg-icons";
 import "./css/topbar.css";
 
-const Topbar = () => {
+const Topbar = (props) => {
+  const { onToggleMenu } = props;
   const onToggleUser = (event) => {
     event.stopPropagation();
     const menuAccount = document.querySelector(".menu-account");
@@ -22,11 +24,17 @@ const Topbar = () => {
 
   return (
     <div className="topbar">
+      <FontAwesomeIcon
+        icon={faBars}
+        size="xl"
+        className="menu-bars"
+        onClick={onToggleMenu}
+      ></FontAwesomeIcon>
       <img src={logo} alt="LAKI's logo" className="logo" />
       <div className="topbar-right">
         <div className="company">
           <FontAwesomeIcon icon={faBuilding}></FontAwesomeIcon>
-          <span>Creative Inc.</span>
+          <span>Creative Asadecoba Inc.</span>
         </div>
         <div className="users">
           <div className="notification">

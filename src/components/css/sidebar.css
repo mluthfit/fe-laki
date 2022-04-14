@@ -55,3 +55,13 @@
 .sidebar ul.dropdowns > li:hover {
   color: var(--black-color);
 }
+
+@media screen and (max-width: 860px) {
+  .sidebar {
+    display: none;
+  }
+
+  .sidebar.open {
+    display: block;
+  }
+}

@@ -19,6 +19,31 @@ const Employee = () => {
       title: "Manager",
       status: "Offline",
     },
+    {
+      name: "Johny Depp",
+      title: "Manager",
+      status: "Offline",
+    },
+    {
+      name: "John Doe",
+      title: "CEO",
+      status: "Online",
+    },
+    {
+      name: "Kendrick Lamar Susanto",
+      title: "Finance Manager",
+      status: "Online",
+    },
+    {
+      name: "Johny Depp",
+      title: "Manager",
+      status: "Offline",
+    },
+    {
+      name: "Johny Depp",
+      title: "Manager",
+      status: "Offline",
+    },
   ];
 
   return (

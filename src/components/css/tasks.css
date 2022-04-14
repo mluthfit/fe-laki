@@ -6,6 +6,7 @@
   flex-wrap: wrap;
   width: 100%;
   justify-content: center;
+  flex: 1;
 }
 
 .tasks .task {
@@ -49,15 +50,13 @@
   position: absolute;
   top: 0;
   left: 0;
-  background-color: rgb(28, 26, 26, 0.5);
+  background-color: rgb(28, 26, 26, 0.9);
 }
 
 .tasks .formEditContainer {
   display: none;
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 100px;
   background-color: var(--black-color);
   border-radius: 10px;
   width: 400px;
@@ -96,7 +95,6 @@
   padding: .5rem;
   border-radius: 5px;
   outline: none;
-  font-family: 'Lato', sans-serif;
 }
 
 .tasks .inputContainer textarea {
