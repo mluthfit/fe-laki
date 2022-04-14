@@ -9,3 +9,9 @@ main {
   display: flex;
   background-color: var(--light-grey);
 }
+
+@media screen and (max-width: 860px) {
+  main {
+    flex-direction: column;
+  }
+}

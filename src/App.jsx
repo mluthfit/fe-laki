@@ -8,16 +8,21 @@ import "./App.css";
 
 const App = () => {
   const [page, setPage] = useState("home");
+  const [isMenuOpen, setMenu] = useState(false);
 
   const onChangePage = (page) => {
     setPage(page);
   };
 
+  const onToggleMenu = () => {
+    setMenu(!isMenuOpen);
+  };
+
   return (
     <div className="App">
-      <Topbar />
+      <Topbar onToggleMenu={onToggleMenu} />
       <main>
-        <Sidebar onChangePage={onChangePage} />
+        <Sidebar onChangePage={onChangePage} isMenuOpen={isMenuOpen} />
         {page === "home" && <Home />}
         {page === "tasks" && <Tasks />}
         {page === "employee" && <Employee />}

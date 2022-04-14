@@ -12,7 +12,7 @@ import {
 import "./css/sidebar.css";
 
 const Sidebar = (props) => {
-  const { onChangePage } = props;
+  const { onChangePage, isMenuOpen } = props;
   const onToggleSidebar = (event) => {
     event.stopPropagation();
     const child = event.target.querySelector(".dropdowns");
@@ -24,7 +24,7 @@ const Sidebar = (props) => {
   };
 
   return (
-    <div className="sidebar">
+    <div className={`sidebar ${isMenuOpen ? "open" : ""}`}>
       <ul>
         <li onClick={() => onChangePage("home")}>
           <FontAwesomeIcon icon={faHome}></FontAwesomeIcon>

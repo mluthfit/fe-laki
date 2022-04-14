@@ -7,6 +7,11 @@
   padding: .1rem 2rem;
 }
 
+.topbar .menu-bars {
+  padding: 1rem 0;
+  display: none;
+}
+
 .logo {
   width: 75px;
 }
@@ -75,4 +80,67 @@
 .topbar-right .notification span,
 .topbar-right .accounts {
   cursor: pointer;
+}
+
+@media screen and (max-width: 860px) {
+  .topbar .menu-bars {
+    padding: 1rem 0;
+    display: block;
+  }
+  
+  .logo {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 460px) {
+  .topbar {
+    flex-direction: column;
+    gap: 10px;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .topbar .topbar-right {
+    margin-bottom: 1rem;
+    flex-direction: column;
+    gap: 15px;
+    padding: 0;
+    width: 100%;
+  }
+
+  .topbar-right .company {
+    margin: 0 1rem;
+    gap: 15px;
+  }
+
+  .topbar-right .action-account {
+    display: none;
+  }
+
+  .topbar-right .users {
+    flex-direction: column;
+    gap: 0;
+    width: 100%;
+  }
+
+  .topbar-right .accounts {
+    flex-direction: column;
+    gap: 0;
+    width: 100%;
+  }
+
+  .topbar-right .menu-account {
+    display: block;
+    position: static;
+    margin-top: 1rem;
+    background-color: var(--black-color);
+    width: 100%;
+    border-radius: 0;
+  }
+
+  .accounts .menu-account li {
+    justify-content: center;
+    color: white;
+  }
 }

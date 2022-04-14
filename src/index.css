@@ -4,6 +4,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Lato', sans-serif;
 }
 
 :root {
@@ -13,8 +14,4 @@
   --yellow-color: #F8EEB4;
   --dark-grey: #C4C4C4;
   --light-grey: #F5F5F5;
-}
-
-body {
-  font-family: 'Lato', sans-serif;
 }
