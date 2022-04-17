@@ -10,7 +10,7 @@
     padding: 10px;
     border-radius: 20px;
     width: 50vh;
-    height: 50vh;
+    height: 35vh;
     justify-content: center;
     display: flex;
     flex-direction: column;
@@ -27,15 +27,15 @@
     font-size: 1.2rem;
     font-weight: bold;
     color: var(--light-green);
-    margin-top: -8vh;
-    margin-bottom: 5vh;
+    margin-top: -5vh;
+    margin-bottom: 3vh;
     vertical-align: text-top;
 }
 
 td {
     padding-left: 2px;
     padding-right: 5px;
-    padding-bottom: 3px;
+    padding-bottom: 2px;
 }
 
 .field {
@@ -73,7 +73,9 @@ td {
 }
 
 .button-location {
-    padding: 0.5rem;
+    padding-bottom: 0.2rem;
+    padding-top: 0.5rem;
+    margin-top: 3vh;
     justify-content: center;
     align-items: center;
     display: flex;

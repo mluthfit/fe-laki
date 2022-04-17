@@ -1,13 +1,13 @@
 import Topbar from "./components/Topbar";
 // import Sidebar from "./components/Sidebar";
-import Login from "./components/Login";
+import ForgotPassword from "./components/ForgotPassword";
 import "./App.css";
 
 function App() {
   return (
     <div>
         <Topbar />
-        <Login />
+        <ForgotPassword />
     </div>
   );
 }
