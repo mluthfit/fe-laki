@@ -20,6 +20,7 @@ class ForgotPassword extends React.Component {
                         <tr><td/><td/></tr>
                     </table>
 
+
                     <div className="button-location">
                         <input className="submit-button" type={"submit"} value="Send Email" />
                     </div>
