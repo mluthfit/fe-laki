@@ -1,0 +1,58 @@
+.presence {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: .5rem;
+    margin: 2rem 6rem 2rem 6rem;
+}
+
+.presence .content-camera {
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    background-color: var(--black-color);
+    flex: 1;
+    border-radius: 10px;
+    margin-top: .5rem;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.presence .flex-container {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.presence .flex-container > div {
+    width: 100px;
+    margin-left: 2vh;
+    margin-right: 2vh;
+    text-align: center;
+    line-height: 75px;
+
+}
+
+.presence .flex-container .button {
+    background-color: var(--black-color);
+    color: var(--light-green);
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: bold;
+    font-family: Lato;
+    align-items: center;
+    padding: .5rem;
+    width: 100px;
+    height: 100%;
+    border: none;
+    border-radius: 5px;
+    transition-duration: 0.4s;
+}
+
+.presence .flex-container .button:hover {
+    background-color: var(--light-green);
+    color: var(--black-color);
+}

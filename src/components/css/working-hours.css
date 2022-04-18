@@ -1,0 +1,38 @@
+.working-hours {
+  background-color: white;
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+  padding: 2rem 0;
+  border-radius: 10px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.working-hours span {
+  display: block;
+}
+
+.working-hours .title {
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  margin-bottom: .5rem;
+  font-weight: bold;
+}
+
+.working-hours span.value {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.working-hours .date {
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+@media screen and (max-width: 570px) {
+  .working-hours {
+    flex-direction: column;
+    gap: 20px;
+
+  }
+}

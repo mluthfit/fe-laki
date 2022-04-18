@@ -1,0 +1,112 @@
+.tasks {
+  position: relative;
+  padding: 2rem;
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: center;
+  flex: 1;
+}
+
+.tasks .task {
+  width: 300px;
+  height: 300px;
+  background-color: var(--dark-grey);
+  position: relative;
+}
+
+.tasks .task-title {
+  background-color: var(--black-color);
+  padding: 1rem .2rem;
+  text-align: center;
+  color: var(--light-green)
+}
+
+.tasks .task-description {
+  padding: 1rem 1rem 1rem 2rem;
+}
+
+.tasks .task-description li {
+  margin: .3rem 0;
+}
+
+.tasks .task-edit {
+  padding: .5rem 1.2rem;
+  color: var(--light-green);
+  background-color: var(--black-color);
+  border-radius: 5px;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+.tasks.open .backgroundFormEdit {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgb(28, 26, 26, 0.9);
+}
+
+.tasks .formEditContainer {
+  display: none;
+  position: absolute;
+  top: 100px;
+  background-color: var(--black-color);
+  border-radius: 10px;
+  width: 400px;
+}
+
+.tasks.open .formEditContainer {
+  display: block;
+}
+
+.tasks .header {
+  padding: 1rem;
+  text-align: center;
+  color: var(--light-green);
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--dark-grey);
+}
+
+.tasks .inputContainer {
+  padding: 2rem;
+}
+
+.tasks .titleBox,
+.tasks .taskBox {
+  margin-bottom: 1rem;
+}
+
+.tasks .inputContainer label {
+  color: var(--light-green);
+  display: block;
+  margin-bottom: .3rem;
+}
+
+.tasks .inputContainer input,
+.tasks .inputContainer textarea {
+  width: 100%;
+  padding: .5rem;
+  border-radius: 5px;
+  outline: none;
+}
+
+.tasks .inputContainer textarea {
+  resize: vertical;
+}
+
+.tasks .submit-task {
+  display: block;
+  margin: 1rem auto 0 auto;
+  border: none;
+  outline: none;
+  background-color: var(--light-green);
+  padding: .5rem 2rem;
+  border-radius: 5px;
+}

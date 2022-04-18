@@ -1,0 +1,12 @@
+.employee {
+  display: flex;
+  gap: 15px;
+  padding: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+}
+
+.employee .profile {
+  width: 300px;
+}
