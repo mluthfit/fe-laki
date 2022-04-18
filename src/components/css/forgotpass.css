@@ -1,0 +1,101 @@
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--black-color);
+    align-items: center;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 20px;
+    width: 50vh;
+    height: 35vh;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.circle {
+    width: 15px;
+    height: 15px;
+    background-color:  var(--grey-color);
+    border-radius: 50%;
+}
+
+.form-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--light-green);
+    margin-top: -5vh;
+    margin-bottom: 3vh;
+    vertical-align: text-top;
+}
+
+td {
+    padding-left: 2px;
+    padding-right: 5px;
+    padding-bottom: 2px;
+}
+
+.field {
+    border: none;
+    background-color: var(--grey-color);
+    color: var(--black-color);
+    font-size: 0.8rem;
+    padding: 0.5rem;
+    border-radius: 5px;
+    height: 20px;
+    width: 15rem;
+}
+
+.forgot-align {
+    text-decoration: none;
+    text-align: right;
+}
+
+.forgot-text {
+    color: var(--light-green);
+    font-size: 0.8rem;
+    font-family: Lato;
+}
+
+.title {
+    font-size: 1rem;
+    color: var(--light-green);
+    font-family: Lato;
+}
+
+.placeholder {
+    color: var(--black-green);
+    font-size: 0.8rem;
+    font-family: Lato;
+}
+
+.button-location {
+    padding-bottom: 0.2rem;
+    padding-top: 0.5rem;
+    margin-top: 3vh;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.submit-button {
+    background-color: var(--light-green);
+    color: var(--black-color);
+    font-size: 0.8rem;
+    font-weight: bold;
+    font-family: Lato;
+    padding: 0.5rem;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+    position: absolute;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    width: 100px;
+}
