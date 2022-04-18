@@ -42,8 +42,8 @@ class ShowProfile extends React.Component {
                       <tr><td/><td/></tr>
                   </table>
 
-                  <div className="button-location">
-                      <input className="submit-button" type={"submit"} value="Save" />
+                  <div className="flex-container">
+                      <div><input className="button" type={"submit"} value="Save" /></div>
                   </div>
               </form>
           </div>
@@ -81,8 +81,8 @@ class ShowProfile extends React.Component {
                         <tr><td/><td/></tr>
                     </table>
 
-                    <div className="button-location">
-                        <input className="submit-button" type={"submit"} value="Save" />
+                    <div className="flex-container">
+                        <div><input className="button" type={"submit"} value="Save" /></div>
                     </div>
                 </form>
             </div>
