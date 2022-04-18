@@ -30,7 +30,7 @@ const Sidebar = (props) => {
           <FontAwesomeIcon icon={faHome}></FontAwesomeIcon>
           <span>Home</span>
         </li>
-        <li>
+        <li onClick={() => onChangePage("presence")}>
           <FontAwesomeIcon icon={faCamera}></FontAwesomeIcon>
           <span>Presences</span>
         </li>

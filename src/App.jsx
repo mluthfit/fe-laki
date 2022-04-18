@@ -4,6 +4,7 @@ import Sidebar from "./components/Sidebar";
 import Home from "./components/Home";
 import Tasks from "./components/Tasks";
 import Employee from "./components/Employee";
+import Presence from "./components/Presence";
 import "./App.css";
 
 const App = () => {
@@ -26,6 +27,7 @@ const App = () => {
         {page === "home" && <Home />}
         {page === "tasks" && <Tasks />}
         {page === "employee" && <Employee />}
+        {page === "presence" && <Presence />}
       </main>
     </div>
   );
