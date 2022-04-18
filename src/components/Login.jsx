@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./css/login.css";
 
 class Login extends React.Component {
@@ -39,9 +40,9 @@ class Login extends React.Component {
             <tr>
               <td></td>
               <td className="forgot-align">
-                <a className="forgot-text" href="">
+                <Link to="/password/forgot" className="forgot-text">
                   Forgot Password?
-                </a>
+                </Link>
               </td>
             </tr>
           </table>
