@@ -13,7 +13,7 @@ import {
 import "./css/topbar.css";
 
 const Topbar = (props) => {
-  const { onToggleMenu } = props;
+  const { onToggleMenu, onChangePage } = props;
   const onToggleUser = (event) => {
     event.stopPropagation();
     const menuAccount = document.querySelector(".menu-account");
@@ -34,7 +34,7 @@ const Topbar = (props) => {
       <div className="topbar-right">
         <div className="company">
           <FontAwesomeIcon icon={faBuilding}></FontAwesomeIcon>
-          <span>Creative Asadecoba Inc.</span>
+          <span>Creative Consultant Inc.</span>
         </div>
         <div className="users">
           <div className="notification">
@@ -49,7 +49,7 @@ const Topbar = (props) => {
             </span>
             <div className="menu-account">
               <ul>
-                <li>
+                <li onClick={() => onChangePage("show-profile")}>
                   <FontAwesomeIcon icon={faCog}></FontAwesomeIcon>
                   <span>Profile</span>
                 </li>

@@ -5,7 +5,7 @@ import "./css/login.css";
 class Login extends React.Component {
   render() {
     return (
-      <div className="centered">
+      <div className="login">
         <h2 className="form-title">Login</h2>
         <form action="#" method="post">
           <table>

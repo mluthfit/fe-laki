@@ -1,4 +1,4 @@
-.centered {
+.reset-password {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -16,14 +16,14 @@
     flex-direction: column;
 }
 
-.circle {
+.reset-password .circle {
     width: 15px;
     height: 15px;
     background-color:  var(--grey-color);
     border-radius: 50%;
 }
 
-.form-title {
+.reset-password .form-title {
     font-size: 1.2rem;
     font-weight: bold;
     color: var(--light-green);
@@ -32,13 +32,13 @@
     vertical-align: text-top;
 }
 
-td {
+.reset-password td {
     padding-left: 2px;
     padding-right: 5px;
     padding-bottom: 2px;
 }
 
-.field {
+.reset-password .field {
     border: none;
     background-color: var(--grey-color);
     color: var(--black-color);
@@ -49,30 +49,30 @@ td {
     width: 15rem;
 }
 
-.forgot-align {
+.reset-password .forgot-align {
     text-decoration: none;
     text-align: right;
 }
 
-.forgot-text {
+.reset-password .forgot-text {
     color: var(--light-green);
     font-size: 0.8rem;
     font-family: Lato;
 }
 
-.title {
+.reset-password .title {
     font-size: 1rem;
     color: var(--light-green);
     font-family: Lato;
 }
 
-.placeholder {
+.reset-password .placeholder {
     color: var(--black-green);
     font-size: 0.8rem;
     font-family: Lato;
 }
 
-.button-location {
+.reset-password .button-location {
     padding-bottom: 0.2rem;
     padding-top: 0.5rem;
     margin-top: 3vh;
@@ -83,7 +83,7 @@ td {
     height: 100%;
 }
 
-.submit-button {
+.reset-password .submit-button {
     background-color: var(--light-green);
     color: var(--black-color);
     font-size: 0.8rem;

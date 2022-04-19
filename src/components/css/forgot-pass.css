@@ -1,4 +1,4 @@
-.centered {
+.forgot-password {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -16,14 +16,14 @@
     flex-direction: column;
 }
 
-.circle {
+.forgot-password .circle {
     width: 15px;
     height: 15px;
     background-color:  var(--grey-color);
     border-radius: 50%;
 }
 
-.form-title {
+.forgot-password .form-title {
     font-size: 1.2rem;
     font-weight: bold;
     color: var(--light-green);
@@ -32,13 +32,13 @@
     vertical-align: text-top;
 }
 
-td {
+.forgot-password td {
     padding-left: 2px;
     padding-right: 5px;
     padding-bottom: 2px;
 }
 
-.field {
+.forgot-password .field {
     border: none;
     background-color: var(--grey-color);
     color: var(--black-color);
@@ -49,24 +49,24 @@ td {
     width: 15rem;
 }
 
-.forgot-align {
+.forgot-password .forgot-align {
     text-decoration: none;
     text-align: right;
 }
 
-.forgot-text {
+.forgot-password .forgot-text {
     color: var(--light-green);
     font-size: 0.8rem;
     font-family: Lato;
 }
 
-.title {
+.forgot-password .title {
     font-size: 1rem;
     color: var(--light-green);
     font-family: Lato;
 }
 
-.placeholder {
+.forgot-password .placeholder {
     color: var(--black-green);
     font-size: 0.8rem;
     font-family: Lato;
