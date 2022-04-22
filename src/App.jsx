@@ -15,7 +15,7 @@ import "./App.css";
 const App = () => {
   const [page, setPage] = useState("home");
   const [isMenuOpen, setMenu] = useState(false);
-  const [isLogged, setLogged] = useState(true);
+  const [isLoggedIn, setLogged] = useState(false);
 
   const onChangePage = (page) => {
     setPage(page);
@@ -27,7 +27,11 @@ const App = () => {
 
   return (
     <div className="App">
-      <Topbar onToggleMenu={onToggleMenu} onChangePage={onChangePage} />
+      <Topbar
+        onToggleMenu={onToggleMenu}
+        onChangePage={onChangePage}
+        isLoggedIn={isLoggedIn}
+      />
       <Routes>
         <Route path="/" element={<div>Landing Page</div>} />
         <Route path="/login" element={<Login />} />
@@ -36,7 +40,7 @@ const App = () => {
         <Route
           path="/dashboard"
           element={
-            isLogged ? (
+            isLoggedIn ? (
               <main>
                 <Sidebar onChangePage={onChangePage} isMenuOpen={isMenuOpen} />
                 {page === "home" && <Home />}

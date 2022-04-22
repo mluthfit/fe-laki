@@ -45,6 +45,21 @@
   margin: 0 5px;
 }
 
+.topbar-right .link-pages {
+  cursor: pointer;
+}
+
+.topbar-right .login-button {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border: 1px solid var(--light-green);
+  padding: .5rem 1rem;
+  border-radius: 10px;
+}
+
 .topbar .accounts .menu-account {
   display: none;
   position: absolute;
