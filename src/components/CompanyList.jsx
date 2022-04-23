@@ -236,7 +236,11 @@ const CompanyList = () => {
     <div className="company-list">
       <div className="insert-company">
         <h2>Insert Company</h2>
-        <form onClick={onHandleSubmit}>
+        <form
+          method="post"
+          encType="multipart/form-data"
+          onSubmit={onHandleSubmit}
+        >
           <div className="form-big-group">
             <div className="form-group">
               <label htmlFor="name">Name</label>
@@ -288,10 +292,17 @@ const CompanyList = () => {
                 placeholder="Insert Website Link Here..."
               />
             </div>
-            <div className="form-group form-file">
+            <div className="form-group">
               <label htmlFor="logo">Logo</label>
-              {/* <button className="file-btn">Insert Logo Here...</button> */}
-              <input type="file" name="logo" id="logo" className="input-file" />
+              <div className="form-file">
+                <button className="file-button">Insert Logo Here...</button>
+                <input
+                  type="file"
+                  name="logo"
+                  id="logo"
+                  className="input-file"
+                />
+              </div>
             </div>
           </div>
           <button className="submit-btn" type="submit">
