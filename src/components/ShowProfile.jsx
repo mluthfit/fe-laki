@@ -4,11 +4,18 @@ import "./css/show-profile.css";
 
 // error tidak bisa ditampilkan
 class ShowProfile extends React.Component {
+  user = {
+    email: "kendrick.susanto@example.com",
+    name: "Kendrick Lamar Susanto",
+    title: "Finance Manager",
+    company: "Land Croc Inc.",
+  };
+
   render() {
     return (
       <div className="show-profile">
         <div className="down">
-          <Profile></Profile>
+          <Profile data={this.user}></Profile>
           <div className="menu-show-profile">
             <div className="content-menu">
               <h2 className="form-title">EDIT PROFILE</h2>

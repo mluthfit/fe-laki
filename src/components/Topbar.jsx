@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import logo from "./images/logo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -15,7 +15,6 @@ import {
 import "./css/topbar.css";
 
 const Topbar = (props) => {
-  const navigate = useNavigate();
   const { onToggleMenu, onChangePage, isLoggedIn } = props;
   const onToggleUser = (event) => {
     event.stopPropagation();
@@ -68,17 +67,25 @@ const Topbar = (props) => {
         </div>
       ) : (
         <div className="topbar-right">
-          <span onClick={() => navigate("/")} className="link-pages">
-            Home
+          <span>
+            <Link to="/#home" className="link-pages">
+              Home
+            </Link>
           </span>
-          <span onClick={() => navigate("/#about-us")} className="link-pages">
-            About Us
+          <span>
+            <Link to="/#about-us" className="link-pages">
+              About Us
+            </Link>
           </span>
-          <span onClick={() => navigate("/#features")} className="link-pages">
-            Features
+          <span>
+            <Link to="/#features" className="link-pages">
+              Features
+            </Link>
           </span>
           <div className="login-button">
-            <span onClick={() => navigate("/login")}>Login</span>
+            <span>
+              <Link to="/login">Login</Link>
+            </span>
             <FontAwesomeIcon icon={faSignIn}></FontAwesomeIcon>
           </div>
         </div>

@@ -47,6 +47,8 @@
 
 .topbar-right .link-pages {
   cursor: pointer;
+  color: white;
+  text-decoration: none;
 }
 
 .topbar-right .login-button {
@@ -58,6 +60,11 @@
   border: 1px solid var(--light-green);
   padding: .5rem 1rem;
   border-radius: 10px;
+}
+
+.topbar-right .login-button a {
+  text-decoration: none;
+  color: white;
 }
 
 .topbar .accounts .menu-account {

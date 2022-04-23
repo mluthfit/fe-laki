@@ -11,11 +11,12 @@ import ResetPassword from "./components/ResetPassword";
 import ForgotPassword from "./components/ForgotPassword";
 import ShowProfile from "./components/ShowProfile";
 import "./App.css";
+import LandingPage from "./components/LandingPage";
 
 const App = () => {
   const [page, setPage] = useState("home");
   const [isMenuOpen, setMenu] = useState(false);
-  const [isLoggedIn, setLogged] = useState(false);
+  const [isLoggedIn, setLogged] = useState(true);
 
   const onChangePage = (page) => {
     setPage(page);
@@ -33,7 +34,7 @@ const App = () => {
         isLoggedIn={isLoggedIn}
       />
       <Routes>
-        <Route path="/" element={<div>Landing Page</div>} />
+        <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/password/forgot" element={<ForgotPassword />} />
         <Route path="/password/reset" element={<ResetPassword />} />
