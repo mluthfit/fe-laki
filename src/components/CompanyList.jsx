@@ -6,6 +6,12 @@ import "./css/company-list.css";
 
 const CompanyList = () => {
   const [image, setImage] = useState("https://via.placeholder.com/151");
+  const [name, setName] = useState("");
+  const [address, setAddress] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [website, setWebsite] = useState("");
+
   const onPopupImage = (event) => {
     event.stopPropagation();
     const logoPopup = document.querySelector(".logo-popup");
@@ -14,70 +20,95 @@ const CompanyList = () => {
     logoPopup.classList.toggle("open");
   };
 
+  const onEditFormCompany = (row) => {
+    setName(row.name ?? "");
+    setAddress(row.address ?? "");
+    setPhone(row.phone ?? "");
+    setEmail(row.email ?? "");
+    setWebsite(row.website ?? "");
+  };
+
+  const onClearFormInput = () => {
+    setName("");
+    setAddress("");
+    setPhone("");
+    setEmail("");
+    setWebsite("");
+  };
+
   const onHandleSubmit = (event) => {
     event.preventDefault();
+    onClearFormInput();
   };
 
   const columns = [
     {
       name: "#",
       cell: (_, index) => index + 1,
+      grow: 0,
     },
     {
       name: "Name",
-      selector: (row) => row.name,
+      selector: (row) => row.name ?? "-",
       sortable: true,
     },
     {
       name: "Address",
-      selector: (row) => row.address,
+      selector: (row) => row.address ?? "-",
       sortable: true,
       grow: 2,
     },
     {
       name: "Phone",
-      selector: (row) => row.phone,
+      selector: (row) => row.phone ?? "-",
       sortable: true,
     },
     {
       name: "Email",
-      selector: (row) => row.email,
+      selector: (row) => row.email ?? "-",
       sortable: true,
     },
     {
       name: "Web",
-      cell: (row) => (
-        <a
-          href={row.website}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="web-button"
-        >
-          <FontAwesomeIcon icon={faLink}></FontAwesomeIcon>
-        </a>
-      ),
+      cell: (row) =>
+        row.website && (
+          <a
+            href={row.website}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="web-button"
+          >
+            <FontAwesomeIcon icon={faLink}></FontAwesomeIcon>
+          </a>
+        ),
       grow: 0,
     },
     {
       name: "Logo",
-      cell: (row) => (
-        <span
-          className="logo-button"
-          onClick={(e) => {
-            setImage(row.logo);
-            onPopupImage(e);
-            console.log(image);
-          }}
-        >
-          <FontAwesomeIcon icon={faEye}></FontAwesomeIcon>
-        </span>
-      ),
+      cell: (row) =>
+        row.logo && (
+          <span
+            className="logo-button"
+            onClick={(e) => {
+              setImage(row.logo);
+              onPopupImage(e);
+            }}
+          >
+            <FontAwesomeIcon icon={faEye}></FontAwesomeIcon>
+          </span>
+        ),
       grow: 0,
     },
     {
       name: "Action",
       cell: (row) => (
-        <span className="edit-button">
+        <span
+          className="edit-button"
+          onClick={() => {
+            console.log(row);
+            onEditFormCompany(row);
+          }}
+        >
           <FontAwesomeIcon icon={faEdit}></FontAwesomeIcon>
         </span>
       ),
@@ -92,14 +123,14 @@ const CompanyList = () => {
       address: "JL. Lorem Ipsum",
       phone: "+62 82345679876",
       email: "noreply@teslah.com",
-      website: "https://www.google.com",
+      website: null,
       logo: "https://via.placeholder.com/151",
     },
     {
       id: 2,
       name: "Super Inc.",
       address: "JL. Jend. Sudirman",
-      phone: "+62 82323487654",
+      phone: null,
       email: "admin@super.co.id",
       website: "https://www.facebook.com",
       logo: "https://via.placeholder.com/151",
@@ -131,111 +162,12 @@ const CompanyList = () => {
       website: "https://www.google.com",
       logo: "https://via.placeholder.com/150",
     },
-    {
-      id: 6,
-      name: "Super Inc.",
-      address: "JL. Jend. Sudirman",
-      phone: "+62 82323487654",
-      email: "admin@super.co.id",
-      website: "https://www.facebook.com",
-      logo: "https://via.placeholder.com/151",
-    },
-    {
-      id: 7,
-      name: "Teslah Crop.",
-      address: "JL. Lorem Ipsum",
-      phone: "+62 82345679876",
-      email: "noreply@teslah.com",
-      website: "https://www.google.com",
-      logo: "https://via.placeholder.com/150",
-    },
-    {
-      id: 8,
-      name: "Super Inc.",
-      address: "JL. Jend. Sudirman",
-      phone: "+62 82323487654",
-      email: "admin@super.co.id",
-      website: "https://www.facebook.com",
-      logo: "https://via.placeholder.com/151",
-    },
-    {
-      id: 9,
-      name: "Teslah Crop.",
-      address: "JL. Lorem Ipsum",
-      phone: "+62 82345679876",
-      email: "noreply@teslah.com",
-      website: "https://www.google.com",
-      logo: "https://via.placeholder.com/150",
-    },
-    {
-      id: 10,
-      name: "Super Inc.",
-      address: "JL. Jend. Sudirman",
-      phone: "+62 82323487654",
-      email: "admin@super.co.id",
-      website: "https://www.facebook.com",
-      logo: "https://via.placeholder.com/151",
-    },
-    {
-      id: 11,
-      name: "Teslah Crop.",
-      address: "JL. Lorem Ipsum",
-      phone: "+62 82345679876",
-      email: "noreply@teslah.com",
-      website: "https://www.google.com",
-      logo: "https://via.placeholder.com/150",
-    },
-    {
-      id: 12,
-      name: "Super Inc.",
-      address: "JL. Jend. Sudirman",
-      phone: "+62 82323487654",
-      email: "admin@super.co.id",
-      website: "https://www.facebook.com",
-      logo: "https://via.placeholder.com/151",
-    },
-    {
-      id: 13,
-      name: "Teslah Crop.",
-      address: "JL. Lorem Ipsum",
-      phone: "+62 82345679876",
-      email: "noreply@teslah.com",
-      website: "https://www.google.com",
-      logo: "https://via.placeholder.com/150",
-    },
-    {
-      id: 14,
-      name: "Super Inc.",
-      address: "JL. Jend. Sudirman",
-      phone: "+62 82323487654",
-      email: "admin@super.co.id",
-      website: "https://www.facebook.com",
-      logo: "https://via.placeholder.com/151",
-    },
-    {
-      id: 15,
-      name: "Teslah Crop.",
-      address: "JL. Lorem Ipsum",
-      phone: "+62 82345679876",
-      email: "noreply@teslah.com",
-      website: "https://www.google.com",
-      logo: "https://via.placeholder.com/150",
-    },
-    {
-      id: 16,
-      name: "Super Inc.",
-      address: "JL. Jend. Sudirman",
-      phone: "+62 82323487654",
-      email: "admin@super.co.id",
-      website: "https://www.facebook.com",
-      logo: "https://via.placeholder.com/151",
-    },
   ];
 
   return (
     <div className="company-list">
       <div className="insert-company">
-        <h2>Insert Company</h2>
+        <h2>Form Company</h2>
         <form
           method="post"
           encType="multipart/form-data"
@@ -249,6 +181,7 @@ const CompanyList = () => {
                 type="text"
                 name="name"
                 id="name"
+                value={name}
                 placeholder="Insert Company Name Here..."
               />
             </div>
@@ -259,6 +192,7 @@ const CompanyList = () => {
                 type="text"
                 name="address"
                 id="address"
+                value={address}
                 placeholder="Insert Company Address Here..."
               />
             </div>
@@ -269,6 +203,7 @@ const CompanyList = () => {
                 type="text"
                 name="phone"
                 id="phone"
+                value={phone}
                 placeholder="Insert Phone Number Here..."
               />
             </div>
@@ -279,6 +214,7 @@ const CompanyList = () => {
                 type="email"
                 name="email"
                 id="email"
+                value={email}
                 placeholder="Insert Email Here..."
               />
             </div>
@@ -289,6 +225,7 @@ const CompanyList = () => {
                 type="text"
                 name="website"
                 id="website"
+                value={website}
                 placeholder="Insert Website Link Here..."
               />
             </div>
@@ -306,7 +243,7 @@ const CompanyList = () => {
             </div>
           </div>
           <button className="submit-btn" type="submit">
-            Create Company
+            Submit
           </button>
         </form>
       </div>
@@ -360,11 +297,10 @@ const CompanyList = () => {
       </div>
       <div className="logo-popup">
         <div className="background-popup" onClick={onPopupImage}></div>
-        <div className="popup-box">
+        <div className="logo-popup-box">
           <img src={image} alt="Company's logo" />
         </div>
       </div>
-      <span onClick={onPopupImage}>Click here</span>
     </div>
   );
 };

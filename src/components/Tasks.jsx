@@ -52,18 +52,18 @@ const Tasks = () => {
           </div>
         );
       })}
-      <div className="backgroundFormEdit" onClick={onToggleFormEdit}></div>
-      <div className="formEditContainer">
+      <div className="background-form-edit" onClick={onToggleFormEdit}></div>
+      <div className="form-edit-container">
         <div className="header">
           <span>Edit Task</span>
         </div>
-        <div className="inputContainer">
+        <div className="input-container">
           <form onSubmit={onHandleSubmit}>
-            <div className="titleBox">
+            <div className="title-box">
               <label htmlFor="title">Title</label>
               <input type="text" name="title-task" id="title" />
             </div>
-            <div className="bodyBox">
+            <div className="body-box">
               <label htmlFor="body">Task</label>
               <textarea
                 name="body-task"
