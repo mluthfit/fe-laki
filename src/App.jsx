@@ -12,6 +12,7 @@ import ForgotPassword from "./components/ForgotPassword";
 import ShowProfile from "./components/ShowProfile";
 import "./App.css";
 import LandingPage from "./components/LandingPage";
+import CompanyList from "./components/CompanyList";
 
 const App = () => {
   const [page, setPage] = useState("home");
@@ -49,6 +50,7 @@ const App = () => {
                 {page === "employee" && <Employee />}
                 {page === "presence" && <Presence />}
                 {page === "show-profile" && <ShowProfile />}
+                {page === "company-list" && <CompanyList />}
               </main>
             ) : (
               <Navigate to="/login" />

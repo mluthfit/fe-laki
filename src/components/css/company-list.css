@@ -1,0 +1,49 @@
+.company-list {
+  padding: 2rem;
+  width: 100%;
+}
+
+.company-list .insert-company {
+  padding: 2rem;
+  background-color: var(--black-color);
+  border-radius: 10px;
+  width: 100%;
+}
+
+.company-list .insert-company h2 {
+  margin-bottom: 2rem;
+  color: var(--light-green);
+}
+
+.company-list .form-big-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+}
+
+.company-list .form-group label {
+  color: white;
+  display: block;
+  margin-bottom: .3rem;
+
+}
+
+.company-list .form-group .input-general {
+  border-radius: 5px;
+  padding: .5rem 1rem;
+  width: 300px;
+  outline: none;
+}
+
+.company-list .insert-company .submit-btn {
+  margin: 2rem auto 0 auto;
+  display: block;
+  cursor: pointer;
+  padding: .7rem 2rem;
+  border-radius: 5px;
+  background-color: var(--light-green);
+  color: var(--black-color);
+  outline: none;
+  border: none;
+}

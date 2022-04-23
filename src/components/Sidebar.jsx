@@ -61,7 +61,7 @@ const Sidebar = (props) => {
           </span>
           <ul className="dropdowns">
             <li>SuperUser List</li>
-            <li>Company List</li>
+            <li onClick={() => onChangePage("company-list")}>Company List</li>
           </ul>
         </li>
       </ul>
