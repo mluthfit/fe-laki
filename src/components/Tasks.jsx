@@ -10,6 +10,10 @@ const Tasks = () => {
     tasks.classList.toggle("open");
   };
 
+  const onHandleSubmit = (event) => {
+    event.preventDefault();
+  };
+
   const data = [
     {
       title: "Task 1",
@@ -48,26 +52,30 @@ const Tasks = () => {
           </div>
         );
       })}
-      <div className="backgroundFormEdit" onClick={onToggleFormEdit}></div>
-      <div className="formEditContainer">
+      <div className="background-form-edit" onClick={onToggleFormEdit}></div>
+      <div className="form-edit-container">
         <div className="header">
           <span>Edit Task</span>
         </div>
-        <div className="inputContainer">
-          <div className="titleBox">
-            <label htmlFor="title">Title</label>
-            <input type="text" name="title-input" id="title" />
-          </div>
-          <div className="bodyBox">
-            <label htmlFor="body">Task</label>
-            <textarea
-              name="body-input"
-              id="body"
-              cols="30"
-              rows="10"
-            ></textarea>
-          </div>
-          <button className="submit-task">Save</button>
+        <div className="input-container">
+          <form onSubmit={onHandleSubmit}>
+            <div className="title-box">
+              <label htmlFor="title">Title</label>
+              <input type="text" name="title-task" id="title" />
+            </div>
+            <div className="body-box">
+              <label htmlFor="body">Task</label>
+              <textarea
+                name="body-task"
+                id="body"
+                cols="30"
+                rows="10"
+              ></textarea>
+            </div>
+            <button type="submit" className="submit-task">
+              Save
+            </button>
+          </form>
         </div>
       </div>
     </div>

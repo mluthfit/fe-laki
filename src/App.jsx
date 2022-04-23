@@ -11,11 +11,13 @@ import ResetPassword from "./components/ResetPassword";
 import ForgotPassword from "./components/ForgotPassword";
 import ShowProfile from "./components/ShowProfile";
 import "./App.css";
+import LandingPage from "./components/LandingPage";
+import CompanyList from "./components/CompanyList";
 
 const App = () => {
   const [page, setPage] = useState("home");
   const [isMenuOpen, setMenu] = useState(false);
-  const [isLogged, setLogged] = useState(true);
+  const [isLoggedIn, setLogged] = useState(true);
 
   const onChangePage = (page) => {
     setPage(page);
@@ -27,16 +29,20 @@ const App = () => {
 
   return (
     <div className="App">
-      <Topbar onToggleMenu={onToggleMenu} onChangePage={onChangePage} />
+      <Topbar
+        onToggleMenu={onToggleMenu}
+        onChangePage={onChangePage}
+        isLoggedIn={isLoggedIn}
+      />
       <Routes>
-        <Route path="/" element={<div>Landing Page</div>} />
+        <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/password/forgot" element={<ForgotPassword />} />
         <Route path="/password/reset" element={<ResetPassword />} />
         <Route
           path="/dashboard"
           element={
-            isLogged ? (
+            isLoggedIn ? (
               <main>
                 <Sidebar onChangePage={onChangePage} isMenuOpen={isMenuOpen} />
                 {page === "home" && <Home />}
@@ -44,6 +50,7 @@ const App = () => {
                 {page === "employee" && <Employee />}
                 {page === "presence" && <Presence />}
                 {page === "show-profile" && <ShowProfile />}
+                {page === "company-list" && <CompanyList />}
               </main>
             ) : (
               <Navigate to="/login" />

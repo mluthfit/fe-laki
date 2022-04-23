@@ -1,0 +1,164 @@
+.company-list {
+  padding: 2rem;
+  width: 100%;
+  position: relative;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 4px 4px;
+}
+
+.company-list .insert-company {
+  padding: 2rem;
+  background-color: var(--black-color);
+  border-radius: 10px;
+  width: 100%;
+}
+
+.company-list .insert-company h2 {
+  margin-bottom: 2rem;
+  color: var(--light-green);
+}
+
+.company-list .form-big-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+}
+
+.company-list .form-group label {
+  color: white;
+  display: block;
+  margin-bottom: .3rem;
+
+}
+
+.company-list .form-group .input-general,
+.company-list .form-file .file-button {
+  border-radius: 5px;
+  padding: .5rem 1rem;
+  width: 300px;
+  outline: none;
+  border: none;
+  text-align: left;
+}
+
+.company-list .form-file {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.company-list .form-file .input-file {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+
+.company-list .insert-company .submit-btn {
+  margin: 2rem auto 0 auto;
+  display: block;
+  cursor: pointer;
+  padding: .7rem 2rem;
+  border-radius: 5px;
+  background-color: var(--light-green);
+  color: var(--black-color);
+  outline: none;
+  border: none;
+}
+
+.company-list .web-button,
+.company-list .logo-button,
+.company-list .edit-button {
+  display: inline-block;
+  padding: .5rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.company-list .web-button {
+  color: var(--black-color);
+  border: 1px solid var(--black-color);
+  background-color: var(--light-green);
+}
+
+.company-list .logo-button,
+.company-list .edit-button {
+  color: var(--light-green);
+  background-color: var(--black-color);
+}
+
+.company-list .company-table {
+  margin-top: 2rem;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 4px 4px;
+  border-radius: 10px;
+  padding: 2rem;
+  background-color: white;
+}
+
+.company-list .company-table .title {
+  margin-bottom: 1rem;
+}
+
+.company-list .logo-popup {
+  display: none;
+}
+
+.company-list .logo-popup.open {
+  display: flex;
+  justify-content: center;
+}
+
+.company-list .logo-popup.open .background-popup {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgb(28, 26, 26, 0.9);
+}
+
+.company-list .logo-popup.open .logo-popup-box {
+  background-color: white;
+  position: absolute;
+  padding: 1rem;
+  min-width: 400px;
+  min-height: 400px;
+  top: 100px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+/* .company-list .company-table table {
+  width: 100%;
+  text-align: center;
+  border-spacing: 1rem;
+  border-collapse: collapse;
+}
+
+.company-list .company-table tr.tbody {
+  margin: 1rem 0;
+  border-collapse: collapse;
+  background-color: var(--dark-grey);
+  border-radius: 10px;
+}
+
+.company-list .company-table td, 
+.company-list .company-table th {
+  padding: .3rem 1rem;
+  margin: 1rem 0;
+}
+
+.company-list .company-table tr.tbody td:first-child {
+  border-top-left-radius: 10px; 
+  border-bottom-left-radius: 10px;
+}
+
+.company-list .company-table tr.tbody td:last-child {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+} */

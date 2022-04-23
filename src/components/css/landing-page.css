@@ -1,0 +1,124 @@
+.landing-page .jumbotron {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 3rem;
+}
+
+.landing-page .jumbotron img {
+  margin-top: 3rem;
+  width: 40%;
+  height: 40%;
+}
+
+.landing-page .jumbotron h1 {
+  text-align: center;
+  color: var(--dark-green);
+  margin: 0 1.5rem;
+}
+
+.landing-page .jumbotron .join-us {
+  outline: none;
+  border: none;
+  margin: 2rem 0;
+  font-size: 1.7rem;
+  padding: .5rem 2rem;
+  background-color: var(--black-color);
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.landing-page .about-us-content {
+  background-color: var(--black-color);
+  padding: 3rem 0;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-around;
+  align-items: center;
+  color: white;
+}
+
+.landing-page .about-us-content img {
+  width: 40%;
+  height: 40%;
+}
+
+.landing-page .about-us-info {
+  margin-top: 1rem;
+  width: 40%;
+  text-align: center;
+}
+
+.landing-page .about-us-info h1 {
+  margin: 2rem 0;
+}
+
+.landing-page .features {
+  margin: 5rem 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.landing-page .features img {
+  width: 30%;
+  height: 30%;
+}
+
+.landing-page .features-info h1 {
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+  color: var(--dark-green);
+}
+
+.landing-page .features-detail {
+  display: flex;
+  margin: 3rem 0;
+  align-items: center;
+  gap: 20px;
+}
+
+.landing-page .features-detail img {
+  width: 60px;
+}
+
+.landing-page .info-detail span {
+  font-size: 1.2rem;
+}
+
+.light-green {
+  color: var(--light-green)
+}
+
+@media screen and (max-width: 790px) {
+  .landing-page .about-us-content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .landing-page .about-us-info {
+    width: 100%;
+    padding: 0 2rem;
+  }
+
+  .landing-page .about-us-info h1 {
+    align-items: flex-start;
+    margin: 2rem 0;
+    width: 100%
+  }
+
+  .landing-page .features {
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+  }
+
+  .landing-page .features-info h1 {
+    text-align: center;
+  }
+
+  .landing-page .features-detail {
+    padding: 0 2rem;
+  }
+}
