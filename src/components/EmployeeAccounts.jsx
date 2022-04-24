@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import DataTable from "react-data-table-component";
 import "./css/user-list.css";
 
-const EmployeeAccountsEdit = () => {
+const EmployeeAccounts = () => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [title, setTitle] = useState("");
@@ -198,4 +198,4 @@ const EmployeeAccountsEdit = () => {
     );
 };
 
-export default EmployeeAccountsEdit;
+export default EmployeeAccounts;

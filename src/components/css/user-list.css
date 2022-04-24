@@ -68,7 +68,9 @@
 
 .user-list .web-button,
 .user-list .logo-button,
-.user-list .delete-button {
+.user-list .delete-button,
+.user-list .details-button,
+.user-list .view-task-button {
     display: inline-block;
     padding: .5rem;
     border-radius: 5px;
@@ -82,7 +84,9 @@
 }
 
 .user-list .logo-button,
-.user-list .delete-button {
+.user-list .delete-button,
+.user-list .details-button,
+.user-list .view-task-button {
     color: var(--light-green);
     background-color: var(--black-color);
 }

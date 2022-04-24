@@ -49,9 +49,8 @@ const Sidebar = (props) => {
             <FontAwesomeIcon icon={faAngleRight}></FontAwesomeIcon>
           </span>
           <ul className="dropdowns">
-            <li>Employee Details</li>
-            <li>Employee Accounts</li>
-            <li onClick={() => onChangePage("user-list-edit")}>Edit Employee Accounts</li>
+            <li onClick={() => onChangePage("employee-details")}>Employee Details</li>
+            <li onClick={() => onChangePage("employee-accounts")}>Employee Accounts</li>
           </ul>
         </li>
         <li onClick={onToggleSidebar} className="parent-dropdown">
