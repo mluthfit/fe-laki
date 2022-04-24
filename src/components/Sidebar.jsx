@@ -60,7 +60,7 @@ const Sidebar = (props) => {
             <FontAwesomeIcon icon={faAngleRight}></FontAwesomeIcon>
           </span>
           <ul className="dropdowns">
-            <li>SuperUser List</li>
+            <li onClick={() => onChangePage("super-user-list")}>SuperUser List</li>
             <li onClick={() => onChangePage("company-list")}>Company List</li>
           </ul>
         </li>
