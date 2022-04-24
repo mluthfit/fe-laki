@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import DataTable from "react-data-table-component";
-import "./css/user-list.css";
+import "./css/superuser-list.css";
 
-const SuperUserList = () => {
+const EmployeeAccountsEdit = () => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [title, setTitle] = useState("");
-    const [company, setCompany] = useState("");
+    const [status, setStatus] = useState("");
     const [password, setPassword] = useState("");
     const [confirmpass, setConfirmPass] = useState("");
 
@@ -14,7 +14,7 @@ const SuperUserList = () => {
         setName(row.name ?? "");
         setEmail(row.email ?? "");
         setTitle(row.title ?? "");
-        setCompany(row.company ?? "");
+        setStatus(row.status ?? "");
         setPassword(row.password ?? "");
     };
 
@@ -22,7 +22,6 @@ const SuperUserList = () => {
         setName("");
         setEmail("");
         setTitle("");
-        setCompany("");
         setPassword("");
         setConfirmPass("");
     };
@@ -54,8 +53,8 @@ const SuperUserList = () => {
             sortable: true,
         },
         {
-            name: "Company",
-            selector: (row) => row.company ?? "-",
+            name: "Status",
+            selector: (row) => row.status ?? "-",
             sortable: true,
         },
         {
@@ -81,49 +80,49 @@ const SuperUserList = () => {
             name: "John Doe Kurniadi",
             email: "johndoe@email.com",
             title: "IT Manager",
-            company: "Land Croc Inc.",
+            status: "Online",
         },
         {
             id: 2,
             name: "Jane Doe Setiawati",
             email: "jane.dodoe@gmail.com",
             title: "Data Scientist",
-            company: "Land Croc Inc.",
+            status: "Online",
         },
         {
             id: 3,
             name: "Lewis Hamdullah",
             email: "lewis.h@email.com",
             title: "Cyber Security Analyst",
-            company: "Super Inc.",
+            status: "Online",
         },
         {
             id: 4,
             name: "Mikael Jardon",
             email: "jumpman23@gmail.com",
             title: "Quality Assurance",
-            company: "Teslah Inc.",
+            status: "Online",
         },
         {
             id: 5,
             name: "Kendrick Lamar Susanto",
             email: "kendricklamarsus@gmail.com",
             title: "Finance Manager",
-            company: "Land Croc Inc.",
+            status: "Online",
         },
         {
             id: 6,
             name: "Jonathan Cena",
             email: "johncena@gmail.com",
             title: "Marketing Manager",
-            company: "Teslah Inc.",
+            status: "Offline",
         },
     ];
 
     return (
-        <div className="super-user-list">
-            <div className="insert-super-user">
-                <h2>Form SuperUser</h2>
+        <div className="user-list">
+            <div className="insert-user">
+                <h2>Form Employee</h2>
                 <form
                     method="post"
                     encType="multipart/form-data"
@@ -153,17 +152,6 @@ const SuperUserList = () => {
                             />
                         </div>
                         <div className="form-group">
-                            <label htmlFor="title">Password</label>
-                            <input
-                                className="input-general"
-                                type={"password"}
-                                name={"password"}
-                                id={"password"}
-                                value={password}
-                                placeholder={"Insert SuperUser Job Title Here..."}
-                            />
-                        </div>
-                        <div className="form-group">
                             <label htmlFor="company">Title</label>
                             <input
                                 className="input-general"
@@ -175,14 +163,14 @@ const SuperUserList = () => {
                             />
                         </div>
                         <div className="form-group">
-                            <label htmlFor="company">Company</label>
+                            <label htmlFor="title">Password</label>
                             <input
                                 className="input-general"
-                                type={"text"}
-                                name={"company"}
-                                id={"company"}
-                                value={company}
-                                placeholder={"Insert SuperUser Company Here..."}
+                                type={"password"}
+                                name={"password"}
+                                id={"password"}
+                                value={password}
+                                placeholder={"Insert SuperUser Job Title Here..."}
                             />
                         </div>
                         <div className="form-group">
@@ -202,12 +190,12 @@ const SuperUserList = () => {
                     </button>
                 </form>
             </div>
-            <div className="super-user-table">
-                <h2 className="title">SuperUser List</h2>
+            <div className="user-table">
+                <h2 className="title">Employee List</h2>
                 <DataTable columns={columns} data={data} pagination />
             </div>
         </div>
     );
 };
 
-export default SuperUserList;
+export default EmployeeAccountsEdit;

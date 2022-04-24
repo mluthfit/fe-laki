@@ -51,6 +51,7 @@ const Sidebar = (props) => {
           <ul className="dropdowns">
             <li>Employee Details</li>
             <li>Employee Accounts</li>
+            <li onClick={() => onChangePage("user-list-edit")}>Edit Employee Accounts</li>
           </ul>
         </li>
         <li onClick={onToggleSidebar} className="parent-dropdown">

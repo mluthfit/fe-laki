@@ -14,6 +14,7 @@ import "./App.css";
 import LandingPage from "./components/LandingPage";
 import CompanyList from "./components/CompanyList";
 import SuperUserList from "./components/SuperUserList";
+import EmployeeAccountsEdit from "./components/EmployeeAccountsEdit";
 
 const App = () => {
   const [page, setPage] = useState("home");
@@ -53,6 +54,7 @@ const App = () => {
                 {page === "show-profile" && <ShowProfile />}
                 {page === "super-user-list" && <SuperUserList />}
                 {page === "company-list" && <CompanyList />}
+                {page === "user-list-edit" && <EmployeeAccountsEdit />}
               </main>
             ) : (
               <Navigate to="/login" />
