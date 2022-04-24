@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import DataTable from "react-data-table-component";
-import "./css/user-list.css";
+import "./css/superuser-list.css";
 
 const SuperUserList = () => {
     const [name, setName] = useState("");
@@ -24,7 +24,7 @@ const SuperUserList = () => {
         setTitle("");
         setCompany("");
         setPassword("");
-        setConfirmPass("");
+        setConfirmPass("")
     };
 
     const onHandleSubmit = (event) => {

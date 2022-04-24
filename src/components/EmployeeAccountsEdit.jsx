@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import DataTable from "react-data-table-component";
-import "./css/superuser-list.css";
+import "./css/user-list.css";
 
 const EmployeeAccountsEdit = () => {
     const [name, setName] = useState("");
