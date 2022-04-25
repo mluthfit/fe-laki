@@ -3,6 +3,7 @@ import DataTable from "react-data-table-component";
 import "./css/user-list.css";
 
 const EmployeeDetails = () => {
+    const [image, setImage] = useState("https://via.placeholder.com/151");
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [title, setTitle] = useState("");
@@ -134,74 +135,37 @@ const EmployeeDetails = () => {
 
     return (
         <div className="user-list">
-            <div className="insert-user">
-                <h2>Form Employee</h2>
-                <form
-                    method="post"
-                    encType="multipart/form-data"
-                    onSubmit={onHandleSubmit}
-                >
-                    <div className="form-big-group">
-                        <div className="form-group">
-                            <label htmlFor="name">Name</label>
-                            <input 
-                                className="input-general"
-                                type={"text"}
-                                name={"name"}
-                                id={"name"}
-                                value={name}
-                                placeholder={"Insert SuperUser Name Here..."}
-                            />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="email">Email</label>
-                            <input
-                                className="input-general"
-                                type={"email"}
-                                name={"email"}
-                                id={"email"}
-                                value={email}
-                                placeholder={"Insert SuperUser Email Here..."}
-                            />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="company">Title</label>
-                            <input
-                                className="input-general"
-                                type={"text"}
-                                name={"title"}
-                                id={"title"}
-                                value={title}
-                                placeholder={"Insert SuperUser Title Here..."}
-                            />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="title">Password</label>
-                            <input
-                                className="input-general"
-                                type={"password"}
-                                name={"password"}
-                                id={"password"}
-                                value={password}
-                                placeholder={"Insert SuperUser Job Title Here..."}
-                            />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="company">Confirm Password</label>
-                            <input
-                                className="input-general"
-                                type={"password"}
-                                name={"confirmpass"}
-                                id={"confirmpass"}
-                                value={confirmpass}
-                                placeholder={"Confirm SuperUser Password Here..."}
-                            />
+            <div className="company-profile">
+                <div className="company-profile-big-group">
+                    <img src={image} alt="Company's Logo" />
+                    <div className="company-profile-group">
+                        <h2>Company's Name</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                            Maecenas eget metus eget ante commodo accumsan sit amet ut metus. 
+                            Proin ut suscipit quam. Praesent ut neque ac est egestas pretium 
+                            eu non odio. Ut interdum condimentum nisl sodales interdum. Orci 
+                            varius natoque penatibus et magnis dis parturient montes, nascetur 
+                            ridiculus mus. Maecenas non pharetra nisi, sed condimentum turpis. 
+                            Suspendisse imperdiet quis lectus vel aliquet. Proin ullamcorper augue 
+                            eu dolor faucibus lobortis. Aliquam suscipit nisl purus. Nam sit amet 
+                            auctor magna. Etiam non quam ex. Nulla et sem ornare, tempor justo in, 
+                            laoreet erat. Ut interdum, lorem sed sodales suscipit, est turpis feugiat 
+                            sem, quis ullamcorper lacus lacus mollis metus. Mauris cursus lectus
+                            arcu, nec eleifend ex consequat nec.</p>
+                        <div className="counter-group">
+                            <table>
+                                <tr>
+                                    <td><div className="dot-total" /></td>
+                                    <td><div className="counter-total">450</div></td>
+                                    <td><div className="counter-total spacing">Employee</div></td>
+                                    <td><div className="dot-online" /></td>
+                                    <td><div className="counter-online">300</div></td>
+                                    <td><div className="counter-online spacing">Online</div></td>
+                                </tr>
+                            </table>
                         </div>
                     </div>
-                    <button className="submit-btn" type="submit">
-                        Submit
-                    </button>
-                </form>
+                </div>
             </div>
             <div className="user-table">
                 <h2 className="title">Employee List</h2>

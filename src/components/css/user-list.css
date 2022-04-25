@@ -17,11 +17,82 @@
     color: var(--light-green);
 }
 
+.user-list .company-profile {
+    padding: 2rem;
+    background-color: var(--light-grey);
+    border-radius: 10px;
+    width: 100%;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 4px 4px;
+}
+
+.user-list .company-profile h2 {
+    margin-bottom: 1rem;
+    color: var(--black-color);
+}
+
 .user-list .form-big-group {
     display: flex;
     flex-wrap: wrap;
     gap: 15px;
     justify-content: center;
+}
+
+.user-list .company-profile-big-group {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    justify-content: center;
+    padding: 2vh;
+}
+
+.user-list .company-profile-group {
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.user-list .company-profile-group .counter-group {
+    margin-top: 2vh;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.user-list .company-profile-group .counter-group .spacing {
+    margin-left: .3vh;
+    margin-right: 5vh;
+}
+
+.user-list .company-profile-group .counter-group .dot-total {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--black-color);
+    margin-top: 1vh;
+    margin-right: .3rem;
+}
+
+.user-list .company-profile-group .counter-group .dot-online {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--dark-green);
+    margin-top: 1vh;
+    margin-right: .3rem;
+}
+
+.user-list .company-profile-group .counter-group .counter-total {
+    margin-top: 1vh;
+    flex-direction: row;
+    flex-wrap: wrap;
+    color: var(--black-color);
+    font-weight: bold;
+}
+
+.user-list .company-profile-group .counter-group .counter-online {
+    margin-top: 1vh;
+    flex-direction: row;
+    flex-wrap: wrap;
+    color: var(--dark-green);
+    font-weight: bold;
 }
 
 .user-list .form-group label {
