@@ -13,6 +13,9 @@ import ShowProfile from "./components/ShowProfile";
 import "./App.css";
 import LandingPage from "./components/LandingPage";
 import CompanyList from "./components/CompanyList";
+import SuperUserList from "./components/SuperUserList";
+import EmployeeAccounts from "./components/EmployeeAccounts";
+import EmployeeDetails from "./components/EmployeeDetails";
 
 const App = () => {
   const [page, setPage] = useState("home");
@@ -50,7 +53,10 @@ const App = () => {
                 {page === "employee" && <Employee />}
                 {page === "presence" && <Presence />}
                 {page === "show-profile" && <ShowProfile />}
+                {page === "super-user-list" && <SuperUserList />}
                 {page === "company-list" && <CompanyList />}
+                {page === "employee-accounts" && <EmployeeAccounts />}
+                {page === "employee-details" && <EmployeeDetails />}
               </main>
             ) : (
               <Navigate to="/login" />
