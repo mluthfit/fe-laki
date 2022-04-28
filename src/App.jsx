@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
+import axios from "axios";
+import env from "./scripts/Environment";
 import Topbar from "./components/Topbar";
 import Sidebar from "./components/Sidebar";
 import Home from "./components/Home";
@@ -31,8 +33,27 @@ const App = () => {
     setMenu(!isMenuOpen);
   };
 
-  const token = localStorage.getItem("tokedn");
-  console.log(token);
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      const checkToken = async () => {
+        try {
+          const { data } = await axios.get(`${env.API_URL}/profiles`, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+
+          console.log(data);
+          setLogged(true);
+        } catch (error) {
+          setLogged(false);
+        }
+      };
+
+      checkToken();
+    }
+  }, []);
 
   return (
     <div className="App">
@@ -40,15 +61,35 @@ const App = () => {
         onToggleMenu={onToggleMenu}
         onChangePage={onChangePage}
         isLoggedIn={isLoggedIn}
+        setLogged={setLogged}
       />
       <Routes>
         <Route
           path="/"
           element={isLoggedIn ? <Navigate to="/dashboard" /> : <LandingPage />}
         />
-        <Route path="/login" element={<Login setLogged={setLogged} />} />
-        <Route path="/forgot-password" element={<ForgotPassword />} />
-        <Route path="/reset-password" element={<ResetPassword />} />
+        <Route
+          path="/login"
+          element={
+            !isLoggedIn ? (
+              <Login setLogged={setLogged} />
+            ) : (
+              <Navigate to="/dashboard" />
+            )
+          }
+        />
+        <Route
+          path="/forgot-password"
+          element={
+            !isLoggedIn ? <ForgotPassword /> : <Navigate to="/dashboard" />
+          }
+        />
+        <Route
+          path="/reset-password"
+          element={
+            !isLoggedIn ? <ResetPassword /> : <Navigate to="/dashboard" />
+          }
+        />
         <Route
           path="/dashboard"
           element={

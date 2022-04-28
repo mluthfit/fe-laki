@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "./images/logo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -15,7 +15,9 @@ import {
 import "./css/topbar.css";
 
 const Topbar = (props) => {
-  const { onToggleMenu, onChangePage, isLoggedIn } = props;
+  const { onToggleMenu, onChangePage, isLoggedIn, setLogged } = props;
+  const navigate = useNavigate();
+
   const onToggleUser = (event) => {
     event.stopPropagation();
     const menuAccount = document.querySelector(".menu-account");
@@ -58,7 +60,15 @@ const Topbar = (props) => {
                   </li>
                   <li>
                     <FontAwesomeIcon icon={faSignOut}></FontAwesomeIcon>
-                    <span>Logout</span>
+                    <span
+                      onClick={() => {
+                        localStorage.removeItem("token");
+                        setLogged(false);
+                        navigate("/login");
+                      }}
+                    >
+                      Logout
+                    </span>
                   </li>
                 </ul>
               </div>
