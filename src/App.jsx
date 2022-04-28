@@ -20,7 +20,7 @@ import EmployeeDetails from "./components/EmployeeDetails";
 const App = () => {
   const [page, setPage] = useState("home");
   const [isMenuOpen, setMenu] = useState(false);
-  const [isLoggedIn, setLogged] = useState(true);
+  const [isLoggedIn, setLogged] = useState(false);
 
   const onChangePage = (page) => {
     setPage(page);
@@ -40,8 +40,8 @@ const App = () => {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/password/forgot" element={<ForgotPassword />} />
-        <Route path="/password/reset" element={<ResetPassword />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
         <Route
           path="/dashboard"
           element={

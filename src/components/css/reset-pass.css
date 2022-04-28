@@ -1,101 +1,51 @@
 .reset-password {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-right: -50%;
-    transform: translate(-50%, -50%);
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.reset-password .container {
+    width: 90%;
+    max-width: 400px;
     background-color: var(--black-color);
-    align-items: center;
-    margin: 10px;
-    padding: 10px;
-    border-radius: 20px;
-    width: 50vh;
-    height: 60vh;
-    justify-content: center;
-    display: flex;
-    flex-direction: column;
-}
-
-.reset-password .circle {
-    width: 15px;
-    height: 15px;
-    background-color:  var(--grey-color);
-    border-radius: 50%;
-}
-
-.reset-password .form-title {
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: var(--light-green);
-    margin-top: -10vh;
-    margin-bottom: 7vh;
-    vertical-align: text-top;
-}
-
-.reset-password td {
-    padding-left: 2px;
-    padding-right: 5px;
-    padding-bottom: 2px;
-}
-
-.reset-password .field {
-    border: none;
-    background-color: var(--grey-color);
-    color: var(--black-color);
-    font-size: 0.8rem;
-    padding: 0.5rem;
-    border-radius: 5px;
-    height: 20px;
-    width: 15rem;
-}
-
-.reset-password .forgot-align {
-    text-decoration: none;
-    text-align: right;
-}
-
-.reset-password .forgot-text {
-    color: var(--light-green);
-    font-size: 0.8rem;
-    font-family: Lato;
-}
-
-.reset-password .title {
-    font-size: 1rem;
-    color: var(--light-green);
-    font-family: Lato;
-}
-
-.reset-password .placeholder {
-    color: var(--black-green);
-    font-size: 0.8rem;
-    font-family: Lato;
-}
-
-.reset-password .button-location {
-    padding-bottom: 0.2rem;
-    padding-top: 0.5rem;
-    margin-top: 3vh;
-    justify-content: center;
-    align-items: center;
-    display: flex;
-    width: 100%;
-    height: 100%;
-}
-
-.reset-password .submit-button {
-    background-color: var(--light-green);
-    color: var(--black-color);
-    font-size: 0.8rem;
-    font-weight: bold;
-    font-family: Lato;
-    padding: 0.5rem;
-    border: none;
-    cursor: pointer;
+    padding: 2rem 3rem;
     border-radius: 10px;
-    position: absolute;
-    left: 50%;
-    margin-right: -50%;
-    transform: translate(-50%, -50%);
-    width: 100px;
+}
+
+.reset-password .container h2 {
+    color: var(--light-green);
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.reset-password .form-group {
+    margin-bottom: 1rem;
+}
+
+.reset-password .form-group label {
+    display: block;
+    color: var(--light-green);
+    margin-bottom: .3rem;
+}
+
+.reset-password .form-group input {
+    padding: .4rem;
+    width: 100%;
+    border-radius: 5px;
+    outline: none;
+}
+
+.reset-password .submit-btn {
+    display: block;
+    margin: 0 auto;
+    margin-top: 5rem;
+    padding: .5rem 2rem;
+    background-color: var(--light-green);
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
 }
