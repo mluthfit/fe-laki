@@ -30,10 +30,23 @@
 }
 
 .login .form-group input {
-    padding: .4rem;
+    padding: .6rem;
     width: 100%;
     border-radius: 5px;
     outline: none;
+}
+
+.login .error-message {
+    margin-top: .5rem;
+    background-color: var(--background-warning);
+    border-radius: 5px;
+    padding: .3rem 1rem;
+    color: var(--text-warning);
+}
+
+.login .error-message span {
+    display: block;
+    margin: .3rem 0;
 }
 
 .login .link-forgot {

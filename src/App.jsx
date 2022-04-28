@@ -10,17 +10,18 @@ import Login from "./components/Login";
 import ResetPassword from "./components/ResetPassword";
 import ForgotPassword from "./components/ForgotPassword";
 import ShowProfile from "./components/ShowProfile";
-import "./App.css";
 import LandingPage from "./components/LandingPage";
 import CompanyList from "./components/CompanyList";
 import SuperUserList from "./components/SuperUserList";
 import EmployeeAccounts from "./components/EmployeeAccounts";
 import EmployeeDetails from "./components/EmployeeDetails";
+import "./App.css";
 
 const App = () => {
   const [page, setPage] = useState("home");
   const [isMenuOpen, setMenu] = useState(false);
   const [isLoggedIn, setLogged] = useState(false);
+  const [user, setUser] = useState({});
 
   const onChangePage = (page) => {
     setPage(page);
@@ -30,6 +31,9 @@ const App = () => {
     setMenu(!isMenuOpen);
   };
 
+  const token = localStorage.getItem("tokedn");
+  console.log(token);
+
   return (
     <div className="App">
       <Topbar
@@ -38,8 +42,11 @@ const App = () => {
         isLoggedIn={isLoggedIn}
       />
       <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/login" element={<Login />} />
+        <Route
+          path="/"
+          element={isLoggedIn ? <Navigate to="/dashboard" /> : <LandingPage />}
+        />
+        <Route path="/login" element={<Login setLogged={setLogged} />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/reset-password" element={<ResetPassword />} />
         <Route
@@ -47,7 +54,11 @@ const App = () => {
           element={
             isLoggedIn ? (
               <main>
-                <Sidebar onChangePage={onChangePage} isMenuOpen={isMenuOpen} />
+                <Sidebar
+                  onChangePage={onChangePage}
+                  isMenuOpen={isMenuOpen}
+                  user={user}
+                />
                 {page === "home" && <Home />}
                 {page === "tasks" && <Tasks />}
                 {page === "employee" && <Employee />}
