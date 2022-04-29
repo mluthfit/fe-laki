@@ -12,19 +12,23 @@ const Profile = (props) => {
         <div className="logo-profile">
           <img src="https://via.placeholder.com/150" alt="logo" />
         </div>
-        {Object.keys(data).map((key, index) => {
-          return (
-            <div key={index} className="profile-item">
-              <span className="key">{capitalize(key)}</span>
-              <span className="value">{data[key]}</span>
+        <div className="info-profile">
+          {Object.keys(data).map((key, index) => {
+            return (
+              <div key={index} className="profile-item">
+                <span className="key">{capitalize(key)}</span>
+                <span className="value">{data[key]}</span>
+              </div>
+            );
+          })}
+          {status && (
+            <div className="status-bar">
+              <span className={status === "Online" ? "online" : "offline"}>
+                {status}
+              </span>
             </div>
-          );
-        })}
-        {status && (
-          <div className="statusBar">
-            <span>{status}</span>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </div>
   );

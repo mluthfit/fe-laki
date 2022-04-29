@@ -19,7 +19,7 @@ const Home = () => {
   const user = {
     email: "kendrick.susanto@example.com",
     name: "Kendrick Lamar Susanto",
-    title: "Finance Manager",
+    position: "Finance Manager",
     company: "Land Croc Inc.",
   };
 

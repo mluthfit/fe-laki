@@ -6,42 +6,42 @@ const Employee = () => {
   const employees = [
     {
       name: "John Doe",
-      title: "CEO",
+      position: "CEO",
       status: "Online",
     },
     {
       name: "Kendrick Lamar Susanto",
-      title: "Finance Manager",
+      position: "Finance Manager",
       status: "Online",
     },
     {
       name: "Johny Depp",
-      title: "Manager",
+      position: "Manager",
       status: "Offline",
     },
     {
       name: "Johny Depp",
-      title: "Manager",
+      position: "Manager",
       status: "Offline",
     },
     {
       name: "John Doe",
-      title: "CEO",
+      position: "CEO",
       status: "Online",
     },
     {
       name: "Kendrick Lamar Susanto",
-      title: "Finance Manager",
+      position: "Finance Manager",
       status: "Online",
     },
     {
       name: "Johny Depp",
-      title: "Manager",
+      position: "Manager",
       status: "Offline",
     },
     {
       name: "Johny Depp",
-      title: "Manager",
+      position: "Manager",
       status: "Offline",
     },
   ];
@@ -52,7 +52,7 @@ const Employee = () => {
         return (
           <div key={index}>
             <Profile
-              data={{ name: employee.name, title: employee.title }}
+              data={{ name: employee.name, position: employee.position }}
               status={employee.status}
             />
           </div>

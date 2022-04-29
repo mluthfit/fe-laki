@@ -14,6 +14,16 @@
   --yellow-color: #F8EEB4;
   --dark-grey: #C4C4C4;
   --light-grey: #F5F5F5;
-  --text-warning: #cc3300;
-  --background-warning: #ff9966;
+  --text-danger: #721c24;
+  --background-danger: #f8d7da;
+  --border-danger: #f5c6cb;
+  --text-success: #155724;
+  --background-success: #d4edda;
+  --border-success: #c3e6cb;
+  --text-primary: #004085;
+  --background-primary: #cce5ff;
+  --border-primary: #b8daff;
+  --text-secondary: #383d41;
+  --background-secondary: #e2e3e5;
+  --border-secondary: #d6d8db;
 }

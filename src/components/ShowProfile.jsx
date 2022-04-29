@@ -7,123 +7,52 @@ class ShowProfile extends React.Component {
   user = {
     email: "kendrick.susanto@example.com",
     name: "Kendrick Lamar Susanto",
-    title: "Finance Manager",
+    position: "Finance Manager",
     company: "Land Croc Inc.",
   };
 
   render() {
     return (
       <div className="show-profile">
-        <div className="down">
-          <Profile data={this.user}></Profile>
-          <div className="menu-show-profile">
-            <div className="content-menu">
-              <h2 className="form-title">EDIT PROFILE</h2>
-              <form action="#" className="form-pos" method="post">
-                <table>
-                  <tr>
-                    <td></td>
-                    <td className="title">Nama</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div className="circle"></div>
-                    </td>
-                    <td>
-                      <input className="field" type={"text"} name="" />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td />
-                    <td />
-                  </tr>
-                  <tr>
-                    <td></td>
-                    <td className="title">Email</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div className="circle"></div>
-                    </td>
-                    <td>
-                      <input className="field" type={"text"} name="" />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td />
-                    <td />
-                  </tr>
-                </table>
-
-                <div className="flex-container">
-                  <div>
-                    <input className="button" type={"submit"} value="Save" />
-                  </div>
-                </div>
-              </form>
-            </div>
-
-            <div className="content-menu">
-              <h2 className="form-title">CHANGE PASSWORD</h2>
-              <form action="#" method="post">
-                <table>
-                  <tr>
-                    <td></td>
-                    <td className="title">Old Password</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div className="circle"></div>
-                    </td>
-                    <td>
-                      <input className="field" type={"Password"} name="" />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td />
-                    <td />
-                  </tr>
-                  <tr>
-                    <td></td>
-                    <td className="title">New Password</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div className="circle"></div>
-                    </td>
-                    <td>
-                      <input className="field" type={"Password"} name="" />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td />
-                    <td />
-                  </tr>
-                  <tr>
-                    <td></td>
-                    <td className="title">Confirm New Password</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div className="circle"></div>
-                    </td>
-                    <td>
-                      <input className="field" type={"Password"} name="" />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td />
-                    <td />
-                  </tr>
-                </table>
-
-                <div className="flex-container">
-                  <div>
-                    <input className="button" type={"submit"} value="Save" />
-                  </div>
-                </div>
-              </form>
-            </div>
+        <Profile data={this.user}></Profile>
+        <div className="dual-form">
+          <div className="form-big-group">
+            <h3>EDIT PROFILE</h3>
+            <form>
+              <div className="form-group">
+                <label htmlFor="name">Name</label>
+                <input type="text" id="name" />
+              </div>
+              <div className="form-group">
+                <label htmlFor="email">Email</label>
+                <input type="email" id="email" />
+              </div>
+              <button type="submit" className="submit-btn">
+                SAVE
+              </button>
+            </form>
+          </div>
+          <div className="form-big-group">
+            <h3>EDIT PASSWORD</h3>
+            <form>
+              <div className="form-group">
+                <label htmlFor="old-password">Old Password</label>
+                <input type="password" id="old-password" />
+              </div>
+              <div className="form-group">
+                <label htmlFor="new-password">New Password</label>
+                <input type="password" id="new-password" />
+              </div>
+              <div className="form-group">
+                <label htmlFor="confirm-new-password">
+                  Confirm New Password
+                </label>
+                <input type="password" id="confirm-new-password" />
+              </div>
+              <button type="submit" className="submit-btn">
+                SAVE
+              </button>
+            </form>
           </div>
         </div>
       </div>

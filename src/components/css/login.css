@@ -38,10 +38,11 @@
 
 .login .error-message {
     margin-top: .5rem;
-    background-color: var(--background-warning);
     border-radius: 5px;
     padding: .3rem 1rem;
-    color: var(--text-warning);
+    background-color: var(--background-danger);
+    color: var(--text-danger);
+    border: 1px solid var(--border-danger);
 }
 
 .login .error-message span {

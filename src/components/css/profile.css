@@ -37,7 +37,8 @@
   object-fit: cover;
 }
 
-.profile .content > div {
+.profile .logo-profile,
+.profile .info-profile .profile-item {
   margin: 1.3rem 0;
 }
 
@@ -58,12 +59,22 @@
   margin-top: .3rem;
 }
 
-.profile .statusBar span {
+.profile .status-bar span {
   display: inline-block;
   padding: 0.5rem 1.5rem;
-  background-color: var(--black-color);
-  color: var(--light-green);
   border-radius: 5px;
   text-align: center;
+}
+
+.profile .status-bar .online {
+  background-color: var(--background-primary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-primary);
+}
+
+.profile .status-bar .offline {
+  background-color: var(--background-secondary);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-secondary);
 }
 
