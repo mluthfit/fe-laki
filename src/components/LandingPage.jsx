@@ -1,12 +1,14 @@
 import React from "react";
 import Footer from "./Footer";
 import style from "./css/landing.module.css";
-import jumbotron from "./images/jumbotron.png";
-import laptop from "./images/laptop.png";
-import pc from "./images/pc.png";
-import camera from "./images/camera-features.png";
-import analysis from "./images/analysis-features.png";
-import activity from "./images/activity-features.png";
+import {
+  activity,
+  analysis,
+  camera,
+  jumbotron,
+  laptop,
+  pc,
+} from "../scripts/Image";
 
 const LandingPage = () => {
   return (

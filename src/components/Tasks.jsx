@@ -6,12 +6,16 @@ const Tasks = () => {
     event.stopPropagation();
     const background = document.querySelector(`.${style.background}`);
     const form = document.querySelector(`.${style.form}`);
-    if (!background || !form) return;
+    if (!form) return;
 
-    const display = background.style.display === "none" ? "block" : "none";
+    if (form.classList.contains(style.fOpen)) {
+      form.classList.remove(style.fOpen);
+      background.classList.remove(style.bOpen);
+      return;
+    }
 
-    background.style.display = display;
-    form.style.display = display;
+    form.classList.add(style.fOpen);
+    background.classList.add(style.bOpen);
   };
 
   const onHandleSubmit = (event) => {

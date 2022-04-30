@@ -1,6 +1,6 @@
 import React from "react";
 import Profile from "./Profile";
-import "./css/employee.css";
+import style from "./css/employee.module.css";
 
 const Employee = () => {
   const employees = [
@@ -47,10 +47,10 @@ const Employee = () => {
   ];
 
   return (
-    <div className="employee">
+    <div className={style.employee}>
       {employees.map((employee, index) => {
         return (
-          <div key={index}>
+          <div key={index} className={style.profile}>
             <Profile
               data={{ name: employee.name, position: employee.position }}
               status={employee.status}

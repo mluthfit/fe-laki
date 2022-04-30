@@ -1,0 +1,73 @@
+.superusers {
+    padding: 2rem;
+    width: 100%;
+    position: relative;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 4px 4px;
+}
+  
+.superusers .form {
+    padding: 2rem;
+    background-color: var(--black-color);
+    border-radius: 10px;
+    width: 100%;
+}
+
+.superusers .form h2 {
+    margin-bottom: 2rem;
+    color: var(--light-green);
+}
+
+.form .big {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+}
+
+.form .group label {
+    color: white;
+    display: block;
+    margin-bottom: .3rem;
+}
+
+.input {
+    border-radius: 5px;
+    padding: .5rem 1rem;
+    width: 300px;
+    outline: none;
+    border: none;
+    text-align: left;
+}
+
+.form .submit {
+    margin: 2rem auto 0 auto;
+    display: block;
+    cursor: pointer;
+    padding: .7rem 2rem;
+    border-radius: 5px;
+    background-color: var(--light-green);
+    color: var(--black-color);
+    outline: none;
+    border: none;
+}
+
+.superusers .delete {
+    display: inline-block;
+    padding: .5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    color: var(--light-green);
+    background-color: var(--black-color);
+}
+
+.superusers .table {
+    margin-top: 2rem;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 4px 4px;
+    border-radius: 10px;
+    padding: 2rem;
+    background-color: white;
+}
+
+.table .title {
+    margin-bottom: 1rem;
+}

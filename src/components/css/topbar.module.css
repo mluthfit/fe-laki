@@ -95,14 +95,17 @@
   font-weight: bold;
 }
 
+.accounts .open {
+  display: block;
+}
+
 .right .notification span,
 .right .accounts {
   cursor: pointer;
 }
 
 @media screen and (max-width: 860px) {
-  .accounts .bars {
-    padding: 1rem 0;
+  .topbar .menu {
     display: block;
   }
   
@@ -127,28 +130,28 @@
     width: 100%;
   }
 
-  .right .company {
+  .topbar .company {
     margin: 0 1rem;
     gap: 15px;
   }
 
-  .right .icon {
+  .accounts .icon {
     display: none;
   }
 
-  .right .users {
+  .topbar .users {
     flex-direction: column;
     gap: 0;
     width: 100%;
   }
 
-  .right .accounts {
+  .users .accounts {
     flex-direction: column;
     gap: 0;
     width: 100%;
   }
 
-  .right .bars {
+  .accounts .bars {
     display: block;
     position: static;
     margin-top: 1rem;

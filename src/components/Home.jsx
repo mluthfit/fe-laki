@@ -27,7 +27,9 @@ const Home = () => {
     <div className={style.home}>
       <WorkingHours></WorkingHours>
       <div className={style.bottom}>
-        <Profile data={user} />
+        <div className={style.profile}>
+          <Profile data={user} />
+        </div>
         <div className={style.menu}>
           <div className={style.title}>
             <span className={style.open} onClick={onChangeSubMenu}>

@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "./images/logo.png";
+import { logo } from "../scripts/Image";
 import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -23,8 +23,7 @@ const Topbar = (props) => {
     const menuAccount = document.querySelector(`.${style.bars}`);
     if (!menuAccount) return;
 
-    const display = menuAccount.style.display === "none" ? "block" : "none";
-    menuAccount.style.display = display;
+    menuAccount.classList.toggle(style.open);
   };
 
   return (
@@ -35,7 +34,7 @@ const Topbar = (props) => {
         className={style.menu}
         onClick={onToggleMenu}
       ></FontAwesomeIcon>
-      <img src={logo} alt="LAKI's logo" className="logo" />
+      <img src={logo} alt="LAKI's logo" className={style.logo} />
       {isLoggedIn ? (
         <div className={style.right}>
           <div className={style.company}>

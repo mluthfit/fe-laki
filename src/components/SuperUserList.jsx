@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import DataTable from "react-data-table-component";
-import "./css/superuser-list.css";
+import style from "./css/superuser.module.css";
 
 const SuperUserList = () => {
   const [name, setName] = useState("");
@@ -8,28 +8,19 @@ const SuperUserList = () => {
   const [position, setPosition] = useState("");
   const [company, setCompany] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmpass, setConfirmPass] = useState("");
+  const [confirmPass, setConfirmPass] = useState("");
 
-  const onEditFormSuperList = (row) => {
-    setName(row.name ?? "");
-    setEmail(row.email ?? "");
-    setPosition(row.title ?? "");
-    setCompany(row.company ?? "");
-    setPassword(row.password ?? "");
-  };
-
-  const onClearFormInput = () => {
-    setName("");
-    setEmail("");
-    setPosition("");
-    setCompany("");
-    setPassword("");
-    setConfirmPass("");
+  const onChangeValue = (row = null) => {
+    setName(row?.name ?? "");
+    setEmail(row?.email ?? "");
+    setPosition(row?.title ?? "");
+    setCompany(row?.company ?? "");
+    setPassword(row?.password ?? "");
   };
 
   const onHandleSubmit = (event) => {
     event.preventDefault();
-    onClearFormInput();
+    onChangeValue();
   };
 
   const columns = [
@@ -42,35 +33,30 @@ const SuperUserList = () => {
       name: "Name",
       selector: (row) => row.name ?? "-",
       sortable: true,
+      grow: 2,
     },
     {
       name: "Email",
       selector: (row) => row.email ?? "-",
       sortable: true,
+      grow: 2,
     },
     {
       name: "Position",
       selector: (row) => row.position ?? "-",
       sortable: true,
+      grow: 2,
     },
     {
       name: "Company",
       selector: (row) => row.company ?? "-",
       sortable: true,
+      grow: 2,
     },
     {
       name: "Delete",
-      cell: (row) => (
-        <span
-          className="delete-button"
-          onClick={() => {
-            onEditFormSuperList(row);
-          }}
-        >
-          Delete
-        </span>
-      ),
-      grow: 0,
+      cell: (row) => <span className={style.delete}>Delete</span>,
+      grow: 1,
     },
   ];
 
@@ -119,90 +105,106 @@ const SuperUserList = () => {
     },
   ];
 
+  const companyList = [
+    {
+      id: 1,
+      name: "One Coporate Inc.",
+    },
+    {
+      id: 2,
+      name: "Two Coporate Inc.",
+    },
+    {
+      id: 3,
+      name: "Three Coporate Inc.",
+    },
+  ];
+
   return (
-    <div className="super-user-list">
-      <div className="insert-super-user">
+    <div className={style.superusers}>
+      <div className={style.form}>
         <h2>Form SuperUser</h2>
         <form
           method="post"
           encType="multipart/form-data"
           onSubmit={onHandleSubmit}
         >
-          <div className="form-big-group">
-            <div className="form-group">
+          <div className={style.big}>
+            <div className={style.group}>
               <label htmlFor="name">Name</label>
               <input
-                className="input-general"
-                type={"text"}
-                name={"name"}
-                id={"name"}
+                className={style.input}
+                type="text"
+                id="name"
                 value={name}
-                placeholder={"Insert SuperUser Name Here..."}
+                onChange={(event) => setName(event.target.value)}
+                placeholder="Insert SuperUser Name Here..."
               />
             </div>
-            <div className="form-group">
+            <div className={style.group}>
               <label htmlFor="email">Email</label>
               <input
-                className="input-general"
-                type={"email"}
-                name={"email"}
-                id={"email"}
+                className={style.input}
+                type="email"
+                id="email"
                 value={email}
-                placeholder={"Insert SuperUser Email Here..."}
+                onChange={(event) => setEmail(event.target.value)}
+                placeholder="Insert SuperUser Email Here..."
               />
             </div>
-            <div className="form-group">
-              <label htmlFor="title">Password</label>
-              <input
-                className="input-general"
-                type={"password"}
-                name={"password"}
-                id={"password"}
-                value={password}
-                placeholder={"Insert SuperUser Password Here..."}
-              />
-            </div>
-            <div className="form-group">
+            <div className={style.group}>
               <label htmlFor="company">Position</label>
               <input
-                className="input-general"
-                type={"text"}
-                name={"position"}
-                id={"position"}
+                className={style.input}
+                type="text"
+                id="position"
                 value={position}
-                placeholder={"Insert SuperUser Position Here..."}
+                onChange={(event) => setPosition(event.target.value)}
+                placeholder="Insert SuperUser Position Here..."
               />
             </div>
-            <div className="form-group">
+            <div className={style.group}>
               <label htmlFor="company">Company</label>
+              <select
+                id="company"
+                className={style.input}
+                placeholder="Insert SuperUser Company Here..."
+              >
+                {companyList.map((company) => (
+                  <option value={company.id}>{company.name}</option>
+                ))}
+              </select>
+            </div>
+            <div className={style.group}>
+              <label htmlFor="title">Password</label>
               <input
-                className="input-general"
-                type={"text"}
-                name={"company"}
-                id={"company"}
-                value={company}
-                placeholder={"Insert SuperUser Company Here..."}
+                className={style.input}
+                type="password"
+                id="password"
+                value={password}
+                onChange={(event) => setPassword(event.target.value)}
+                placeholder="Insert SuperUser Password Here..."
               />
             </div>
-            <div className="form-group">
+            <div className={style.group}>
               <label htmlFor="company">Confirm Password</label>
               <input
-                className="input-general"
-                type={"password"}
-                name={"confirmpass"}
-                id={"confirmpass"}
-                value={confirmpass}
-                placeholder={"Confirm SuperUser Password Here..."}
+                className={style.input}
+                type="password"
+                id="confirm-password"
+                value={confirmPass}
+                onChange={(event) => setConfirmPass(event.target.value)}
+                placeholder="Confirm SuperUser Password Here..."
               />
             </div>
           </div>
-          <button className="submit-btn" type="submit">
+          <button className={style.submit} type="submit">
             Submit
           </button>
         </form>
       </div>
-      <div className="super-user-table">
-        <h2 className="title">SuperUser List</h2>
+      <div className={style.table}>
+        <h2 className={style.title}>SuperUser List</h2>
         <DataTable columns={columns} data={data} pagination />
       </div>
     </div>

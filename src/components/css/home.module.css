@@ -12,6 +12,10 @@
   gap: 15px;
 }
 
+.bottom .profile {
+  width: 350px;
+}
+
 .home .menu {
   width: calc(100% - 380px);
   display: flex;

@@ -1,29 +1,31 @@
 import React from "react";
 import { capitalize } from "../scripts/Text";
-import "./css/profile.css";
+import style from "./css/profiles.module.css";
 
 const Profile = (props) => {
   const { data, status } = props;
 
   return (
-    <div className="profile">
-      <span className="title">Employee Profile</span>
-      <div className="content">
-        <div className="logo-profile">
+    <div className={style.profiles}>
+      <span className={style.title}>Employee Profile</span>
+      <div className={style.content}>
+        <div className={style.logo}>
           <img src="https://via.placeholder.com/150" alt="logo" />
         </div>
-        <div className="info-profile">
+        <div className={style.info}>
           {Object.keys(data).map((key, index) => {
             return (
-              <div key={index} className="profile-item">
-                <span className="key">{capitalize(key)}</span>
-                <span className="value">{data[key]}</span>
+              <div key={index} className={style.item}>
+                <span className={style.key}>{capitalize(key)}</span>
+                <span className={style.value}>{data[key]}</span>
               </div>
             );
           })}
           {status && (
-            <div className="status-bar">
-              <span className={status === "Online" ? "online" : "offline"}>
+            <div className={style.status}>
+              <span
+                className={status === "Online" ? style.online : style.offline}
+              >
                 {status}
               </span>
             </div>

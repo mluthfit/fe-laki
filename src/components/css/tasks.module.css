@@ -54,6 +54,10 @@
   background-color: rgb(28, 26, 26, 0.9);
 }
 
+.tasks .bOpen {
+  display: block;
+}
+
 .tasks .form {
   display: none;
   position: absolute;
@@ -61,6 +65,10 @@
   background-color: var(--black-color);
   border-radius: 10px;
   width: 400px;
+}
+
+.tasks .fOpen {
+  display: block;
 }
 
 .form .header {

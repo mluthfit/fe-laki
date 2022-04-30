@@ -1,77 +1,69 @@
 import React from "react";
-import logo from "./images/logo.png";
+import { logo } from "../scripts/Image";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faInstagram, faFacebook } from "@fortawesome/free-brands-svg-icons";
 import {
   faGlobe,
   faPhoneAlt,
   faBuilding,
 } from "@fortawesome/free-solid-svg-icons";
-import { faInstagram, faFacebook } from "@fortawesome/free-brands-svg-icons";
-import "./css/footer.css";
+import style from "./css/footer.module.css";
 
 const Footer = () => {
   return (
-    <div className="footer">
+    <div className={style.footer}>
       <img src={logo} alt="LAKI's logo" />
-      <div className="footer-info">
-        <div className="menu">
+      <div className={style.info}>
+        <div>
           <h3>Menu</h3>
-          <ul className="menu-nav">
+          <ul className={style.navbar}>
             <li>
               <span>
-                <Link to="#home" className="forgot-text">
-                  &gt; Home
-                </Link>
+                <Link to="#home">&gt; Home</Link>
               </span>
             </li>
             <li>
               <span>
-                <Link to="/login" className="forgot-text">
-                  &gt; Login
-                </Link>
+                <Link to="/login">&gt; Login</Link>
               </span>
             </li>
             <li>
               <span>
-                <Link to="#about-us" className="forgot-text">
-                  &gt; About Us
-                </Link>
+                <Link to="#about-us">&gt; About Us</Link>
               </span>
             </li>
             <li>
               <span>
-                <Link to="#features" className="forgot-text">
-                  &gt; Features
-                </Link>
+                <Link to="#features">&gt; Features</Link>
               </span>
             </li>
           </ul>
         </div>
-        <div className="contact-us">
+        <div>
           <h3>Contact Us</h3>
-          <div className="contact-us-info">
-            <div className="contact-us-brand">
+          <div>
+            <div className={style.contact}>
               <FontAwesomeIcon icon={faGlobe}></FontAwesomeIcon>
               <span>www.laki.com</span>
             </div>
-            <div className="contact-us-brand">
+            <div className={style.contact}>
               <FontAwesomeIcon icon={faInstagram}></FontAwesomeIcon>
               <span>@laki_id</span>
             </div>
-            <div className="contact-us-brand">
+            <div className={style.contact}>
               <FontAwesomeIcon icon={faFacebook}></FontAwesomeIcon>
               <span>LAKI Official ID</span>
             </div>
-            <div className="contact-us-brand">
+            <div className={style.contact}>
               <FontAwesomeIcon icon={faPhoneAlt}></FontAwesomeIcon>
               <span>+62 82387651234</span>
             </div>
           </div>
         </div>
-        <div className="location">
+        <div>
           <h3>Location</h3>
-          <div className="location-info">
+          <div className={style.location}>
             <FontAwesomeIcon icon={faBuilding}></FontAwesomeIcon>
             <span>Kuningan, Jakarta Selatan, 45510</span>
           </div>

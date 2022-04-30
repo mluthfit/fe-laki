@@ -1,15 +1,15 @@
-.profile {
+.profiles {
   border-radius: 10px;
   overflow: hidden;
-  width: 350px;
+  width: 100%;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
-.profile span {
+.profiles span {
   display: block;
 }
 
-.profile .title {
+.profiles .title {
   padding: 1rem;
   text-transform: uppercase;
   font-size: 1.2rem;
@@ -18,36 +18,35 @@
   text-align: center;
 }
 
-.profile .content {
+.profiles .content {
   padding: 2rem;
 }
 
-.profile .content .logo-profile {
-  margin: 0 auto 1.5rem auto;
+.content .logo {
   background-color: red;
   width: 150px;
   height: 150px;
   border-radius: 50%;
   overflow: hidden;
+  margin: 0 auto 2rem auto;
 }
 
-.profile .logo-profile img {
+.content .logo img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.profile .logo-profile,
-.profile .info-profile .profile-item {
+.info .item {
   margin: 1.3rem 0;
 }
 
-.profile .content .key {
+.content .key {
   font-weight: bold;
   display: inline-block;
 }
 
-.profile .content .key::after {
+.content .key::after {
   content: "";
   display: block;
   width: 100%;
@@ -55,24 +54,24 @@
   background-color: var(--light-green);
 }
 
-.profile .content .value {
+.content .value {
   margin-top: .3rem;
 }
 
-.profile .status-bar span {
+.info .status span {
   display: inline-block;
   padding: 0.5rem 1.5rem;
   border-radius: 5px;
   text-align: center;
 }
 
-.profile .status-bar .online {
+.info .status .online {
   background-color: var(--background-primary);
   color: var(--text-primary);
   border: 1px solid var(--border-primary);
 }
 
-.profile .status-bar .offline {
+.info .status .offline {
   background-color: var(--background-secondary);
   color: var(--text-secondary);
   border: 1px solid var(--border-secondary);

@@ -1,37 +1,16 @@
-import React, { useState } from "react";
 import DataTable from "react-data-table-component";
-import "./css/user-list.css";
+import React, { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faLocationArrow,
+  faEnvelope,
+  faPhone,
+  faGlobe,
+} from "@fortawesome/free-solid-svg-icons";
+import style from "./css/employee-detail.module.css";
 
 const EmployeeDetails = () => {
   const [image, setImage] = useState("https://via.placeholder.com/151");
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [title, setTitle] = useState("");
-  const [status, setStatus] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmpass, setConfirmPass] = useState("");
-
-  const onEditFormSuperList = (row) => {
-    setName(row.name ?? "");
-    setEmail(row.email ?? "");
-    setTitle(row.title ?? "");
-    setStatus(row.status ?? "");
-    setPassword(row.password ?? "");
-  };
-
-  const onClearFormInput = () => {
-    setName("");
-    setEmail("");
-    setTitle("");
-    setPassword("");
-    setConfirmPass("");
-  };
-
-  const onHandleSubmit = (event) => {
-    event.preventDefault();
-    onClearFormInput();
-  };
-
   const columns = [
     {
       name: "#",
@@ -134,56 +113,48 @@ const EmployeeDetails = () => {
   ];
 
   return (
-    <div className="user-list">
-      <div className="company-profile">
-        <div className="company-profile-big-group">
-          <img src={image} alt="Company's Logo" />
-          <div className="company-profile-group">
-            <h2>Company's Name</h2>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-              eget metus eget ante commodo accumsan sit amet ut metus. Proin ut
-              suscipit quam. Praesent ut neque ac est egestas pretium eu non
-              odio. Ut interdum condimentum nisl sodales interdum. Orci varius
-              natoque penatibus et magnis dis parturient montes, nascetur
-              ridiculus mus. Maecenas non pharetra nisi, sed condimentum turpis.
-              Suspendisse imperdiet quis lectus vel aliquet. Proin ullamcorper
-              augue eu dolor faucibus lobortis. Aliquam suscipit nisl purus. Nam
-              sit amet auctor magna. Etiam non quam ex. Nulla et sem ornare,
-              tempor justo in, laoreet erat. Ut interdum, lorem sed sodales
-              suscipit, est turpis feugiat sem, quis ullamcorper lacus lacus
-              mollis metus. Mauris cursus lectus arcu, nec eleifend ex consequat
-              nec.
-            </p>
-            <div className="counter-group">
-              <table>
-                <tr>
-                  <td>
-                    <div className="dot-total" />
-                  </td>
-                  <td>
-                    <div className="counter-total">450</div>
-                  </td>
-                  <td>
-                    <div className="counter-total spacing">Employee</div>
-                  </td>
-                  <td>
-                    <div className="dot-online" />
-                  </td>
-                  <td>
-                    <div className="counter-online">300</div>
-                  </td>
-                  <td>
-                    <div className="counter-online spacing">Online</div>
-                  </td>
-                </tr>
-              </table>
+    <div className={style.users}>
+      <div className={style.container}>
+        <div className={style.logo}>
+          <img src={image} alt="logo" />
+        </div>
+        <div className={style.info}>
+          <h2 className={style.title}>Land Croc Inc.</h2>
+          <div className={style.description}>
+            <div className={style.group}>
+              <FontAwesomeIcon icon={faLocationArrow} />
+              <span>
+                Jl. Lorem Ipsum Dolor Sit Amet, No 15, Jakarta Timur, Indonesia
+                13330
+              </span>
+            </div>
+            <div className={style.group}>
+              <FontAwesomeIcon icon={faEnvelope} />
+              <span>support@lancroc.com</span>
+            </div>
+            <div className={style.group}>
+              <FontAwesomeIcon icon={faPhone} />
+              <span>+62 12345678</span>
+            </div>
+            <div className={style.group}>
+              <FontAwesomeIcon icon={faGlobe} />
+              <span>www.land-croc.org</span>
+            </div>
+          </div>
+          <div className={style.data}>
+            <div className={style.employee}>
+              <div></div>
+              <span>105000 Employee</span>
+            </div>
+            <div className={style.online}>
+              <div></div>
+              <span>95000 Online</span>
             </div>
           </div>
         </div>
       </div>
-      <div className="user-table">
-        <h2 className="title">Employee List</h2>
+      <div className={style.table}>
+        <h2 className={style.title}>Employee List</h2>
         <DataTable columns={columns} data={data} pagination />
       </div>
     </div>

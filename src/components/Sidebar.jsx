@@ -9,22 +9,22 @@ import {
   faUserCog,
   faAngleRight,
 } from "@fortawesome/free-solid-svg-icons";
-import "./css/sidebar.css";
+import style from "./css/sidebar.module.css";
 
 const Sidebar = (props) => {
   const { onChangePage, isMenuOpen } = props;
   const onToggleSidebar = (event) => {
     event.stopPropagation();
-    const child = event.target.querySelector(".dropdowns");
-    const arrow = event.target.querySelector(".arrow-dropdown");
+    const child = event.target.querySelector(`.${style.child}`);
+    const arrow = event.target.querySelector(`.${style.arrow}`);
     if (!child) return;
 
-    child.classList.toggle("open");
-    arrow.classList.toggle("open");
+    child.classList.toggle(style.cOpen);
+    arrow.classList.toggle(style.aOpen);
   };
 
   return (
-    <div className={`sidebar ${isMenuOpen ? "open" : ""}`}>
+    <div className={`${style.sidebar} ${isMenuOpen ? style.sOpen : ""}`}>
       <ul>
         <li onClick={() => onChangePage("home")}>
           <FontAwesomeIcon icon={faHome}></FontAwesomeIcon>
@@ -42,25 +42,31 @@ const Sidebar = (props) => {
           <FontAwesomeIcon icon={faInfoCircle}></FontAwesomeIcon>
           <span>Employee</span>
         </li>
-        <li onClick={onToggleSidebar} className="parent-dropdown">
+        <li onClick={onToggleSidebar} className={style.parent}>
           <FontAwesomeIcon icon={faUserLock}></FontAwesomeIcon>
           <span>SuperUser</span>
-          <span className="arrow-dropdown">
+          <span className={style.arrow}>
             <FontAwesomeIcon icon={faAngleRight}></FontAwesomeIcon>
           </span>
-          <ul className="dropdowns">
-            <li onClick={() => onChangePage("employee-details")}>Employee Details</li>
-            <li onClick={() => onChangePage("employee-accounts")}>Employee Accounts</li>
+          <ul className={style.child}>
+            <li onClick={() => onChangePage("employee-details")}>
+              Employee Details
+            </li>
+            <li onClick={() => onChangePage("employee-accounts")}>
+              Employee Accounts
+            </li>
           </ul>
         </li>
-        <li onClick={onToggleSidebar} className="parent-dropdown">
+        <li onClick={onToggleSidebar} className={style.parent}>
           <FontAwesomeIcon icon={faUserCog}></FontAwesomeIcon>
           <span>Admin</span>
-          <span className="arrow-dropdown">
+          <span className={style.arrow}>
             <FontAwesomeIcon icon={faAngleRight}></FontAwesomeIcon>
           </span>
-          <ul className="dropdowns">
-            <li onClick={() => onChangePage("super-user-list")}>SuperUser List</li>
+          <ul className={style.child}>
+            <li onClick={() => onChangePage("super-user-list")}>
+              SuperUser List
+            </li>
             <li onClick={() => onChangePage("company-list")}>Company List</li>
           </ul>
         </li>
