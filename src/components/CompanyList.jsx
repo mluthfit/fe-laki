@@ -105,7 +105,6 @@ const CompanyList = () => {
         <span
           className="edit-button"
           onClick={() => {
-            console.log(row);
             onEditFormCompany(row);
           }}
         >
@@ -248,50 +247,6 @@ const CompanyList = () => {
         </form>
       </div>
       <div className="company-table">
-        {/* <table>
-          <tr>
-            <th>No.</th>
-            <th>Name</th>
-            <th>Address</th>
-            <th>Phone Number</th>
-            <th>Email</th>
-            <th>Web</th>
-            <th>Logo</th>
-            <th>Action</th>
-          </tr>
-          <tr className="tbody">
-            <td>1</td>
-            <td>Teslad Crop</td>
-            <td>Jl. Jendral Sudirman</td>
-            <td>+62 82390128123</td>
-            <td>admin@super.co.id</td>
-            <td>
-              <FontAwesomeIcon icon={faLink}></FontAwesomeIcon>
-            </td>
-            <td>
-              <FontAwesomeIcon icon={faEye}></FontAwesomeIcon>
-            </td>
-            <td>
-              <FontAwesomeIcon icon={faEdit}></FontAwesomeIcon>
-            </td>
-          </tr>
-          <tr className="tbody">
-            <td>1</td>
-            <td>Teslad Crop</td>
-            <td>Jl. Jendral Sudirman</td>
-            <td>+62 82390128123</td>
-            <td>admin@super.co.id</td>
-            <td>
-              <FontAwesomeIcon icon={faLink}></FontAwesomeIcon>
-            </td>
-            <td>
-              <FontAwesomeIcon icon={faEye}></FontAwesomeIcon>
-            </td>
-            <td>
-              <FontAwesomeIcon icon={faEdit}></FontAwesomeIcon>
-            </td>
-          </tr>
-        </table> */}
         <h2 className="title">Company List</h2>
         <DataTable columns={columns} data={data} pagination></DataTable>
       </div>

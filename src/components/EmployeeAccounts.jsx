@@ -63,7 +63,6 @@ const EmployeeAccounts = () => {
         <span
           className="delete-button"
           onClick={() => {
-            console.log(row);
             onEditFormSuperList(row);
           }}
         >

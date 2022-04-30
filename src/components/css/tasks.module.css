@@ -16,22 +16,22 @@
   position: relative;
 }
 
-.tasks .task-title {
+.task .title {
   background-color: var(--black-color);
   padding: 1rem .2rem;
   text-align: center;
   color: var(--light-green)
 }
 
-.tasks .task-description {
+.task .description {
   padding: 1rem 1rem 1rem 2rem;
 }
 
-.tasks .task-description li {
+.tasks .description li {
   margin: .3rem 0;
 }
 
-.tasks .task-edit {
+.task .edit {
   padding: .5rem 1.2rem;
   color: var(--light-green);
   background-color: var(--black-color);
@@ -44,7 +44,8 @@
   outline: none;
 }
 
-.tasks.open .background-form-edit {
+.tasks .background {
+  display: none;
   width: 100%;
   height: 100%;
   position: absolute;
@@ -53,7 +54,7 @@
   background-color: rgb(28, 26, 26, 0.9);
 }
 
-.tasks .form-edit-container {
+.tasks .form {
   display: none;
   position: absolute;
   top: 100px;
@@ -62,11 +63,7 @@
   width: 400px;
 }
 
-.tasks.open .form-edit-container {
-  display: block;
-}
-
-.tasks .header {
+.form .header {
   padding: 1rem;
   text-align: center;
   color: var(--light-green);
@@ -74,34 +71,34 @@
   border-bottom: 1px solid var(--dark-grey);
 }
 
-.tasks .input-container {
+.form .input {
   padding: 2rem;
 }
 
-.tasks .title-box,
-.tasks .body-box {
+.form .title,
+.form .body {
   margin-bottom: 1rem;
 }
 
-.tasks .input-container label {
+.form .input label {
   color: var(--light-green);
   display: block;
   margin-bottom: .3rem;
 }
 
-.tasks .input-container input,
-.tasks .input-container textarea {
+.form .input input,
+.form .input textarea {
   width: 100%;
   padding: .5rem;
   border-radius: 5px;
   outline: none;
 }
 
-.tasks .input-container textarea {
+.form .input textarea {
   resize: vertical;
 }
 
-.tasks .submit-task {
+.form .submit {
   display: block;
   margin: 1rem auto 0 auto;
   border: none;

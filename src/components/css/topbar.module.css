@@ -7,7 +7,7 @@
   padding: .1rem 2rem;
 }
 
-.topbar .menu-bars {
+.topbar .menu {
   padding: 1rem 0;
   display: none;
 }
@@ -16,13 +16,13 @@
   width: 75px;
 }
 
-.topbar-right {
+.topbar .right {
   display: flex;
   align-items: center;
   gap: 30px;
 }
 
-.topbar-right .company {
+.topbar .company {
   display: flex;
   align-items: center;
   border: 1px solid var(--light-green);
@@ -31,27 +31,27 @@
   gap: 10px;
 }
 
-.topbar-right .users {
+.topbar .users {
   display: flex;
   align-items: center;
   gap: 15px;
 }
 
-.topbar-right .accounts {
+.users .accounts {
   position: relative;
 }
 
-.topbar-right .accounts svg {
+.users .accounts svg {
   margin: 0 5px;
 }
 
-.topbar-right .link-pages {
+.right .pages {
   cursor: pointer;
   color: white;
   text-decoration: none;
 }
 
-.topbar-right .login-button {
+.right .login {
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -62,12 +62,12 @@
   border-radius: 10px;
 }
 
-.topbar-right .login-button a {
+.right .login a {
   text-decoration: none;
   color: white;
 }
 
-.topbar .accounts .menu-account {
+.accounts .bars {
   display: none;
   position: absolute;
   background-color: var(--dark-green);
@@ -78,15 +78,11 @@
   overflow: hidden;
 }
 
-.topbar .accounts .menu-account.open {
-  display: block;
-}
-
-.topbar .accounts .menu-account ul {
+.accounts .bars ul {
   list-style: none;
 }
 
-.topbar .accounts .menu-account li {
+.accounts .bars li {
   padding: 1rem 2.5rem;
   display: flex;
   align-items: center;
@@ -94,18 +90,18 @@
   color: var(--yellow-color);
 }
 
-.topbar .accounts .menu-account li:hover {
+.accounts .bars li:hover {
   background-color: var(--light-green);
   font-weight: bold;
 }
 
-.topbar-right .notification span,
-.topbar-right .accounts {
+.right .notification span,
+.right .accounts {
   cursor: pointer;
 }
 
 @media screen and (max-width: 860px) {
-  .topbar .menu-bars {
+  .accounts .bars {
     padding: 1rem 0;
     display: block;
   }
@@ -123,7 +119,7 @@
     padding-right: 0;
   }
 
-  .topbar .topbar-right {
+  .topbar .right {
     margin-bottom: 1rem;
     flex-direction: column;
     gap: 15px;
@@ -131,28 +127,28 @@
     width: 100%;
   }
 
-  .topbar-right .company {
+  .right .company {
     margin: 0 1rem;
     gap: 15px;
   }
 
-  .topbar-right .action-account {
+  .right .icon {
     display: none;
   }
 
-  .topbar-right .users {
+  .right .users {
     flex-direction: column;
     gap: 0;
     width: 100%;
   }
 
-  .topbar-right .accounts {
+  .right .accounts {
     flex-direction: column;
     gap: 0;
     width: 100%;
   }
 
-  .topbar-right .menu-account {
+  .right .bars {
     display: block;
     position: static;
     margin-top: 1rem;
@@ -161,7 +157,7 @@
     border-radius: 0;
   }
 
-  .topbar .accounts .menu-account li {
+  .accounts .bars li {
     justify-content: center;
     color: white;
   }

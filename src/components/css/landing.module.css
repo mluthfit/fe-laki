@@ -1,4 +1,4 @@
-.landing-page .jumbotron {
+.jumbotron {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -6,19 +6,19 @@
   margin-bottom: 3rem;
 }
 
-.landing-page .jumbotron img {
+.jumbotron img {
   margin-top: 3rem;
   width: 40%;
   height: 40%;
 }
 
-.landing-page .jumbotron h1 {
+.jumbotron h1 {
   text-align: center;
   color: var(--dark-green);
   margin: 0 1.5rem;
 }
 
-.landing-page .jumbotron .join-us {
+.jumbotron button {
   outline: none;
   border: none;
   margin: 2rem 0;
@@ -27,9 +27,10 @@
   background-color: var(--black-color);
   border-radius: 20px;
   cursor: pointer;
+  color: var(--light-green)
 }
 
-.landing-page .about-us-content {
+.about {
   background-color: var(--black-color);
   padding: 3rem 0;
   display: flex;
@@ -39,86 +40,86 @@
   color: white;
 }
 
-.landing-page .about-us-content img {
+.about img {
   width: 40%;
   height: 40%;
 }
 
-.landing-page .about-us-info {
+.about .info {
   margin-top: 1rem;
   width: 40%;
   text-align: center;
 }
 
-.landing-page .about-us-info h1 {
+.about .info h1 {
   margin: 2rem 0;
 }
 
-.landing-page .features {
+.about .info h1 > span {
+  color: var(--light-green)
+}
+
+.features {
   margin: 5rem 0;
   display: flex;
   justify-content: space-around;
   align-items: center;
 }
 
-.landing-page .features img {
+.features img {
   width: 30%;
   height: 30%;
 }
 
-.landing-page .features-info h1 {
+.features .info h1 {
   text-transform: uppercase;
   margin-bottom: 2rem;
   color: var(--dark-green);
 }
 
-.landing-page .features-detail {
+.features .details {
   display: flex;
   margin: 3rem 0;
   align-items: center;
   gap: 20px;
 }
 
-.landing-page .features-detail img {
+.features .details img {
   width: 60px;
 }
 
-.landing-page .info-detail span {
+.features .details span {
   font-size: 1.2rem;
 }
 
-.light-green {
-  color: var(--light-green)
-}
-
 @media screen and (max-width: 790px) {
-  .landing-page .about-us-content {
+  .about {
     flex-direction: column;
     align-items: center;
   }
 
-  .landing-page .about-us-info {
+  .about .info {
     width: 100%;
     padding: 0 2rem;
   }
 
-  .landing-page .about-us-info h1 {
+  .about .info h1 {
     align-items: flex-start;
     margin: 2rem 0;
     width: 100%
   }
 
-  .landing-page .features {
+  .features {
     flex-direction: column;
     align-items: center;
     gap: 3rem;
   }
 
-  .landing-page .features-info h1 {
+  .features .info h1 {
     text-align: center;
   }
 
-  .landing-page .features-detail {
+  .features .info {
     padding: 0 2rem;
   }
 }

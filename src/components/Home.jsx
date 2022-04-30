@@ -1,18 +1,18 @@
 import React, { useState } from "react";
 import WorkingHours from "./WorkingHours";
 import Profile from "./Profile";
-import "./css/home.css";
+import style from "./css/home.module.css";
 
 const Home = () => {
   const [subMenu, setSubMenu] = useState("Statistics");
 
   const onChangeSubMenu = (event) => {
-    const menus = document.querySelectorAll(".title span");
+    const menus = document.querySelectorAll(`.${style.title} > span`);
     menus.forEach((menu) => {
-      menu.classList.remove("open");
+      menu.classList.remove(style.open);
     });
 
-    event.target.className = "open";
+    event.target.className = style.open;
     setSubMenu(event.target.innerText);
   };
 
@@ -24,18 +24,18 @@ const Home = () => {
   };
 
   return (
-    <div className="home">
+    <div className={style.home}>
       <WorkingHours></WorkingHours>
-      <div className="down">
+      <div className={style.bottom}>
         <Profile data={user} />
-        <div className="menu-home">
-          <div className="title">
-            <span className="open" onClick={onChangeSubMenu}>
+        <div className={style.menu}>
+          <div className={style.title}>
+            <span className={style.open} onClick={onChangeSubMenu}>
               Statistics
             </span>
             <span onClick={onChangeSubMenu}>Task</span>
           </div>
-          <div className="content-menu">{subMenu}</div>
+          <div className={style.contents}>{subMenu}</div>
         </div>
       </div>
     </div>

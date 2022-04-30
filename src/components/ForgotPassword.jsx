@@ -1,20 +1,20 @@
 import React from "react";
-import "./css/forgot-pass.css";
+import style from "./css/auth.module.css";
 
 class ForgotPassword extends React.Component {
   render() {
     return (
-      <div className="forgot-password">
-        <div className="container">
+      <div className={style.auth}>
+        <div className={style.container}>
           <h2>Forgot Password</h2>
           <form>
-            <div className="big-form-group">
-              <div className="form-group">
+            <div>
+              <div className={style.group}>
                 <label htmlFor="email">Email</label>
                 <input type="email" id="email" />
               </div>
             </div>
-            <button type="submit" className="submit-btn">
+            <button type="submit" className={style.submit}>
               Send Email
             </button>
           </form>

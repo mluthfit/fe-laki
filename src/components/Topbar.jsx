@@ -1,6 +1,6 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
 import logo from "./images/logo.png";
+import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faAngleDown,
@@ -12,7 +12,7 @@ import {
   faBars,
   faSignIn,
 } from "@fortawesome/free-solid-svg-icons";
-import "./css/topbar.css";
+import style from "./css/topbar.module.css";
 
 const Topbar = (props) => {
   const { onToggleMenu, onChangePage, isLoggedIn, setLogged } = props;
@@ -20,39 +20,40 @@ const Topbar = (props) => {
 
   const onToggleUser = (event) => {
     event.stopPropagation();
-    const menuAccount = document.querySelector(".menu-account");
+    const menuAccount = document.querySelector(`.${style.bars}`);
     if (!menuAccount) return;
 
-    menuAccount.classList.toggle("open");
+    const display = menuAccount.style.display === "none" ? "block" : "none";
+    menuAccount.style.display = display;
   };
 
   return (
-    <div className="topbar">
+    <div className={style.topbar}>
       <FontAwesomeIcon
         icon={faBars}
         size="xl"
-        className="menu-bars"
+        className={style.menu}
         onClick={onToggleMenu}
       ></FontAwesomeIcon>
       <img src={logo} alt="LAKI's logo" className="logo" />
       {isLoggedIn ? (
-        <div className="topbar-right">
-          <div className="company">
+        <div className={style.right}>
+          <div className={style.company}>
             <FontAwesomeIcon icon={faBuilding}></FontAwesomeIcon>
             <span>Creative Consultant Inc.</span>
           </div>
-          <div className="users">
-            <div className="notification">
+          <div className={style.users}>
+            <div className={style.notification}>
               <span>
                 <FontAwesomeIcon icon={faBell} size="lg"></FontAwesomeIcon>
               </span>
             </div>
-            <div className="accounts">
-              <span className="action-account" onClick={onToggleUser}>
+            <div className={style.accounts}>
+              <span className={style.icon} onClick={onToggleUser}>
                 <FontAwesomeIcon icon={faUser} size="lg"></FontAwesomeIcon>
                 <FontAwesomeIcon icon={faAngleDown} size="xs"></FontAwesomeIcon>
               </span>
-              <div className="menu-account">
+              <div className={style.bars}>
                 <ul>
                   <li onClick={() => onChangePage("show-profile")}>
                     <FontAwesomeIcon icon={faCog}></FontAwesomeIcon>
@@ -76,23 +77,23 @@ const Topbar = (props) => {
           </div>
         </div>
       ) : (
-        <div className="topbar-right">
+        <div className={style.right}>
           <span>
-            <Link to="/#home" className="link-pages">
+            <Link to="/#home" className={style.pages}>
               Home
             </Link>
           </span>
           <span>
-            <Link to="/#about-us" className="link-pages">
+            <Link to="/#about-us" className={style.pages}>
               About Us
             </Link>
           </span>
           <span>
-            <Link to="/#features" className="link-pages">
+            <Link to="/#features" className={style.pages}>
               Features
             </Link>
           </span>
-          <div className="login-button">
+          <div className={style.login}>
             <span>
               <Link to="/login">Login</Link>
             </span>

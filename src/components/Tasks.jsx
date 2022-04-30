@@ -1,13 +1,17 @@
 import React from "react";
-import "./css/tasks.css";
+import style from "./css/tasks.module.css";
 
 const Tasks = () => {
   const onToggleFormEdit = (event) => {
     event.stopPropagation();
-    const tasks = document.querySelector(".tasks");
-    if (!tasks) return;
+    const background = document.querySelector(`.${style.background}`);
+    const form = document.querySelector(`.${style.form}`);
+    if (!background || !form) return;
 
-    tasks.classList.toggle("open");
+    const display = background.style.display === "none" ? "block" : "none";
+
+    background.style.display = display;
+    form.style.display = display;
   };
 
   const onHandleSubmit = (event) => {
@@ -33,46 +37,41 @@ const Tasks = () => {
   ];
 
   return (
-    <div className="tasks">
+    <div className={style.tasks}>
       {data.map((task, index) => {
         return (
-          <div className="task" key={index}>
-            <div className="task-title">{task.title}</div>
+          <div className={style.task} key={index}>
+            <div className={style.title}>{task.title}</div>
             <div
-              className="task-description"
+              className={style.description}
               dangerouslySetInnerHTML={{
                 __html: task.description,
               }}
             />
             {task.user_id === 1 && (
-              <button className="task-edit" onClick={onToggleFormEdit}>
+              <button className={style.edit} onClick={onToggleFormEdit}>
                 Edit
               </button>
             )}
           </div>
         );
       })}
-      <div className="background-form-edit" onClick={onToggleFormEdit}></div>
-      <div className="form-edit-container">
-        <div className="header">
+      <div className={style.background} onClick={onToggleFormEdit}></div>
+      <div className={style.form}>
+        <div className={style.header}>
           <span>Edit Task</span>
         </div>
-        <div className="input-container">
+        <div className={style.input}>
           <form onSubmit={onHandleSubmit}>
-            <div className="title-box">
+            <div className={style.title}>
               <label htmlFor="title">Title</label>
-              <input type="text" name="title-task" id="title" />
+              <input type="text" name="title" id="title" />
             </div>
-            <div className="body-box">
+            <div className={style.body}>
               <label htmlFor="body">Task</label>
-              <textarea
-                name="body-task"
-                id="body"
-                cols="30"
-                rows="10"
-              ></textarea>
+              <textarea name="body" id="body" cols="30" rows="10"></textarea>
             </div>
-            <button type="submit" className="submit-task">
+            <button type="submit" className={style.submit}>
               Save
             </button>
           </form>

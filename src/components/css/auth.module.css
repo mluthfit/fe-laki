@@ -1,11 +1,11 @@
-.reset-password {
+.auth {
     flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.reset-password .container {
+.auth .container {
     width: 90%;
     max-width: 400px;
     background-color: var(--black-color);
@@ -13,30 +13,51 @@
     border-radius: 10px;
 }
 
-.reset-password .container h2 {
+.auth .container h2 {
     color: var(--light-green);
     text-align: center;
     margin-bottom: 2rem;
 }
 
-.reset-password .form-group {
+.auth .group {
     margin-bottom: 1rem;
 }
 
-.reset-password .form-group label {
+.auth .group label {
     display: block;
     color: var(--light-green);
     margin-bottom: .3rem;
 }
 
-.reset-password .form-group input {
+.auth .group input {
     padding: .6rem;
     width: 100%;
     border-radius: 5px;
     outline: none;
 }
 
-.reset-password .submit-btn {
+.auth .error {
+    margin-top: .5rem;
+    border-radius: 5px;
+    padding: .3rem 1rem;
+    background-color: var(--background-danger);
+    color: var(--text-danger);
+    border: 1px solid var(--border-danger);
+}
+
+.auth .error span {
+    display: block;
+    margin: .3rem 0;
+}
+
+.auth .forgot {
+    display: block;
+    text-align: right;
+    text-decoration: none;
+    color: var(--light-green);
+}
+
+.auth .submit {
     display: block;
     margin: 0 auto;
     margin-top: 5rem;

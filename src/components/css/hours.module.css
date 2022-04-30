@@ -1,4 +1,4 @@
-.working-hours {
+.container {
   background-color: white;
   display: flex;
   justify-content: space-around;
@@ -8,29 +8,29 @@
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
-.working-hours span {
+.container span {
   display: block;
 }
 
-.working-hours .title {
+.container .title {
   font-size: 1.5rem;
   text-transform: uppercase;
   margin-bottom: .5rem;
   font-weight: bold;
 }
 
-.working-hours span.value {
+.container .time {
   font-size: 2rem;
   font-weight: bold;
 }
 
-.working-hours .date {
+.container .date {
   font-size: 3rem;
   font-weight: bold;
 }
 
 @media screen and (max-width: 570px) {
-  .working-hours {
+  .container {
     flex-direction: column;
     gap: 20px;
 
