@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import axios from "axios";
 import env from "./scripts/Environment";
+import Auth from "./scripts/Auth";
 import Topbar from "./components/Topbar";
 import Sidebar from "./components/Sidebar";
 import Home from "./components/Home";
@@ -34,13 +35,12 @@ const App = () => {
   };
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
+    if (Auth.isTokenAvailable()) {
       const checkToken = async () => {
         try {
           const { data } = await axios.get(`${env.API_URL}/profiles`, {
             headers: {
-              Authorization: `Bearer ${token}`,
+              Authorization: Auth.getToken(),
             },
           });
 

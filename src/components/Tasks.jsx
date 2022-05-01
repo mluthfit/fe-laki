@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import Auth from "../scripts/Auth";
+import axios from "axios";
+import env from "../scripts/Environment";
 import style from "./css/tasks.module.css";
 
 const Tasks = () => {
-  const onToggleFormEdit = (event) => {
-    event.stopPropagation();
+  const [userTasks, setUserTasks] = useState([]);
+  const [bodyTask, setBodyTask] = useState("");
+
+  const onToggleShowForm = () => {
     const background = document.querySelector(`.${style.background}`);
     const form = document.querySelector(`.${style.form}`);
     if (!form) return;
@@ -18,62 +23,97 @@ const Tasks = () => {
     background.classList.add(style.bOpen);
   };
 
-  const onHandleSubmit = (event) => {
-    event.preventDefault();
+  const fetchTasks = async () => {
+    try {
+      const { data } = await axios.get(`${env.API_URL}/tasks`, {
+        headers: {
+          Authorization: Auth.getToken(),
+        },
+      });
+
+      setUserTasks(data.data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
-  const data = [
-    {
-      title: "Task 1",
-      description: "<ul><li>Task 1</li><li>Task 2</li><li>Task 3</li></ul>",
-      user_id: 1,
-    },
-    {
-      title: "Task 2",
-      description: "<ul><li>Task 1</li><li>Task 2</li><li>Task 3</li></ul>",
-      user_id: 2,
-    },
-    {
-      title: "Task 3",
-      description: "<ul><li>Task 1</li><li>Task 2</li><li>Task 3</li></ul>",
-      user_id: 3,
-    },
-  ];
+  const editTask = async () => {
+    try {
+      const { data } = await axios.put(
+        `${env.API_URL}/tasks`,
+        {
+          body: bodyTask,
+        },
+        {
+          headers: {
+            Authorization: Auth.getToken(),
+          },
+        }
+      );
+
+      console.log(data);
+      fetchTasks();
+      onToggleShowForm();
+    } catch (error) {
+      console.log(error.response);
+    }
+  };
+
+  const onSubmitForm = (event) => {
+    event.preventDefault();
+    if (Auth.isTokenAvailable()) editTask();
+  };
+
+  useEffect(() => {
+    if (Auth.isTokenAvailable()) fetchTasks();
+  }, []);
 
   return (
     <div className={style.tasks}>
-      {data.map((task, index) => {
+      {userTasks.map((user, index) => {
         return (
           <div className={style.task} key={index}>
-            <div className={style.title}>{task.title}</div>
-            <div
-              className={style.description}
-              dangerouslySetInnerHTML={{
-                __html: task.description,
-              }}
-            />
-            {task.user_id === 1 && (
-              <button className={style.edit} onClick={onToggleFormEdit}>
+            <div className={style.title}>{user.profile?.name}</div>
+            <div className={style.description}>
+              {user.tasks.length > 0 ? user.tasks[0].body : ""}
+            </div>
+            {user.id === 2 && (
+              <button
+                className={style.edit}
+                onClick={() => {
+                  const description = document.querySelector(
+                    `.${style.description}`
+                  );
+
+                  setBodyTask(description.innerHTML ?? "aa");
+                  onToggleShowForm();
+                }}
+              >
                 Edit
               </button>
             )}
           </div>
         );
       })}
-      <div className={style.background} onClick={onToggleFormEdit}></div>
+      <div
+        className={style.background}
+        onClick={() => onToggleShowForm()}
+      ></div>
       <div className={style.form}>
         <div className={style.header}>
           <span>Edit Task</span>
         </div>
         <div className={style.input}>
-          <form onSubmit={onHandleSubmit}>
-            <div className={style.title}>
-              <label htmlFor="title">Title</label>
-              <input type="text" name="title" id="title" />
-            </div>
+          <form onSubmit={onSubmitForm}>
             <div className={style.body}>
-              <label htmlFor="body">Task</label>
-              <textarea name="body" id="body" cols="30" rows="10"></textarea>
+              <label htmlFor="body">Body</label>
+              <textarea
+                onChange={(e) => setBodyTask(e.target.value)}
+                id="body"
+                cols="30"
+                rows="10"
+                value={bodyTask}
+              ></textarea>
             </div>
             <button type="submit" className={style.submit}>
               Save

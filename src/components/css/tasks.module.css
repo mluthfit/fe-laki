@@ -25,6 +25,7 @@
 
 .task .description {
   padding: 1rem 1rem 1rem 2rem;
+  white-space:pre-wrap;
 }
 
 .tasks .description li {
