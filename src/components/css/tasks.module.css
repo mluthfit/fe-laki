@@ -1,15 +1,32 @@
 .tasks {
   position: relative;
   padding: 2rem;
-  display: flex;
-  gap: 15px;
-  flex-wrap: wrap;
   width: 100%;
-  justify-content: center;
   flex: 1;
 }
 
-.tasks .task {
+.tasks .success {
+  margin: .5rem 0 1rem 0;
+  border-radius: 5px;
+  padding: .3rem 1rem;
+  background-color: var(--background-success);
+  color: var(--text-success);
+  border: 1px solid var(--border-success);
+}
+
+.tasks .success span {
+  display: block;
+  margin: .3rem 0;
+}
+
+.tasks .container {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.container .task {
   width: 300px;
   height: 300px;
   background-color: var(--dark-grey);
@@ -24,7 +41,7 @@
 }
 
 .task .description {
-  padding: 1rem 1rem 1rem 2rem;
+  padding: 1rem;
   white-space:pre-wrap;
 }
 
@@ -115,4 +132,18 @@
   background-color: var(--light-green);
   padding: .5rem 2rem;
   border-radius: 5px;
+}
+
+.form .error {
+  margin-top: .5rem;
+  border-radius: 5px;
+  padding: .3rem 1rem;
+  background-color: var(--background-danger);
+  color: var(--text-danger);
+  border: 1px solid var(--border-danger);
+}
+
+.form .error span {
+  display: block;
+  margin: .3rem 0;
 }

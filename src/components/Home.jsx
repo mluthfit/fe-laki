@@ -6,7 +6,7 @@ import axios from "axios";
 import env from "../scripts/Environment";
 
 const Home = () => {
-  const [subMenu, setSubMenu] = useState("Statistics");
+  const [subMenu, setSubMenu] = useState("Task");
   const [user, setUser] = useState({});
   const [clock, setClock] = useState({});
   const [tasks, setTasks] = useState([]);
@@ -21,48 +21,52 @@ const Home = () => {
     setSubMenu(event.target.innerText);
   };
 
-  const userd = {
-    email: "kendrick.susanto@example.com",
-    name: "Kendrick Lamar Susanto",
-    position: "Finance Manager",
-    company: "Land Croc Inc.",
-  };
-
   useEffect(() => {
     const fetchDashboard = async () => {
       try {
-        const { data: dataUser } = axios.get(
+        const { data: dataUser } = await axios.get(
           `${env.API_URL}/dashboard/user`,
           env.OPTIONS_AXIOS
         );
 
-        const { data: dataClock } = axios.get(
+        const { data: dataClock } = await axios.get(
           `${env.API_URL}/dashboard/clock-today`,
           env.OPTIONS_AXIOS
         );
 
         setUser({
-          // email: dataUser?.email,
+          email: dataUser?.data?.email,
+          name: dataUser?.data?.name,
+          position: dataUser?.data?.position,
+          company: dataUser?.data?.company?.name,
         });
+
+        console.log(dataUser);
+        setTasks(dataUser?.data?.tasks);
+        setClock(dataClock?.data);
+
+        console.log(tasks);
       } catch (error) {
         console.log(error);
       }
     };
+
+    fetchDashboard();
   }, []);
 
   return (
     <div className={style.home}>
-      <WorkingHours></WorkingHours>
+      <WorkingHours clock={clock}></WorkingHours>
       <div className={style.bottom}>
         <div className={style.profile}>
-          <Profile data={userd} />
+          <Profile data={user} />
         </div>
         <div className={style.menu}>
           <div className={style.title}>
             <span className={style.open} onClick={onChangeSubMenu}>
-              Statistics
+              Task
             </span>
-            <span onClick={onChangeSubMenu}>Task</span>
+            <span onClick={onChangeSubMenu}>Statistic</span>
           </div>
           <div className={style.contents}>{subMenu}</div>
         </div>

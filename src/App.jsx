@@ -24,7 +24,9 @@ const App = () => {
   const [page, setPage] = useState("home");
   const [isMenuOpen, setMenu] = useState(false);
   const [isLoggedIn, setLogged] = useState(false);
-  const [company, setCompany] = useState("");
+  // const [company, setCompany] = useState("");
+  // const [userId, setUserId] = useState(10);
+  const [companyUser, setCompanyUser] = useState({});
 
   const onChangePage = (page) => {
     setPage(page);
@@ -32,21 +34,6 @@ const App = () => {
 
   const onToggleMenu = () => {
     setMenu(!isMenuOpen);
-  };
-
-  const getCompanyName = async () => {
-    if (!company && isLoggedIn) {
-      try {
-        const { data } = await axios.get(
-          `${env.API_URL}/profiles`,
-          env.OPTIONS_AXIOS
-        );
-
-        setCompany(data?.data?.company?.name);
-      } catch (error) {
-        console.log(error);
-      }
-    }
   };
 
   useEffect(() => {
@@ -67,9 +54,35 @@ const App = () => {
 
       checkToken();
     }
-
-    getCompanyName();
   }, []);
+
+  useEffect(() => {
+    if (!Object.keys(companyUser).length && isLoggedIn) {
+      const getCompanyName = async () => {
+        try {
+          const { data } = await axios.get(
+            `${env.API_URL}/profiles`,
+            env.OPTIONS_AXIOS
+          );
+
+          // setCompany(data?.data?.company?.name);
+          // setUserId(data?.data?.user_id);
+          // setUserId(1);
+          // console.log(userId);
+
+          setCompanyUser({
+            ...companyUser,
+            company: data?.data?.company?.name,
+            user_id: data?.data?.user_id,
+          });
+        } catch (error) {
+          console.log(error);
+        }
+      };
+
+      getCompanyName();
+    }
+  }, [companyUser, isLoggedIn]);
 
   return (
     <div className="App">
@@ -78,7 +91,7 @@ const App = () => {
         onChangePage={onChangePage}
         isLoggedIn={isLoggedIn}
         setLogged={setLogged}
-        company={company}
+        company={companyUser.company}
       />
       <Routes>
         <Route
@@ -114,7 +127,7 @@ const App = () => {
               <main>
                 <Sidebar onChangePage={onChangePage} isMenuOpen={isMenuOpen} />
                 {page === "home" && <Home />}
-                {page === "tasks" && <Tasks />}
+                {page === "tasks" && <Tasks userId={companyUser.user_id} />}
                 {page === "employee" && <Employee />}
                 {page === "presence" && <Presence />}
                 {page === "show-profile" && <ShowProfile />}

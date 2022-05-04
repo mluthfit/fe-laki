@@ -4,9 +4,13 @@ import axios from "axios";
 import env from "../scripts/Environment";
 import style from "./css/tasks.module.css";
 
-const Tasks = () => {
+const Tasks = (props) => {
+  const { userId } = props;
   const [userTasks, setUserTasks] = useState([]);
   const [bodyTask, setBodyTask] = useState("");
+  const [formSuccess, setFormSuccess] = useState("");
+  const [formError, setFormError] = useState("");
+  const [bodyError, setBodyError] = useState("");
 
   const onToggleShowForm = () => {
     const background = document.querySelector(`.${style.background}`);
@@ -48,8 +52,19 @@ const Tasks = () => {
 
       fetchTasks();
       onToggleShowForm();
+
+      if (data.messages) {
+        setFormSuccess(data.messages);
+      }
     } catch (error) {
-      console.log(error);
+      const { data } = error.response;
+      if (data.message) {
+        setFormError(data.message);
+      }
+
+      if (data.validations) {
+        setBodyError(data.validations.body);
+      }
     }
   };
 
@@ -64,55 +79,74 @@ const Tasks = () => {
 
   return (
     <div className={style.tasks}>
-      {userTasks.map((user, index) => {
-        return (
-          <div className={style.task} key={index}>
-            <div className={style.title}>{user.profile?.name}</div>
-            <div className={style.description}>
-              {user.tasks.length > 0 ? user.tasks[0].body : ""}
-            </div>
-            {user.id === 2 && (
-              <button
-                className={style.edit}
-                onClick={() => {
-                  const description = document.querySelector(
-                    `.${style.description}`
-                  );
-
-                  setBodyTask(description.innerHTML ?? "aa");
-                  onToggleShowForm();
-                }}
-              >
-                Edit
-              </button>
-            )}
-          </div>
-        );
-      })}
-      <div
-        className={style.background}
-        onClick={() => onToggleShowForm()}
-      ></div>
-      <div className={style.form}>
-        <div className={style.header}>
-          <span>Edit Task</span>
+      {formSuccess && (
+        <div className={style.success}>
+          <span>{formSuccess}</span>
         </div>
-        <div className={style.input}>
-          <form onSubmit={onSubmitForm}>
-            <div className={style.body}>
-              <label htmlFor="body">Body</label>
-              <textarea
-                onChange={(e) => setBodyTask(e.target.value)}
-                id="body"
-                cols="30"
-                rows="10"
-                value={bodyTask}
-              ></textarea>
+      )}
+      <div className={style.container}>
+        {userTasks.map((user, index) => {
+          return (
+            <div className={style.task} key={index}>
+              <div className={style.title}>{user.profile?.name}</div>
+              <div className={style.description}>
+                {user.tasks.length > 0 ? user.tasks[0].body : ""}
+              </div>
+              {user.id === userId && (
+                <button
+                  className={style.edit}
+                  onClick={() => {
+                    const description = document.querySelector(
+                      `.${style.description}`
+                    );
+
+                    setBodyTask(description.innerHTML);
+                    onToggleShowForm();
+                  }}
+                >
+                  Edit
+                </button>
+              )}
             </div>
-            <button type="submit" className={style.submit}>
-              Save
-            </button>
-          </form>
+          );
+        })}
+        <div
+          className={style.background}
+          onClick={() => onToggleShowForm()}
+        ></div>
+        <div className={style.form}>
+          <div className={style.header}>
+            <span>Edit Task</span>
+          </div>
+          <div className={style.input}>
+            <form onSubmit={onSubmitForm}>
+              <div className={style.body}>
+                <label htmlFor="body">Body</label>
+                <textarea
+                  onChange={(e) => setBodyTask(e.target.value)}
+                  id="body"
+                  cols="30"
+                  rows="10"
+                  value={bodyTask}
+                ></textarea>
+                {bodyError.length > 0 && (
+                  <div className={style.error}>
+                    {bodyError.map((error) => (
+                      <span>{error}</span>
+                    ))}
+                  </div>
+                )}
+              </div>
+              {formError && (
+                <div className={style.error}>
+                  <span>{formError}</span>
+                </div>
+              )}
+              <button type="submit" className={style.submit}>
+                Save
+              </button>
+            </form>
+          </div>
         </div>
       </div>
     </div>
