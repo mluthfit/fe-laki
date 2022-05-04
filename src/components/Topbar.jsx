@@ -15,7 +15,7 @@ import {
 import style from "./css/topbar.module.css";
 
 const Topbar = (props) => {
-  const { onToggleMenu, onChangePage, isLoggedIn, setLogged } = props;
+  const { onToggleMenu, onChangePage, isLoggedIn, setLogged, company } = props;
   const navigate = useNavigate();
 
   const onToggleUser = (event) => {
@@ -39,7 +39,7 @@ const Topbar = (props) => {
         <div className={style.right}>
           <div className={style.company}>
             <FontAwesomeIcon icon={faBuilding}></FontAwesomeIcon>
-            <span>Creative Consultant Inc.</span>
+            <span>{company}</span>
           </div>
           <div className={style.users}>
             <div className={style.notification}>

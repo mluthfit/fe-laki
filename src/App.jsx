@@ -24,7 +24,7 @@ const App = () => {
   const [page, setPage] = useState("home");
   const [isMenuOpen, setMenu] = useState(false);
   const [isLoggedIn, setLogged] = useState(false);
-  const [user, setUser] = useState({});
+  const [company, setCompany] = useState("");
 
   const onChangePage = (page) => {
     setPage(page);
@@ -34,17 +34,31 @@ const App = () => {
     setMenu(!isMenuOpen);
   };
 
+  const getCompanyName = async () => {
+    if (!company && isLoggedIn) {
+      try {
+        const { data } = await axios.get(
+          `${env.API_URL}/profiles`,
+          env.OPTIONS_AXIOS
+        );
+
+        setCompany(data?.data?.company?.name);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
+
   useEffect(() => {
     if (Auth.isTokenAvailable()) {
       const checkToken = async () => {
         try {
-          const { data } = await axios.get(`${env.API_URL}/profiles`, {
-            headers: {
-              Authorization: Auth.getToken(),
-            },
-          });
+          const { data } = await axios.get(
+            `${env.API_URL}/profiles`,
+            env.OPTIONS_AXIOS
+          );
 
-          console.log(data);
+          // console.log(data);
           setLogged(true);
         } catch (error) {
           setLogged(false);
@@ -53,6 +67,8 @@ const App = () => {
 
       checkToken();
     }
+
+    getCompanyName();
   }, []);
 
   return (
@@ -62,6 +78,7 @@ const App = () => {
         onChangePage={onChangePage}
         isLoggedIn={isLoggedIn}
         setLogged={setLogged}
+        company={company}
       />
       <Routes>
         <Route
@@ -95,11 +112,7 @@ const App = () => {
           element={
             isLoggedIn ? (
               <main>
-                <Sidebar
-                  onChangePage={onChangePage}
-                  isMenuOpen={isMenuOpen}
-                  user={user}
-                />
+                <Sidebar onChangePage={onChangePage} isMenuOpen={isMenuOpen} />
                 {page === "home" && <Home />}
                 {page === "tasks" && <Tasks />}
                 {page === "employee" && <Employee />}

@@ -25,11 +25,10 @@ const Tasks = () => {
 
   const fetchTasks = async () => {
     try {
-      const { data } = await axios.get(`${env.API_URL}/tasks`, {
-        headers: {
-          Authorization: Auth.getToken(),
-        },
-      });
+      const { data } = await axios.get(
+        `${env.API_URL}/tasks`,
+        env.OPTIONS_AXIOS
+      );
 
       setUserTasks(data.data);
     } catch (error) {
@@ -44,18 +43,13 @@ const Tasks = () => {
         {
           body: bodyTask,
         },
-        {
-          headers: {
-            Authorization: Auth.getToken(),
-          },
-        }
+        env.OPTIONS_AXIOS
       );
 
-      console.log(data);
       fetchTasks();
       onToggleShowForm();
     } catch (error) {
-      console.log(error.response);
+      console.log(error);
     }
   };
 
