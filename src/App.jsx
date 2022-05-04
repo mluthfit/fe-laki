@@ -40,12 +40,7 @@ const App = () => {
     if (Auth.isTokenAvailable()) {
       const checkToken = async () => {
         try {
-          const { data } = await axios.get(
-            `${env.API_URL}/profiles`,
-            env.OPTIONS_AXIOS
-          );
-
-          // console.log(data);
+          await axios.get(`${env.API_URL}/profiles`, env.OPTIONS_AXIOS);
           setLogged(true);
         } catch (error) {
           setLogged(false);

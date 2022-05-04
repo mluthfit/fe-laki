@@ -4,10 +4,17 @@ import Profile from "./Profile";
 import style from "./css/home.module.css";
 import axios from "axios";
 import env from "../scripts/Environment";
+import SelfTasks from "./SelfTasks";
 
 const Home = () => {
   const [subMenu, setSubMenu] = useState("Task");
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState({
+    email: "",
+    name: "",
+    position: "",
+    company: "",
+  });
+
   const [clock, setClock] = useState({});
   const [tasks, setTasks] = useState([]);
 
@@ -41,11 +48,8 @@ const Home = () => {
           company: dataUser?.data?.company?.name,
         });
 
-        console.log(dataUser);
         setTasks(dataUser?.data?.tasks);
         setClock(dataClock?.data);
-
-        console.log(tasks);
       } catch (error) {
         console.log(error);
       }
@@ -68,7 +72,9 @@ const Home = () => {
             </span>
             <span onClick={onChangeSubMenu}>Statistic</span>
           </div>
-          <div className={style.contents}>{subMenu}</div>
+          <div className={style.contents}>
+            {subMenu === "Task" && <SelfTasks tasks={tasks} />}
+          </div>
         </div>
       </div>
     </div>
