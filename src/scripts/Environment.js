@@ -5,7 +5,7 @@ const env = {
   TOKEN_TYPE : 'Bearer',
   OPTIONS_AXIOS : {
     headers: {
-      Authorization: Auth.getToken(),
+      Authorization: `Bearer ${Auth.getToken()}`,
     },
   }
 };

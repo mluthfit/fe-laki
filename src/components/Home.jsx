@@ -70,7 +70,7 @@ const Home = () => {
             <span className={style.open} onClick={onChangeSubMenu}>
               Task
             </span>
-            <span onClick={onChangeSubMenu}>Statistic</span>
+            {/* <span onClick={onChangeSubMenu}>Statistic</span> */}
           </div>
           <div className={style.contents}>
             {subMenu === "Task" && <SelfTasks tasks={tasks} />}

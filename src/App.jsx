@@ -40,7 +40,11 @@ const App = () => {
     if (Auth.isTokenAvailable()) {
       const checkToken = async () => {
         try {
-          await axios.get(`${env.API_URL}/profiles`, env.OPTIONS_AXIOS);
+          const { data } = await axios.get(
+            `${env.API_URL}/profiles`,
+            env.OPTIONS_AXIOS
+          );
+          console.log(data);
           setLogged(true);
         } catch (error) {
           setLogged(false);
@@ -59,11 +63,6 @@ const App = () => {
             `${env.API_URL}/profiles`,
             env.OPTIONS_AXIOS
           );
-
-          // setCompany(data?.data?.company?.name);
-          // setUserId(data?.data?.user_id);
-          // setUserId(1);
-          // console.log(userId);
 
           setCompanyUser({
             ...companyUser,

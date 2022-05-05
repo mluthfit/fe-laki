@@ -40,8 +40,8 @@ const Login = (props) => {
       }
 
       if (data.validations) {
-        setEmailError(data.validations.email);
-        setPasswordError(data.validations.password);
+        setEmailError(data.validations?.email ?? []);
+        setPasswordError(data.validations?.password ?? []);
       }
     }
   };
