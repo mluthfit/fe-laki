@@ -6,4 +6,12 @@ import laptop from '../images/laptop.png';
 import logo from '../images/logo.png';
 import pc from '../images/pc.png';
 
-export { activity, analysis, camera, jumbotron, laptop, logo, pc };
+export { 
+  activity,
+  analysis, 
+  camera, 
+  jumbotron, 
+  laptop, 
+  logo, 
+  pc, 
+};

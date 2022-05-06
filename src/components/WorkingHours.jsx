@@ -1,5 +1,5 @@
 import React from "react";
-import { convertMonthName } from "../scripts/Text";
+import { convertMonthName } from "../scripts/Helpers";
 import style from "./css/hours.module.css";
 
 const WorkingHours = (props) => {

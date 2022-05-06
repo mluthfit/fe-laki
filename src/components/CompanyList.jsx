@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLink, faEye } from "@fortawesome/free-solid-svg-icons";
 import DataTable from "react-data-table-component";
 import style from "./css/companies.module.css";
+import axios from "axios";
+import env from "../scripts/Environment";
 
 const CompanyList = () => {
   const [image, setImage] = useState("https://via.placeholder.com/151");
@@ -11,6 +13,7 @@ const CompanyList = () => {
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [website, setWebsite] = useState("");
+  const [companyList, setCompanyList] = useState([]);
 
   const onPopupImage = (event) => {
     event.stopPropagation();
@@ -32,6 +35,35 @@ const CompanyList = () => {
     event.preventDefault();
     onChangeValue();
   };
+
+  const fetchCompany = async () => {
+    try {
+      const { data } = await axios.get(
+        `${env.API_URL}/admin/companies`,
+        env.OPTIONS_AXIOS
+      );
+
+      const mappingData = data?.data.map((item) => {
+        return {
+          id: item.id,
+          name: item?.name ?? "-",
+          address: item?.address ?? "-",
+          phone: item?.phone ?? "-",
+          email: item?.email ?? "-",
+          website: item?.website,
+          logo: item?.media?.storage_path,
+        };
+      });
+
+      setCompanyList(mappingData);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchCompany();
+  }, []);
 
   const columns = [
     {
@@ -104,54 +136,6 @@ const CompanyList = () => {
         </span>
       ),
       grow: 0,
-    },
-  ];
-
-  const data = [
-    {
-      id: 1,
-      name: "Teslah Crop.",
-      address: "JL. Lorem Ipsum",
-      phone: "+62 82345679876",
-      email: "noreply@teslah.com",
-      website: null,
-      logo: "https://via.placeholder.com/151",
-    },
-    {
-      id: 2,
-      name: "Super Inc.",
-      address: "JL. Jend. Sudirman",
-      phone: null,
-      email: "admin@super.co.id",
-      website: "https://www.facebook.com",
-      logo: "https://via.placeholder.com/151",
-    },
-    {
-      id: 3,
-      name: "Teslah Crop.",
-      address: "JL. Lorem Ipsum",
-      phone: "+62 82345679876",
-      email: "noreply@teslah.com",
-      website: "https://www.google.com",
-      logo: "https://via.placeholder.com/150",
-    },
-    {
-      id: 4,
-      name: "Super Inc.",
-      address: "JL. Jend. Sudirman",
-      phone: "+62 82323487654",
-      email: "admin@super.co.id",
-      website: "https://www.facebook.com",
-      logo: "https://via.placeholder.com/151",
-    },
-    {
-      id: 5,
-      name: "Teslah Crop.",
-      address: "JL. Lorem Ipsum",
-      phone: "+62 82345679876",
-      email: "noreply@teslah.com",
-      website: "https://www.google.com",
-      logo: "https://via.placeholder.com/150",
     },
   ];
 
@@ -235,7 +219,7 @@ const CompanyList = () => {
       </div>
       <div className={style.table}>
         <h2 className={style.title}>Company List</h2>
-        <DataTable columns={columns} data={data} pagination></DataTable>
+        <DataTable columns={columns} data={companyList} pagination></DataTable>
       </div>
       <div className={style.popup}>
         <div className={style.background} onClick={onPopupImage}></div>

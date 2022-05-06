@@ -1,5 +1,5 @@
 import React from "react";
-import { checkSameDay, convertMonthName } from "../scripts/Text";
+import { checkSameDay, convertMonthName } from "../scripts/Helpers";
 import style from "./css/self-tasks.module.css";
 
 const SelfTasks = (props) => {

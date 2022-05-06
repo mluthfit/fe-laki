@@ -24,8 +24,6 @@ const App = () => {
   const [page, setPage] = useState("home");
   const [isMenuOpen, setMenu] = useState(false);
   const [isLoggedIn, setLogged] = useState(false);
-  // const [company, setCompany] = useState("");
-  // const [userId, setUserId] = useState(10);
   const [companyUser, setCompanyUser] = useState({});
 
   const onChangePage = (page) => {
@@ -44,6 +42,7 @@ const App = () => {
             `${env.API_URL}/profiles`,
             env.OPTIONS_AXIOS
           );
+
           console.log(data);
           setLogged(true);
         } catch (error) {

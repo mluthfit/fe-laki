@@ -61,7 +61,6 @@ const SuperUserList = () => {
     event.preventDefault();
     onResetError();
     onSaveSuperUser(fetchSuperUser);
-    onChangeValue();
   };
 
   const onSaveSuperUser = async (fetchSuperUser = undefined) => {
@@ -83,9 +82,9 @@ const SuperUserList = () => {
       );
 
       setFormSuccess(data?.messages);
-      if (fetchSuperUser) {
-        fetchSuperUser();
-      }
+      onChangeValue();
+
+      if (fetchSuperUser) fetchSuperUser();
     } catch (error) {
       const { data } = error.response;
       if (data.validations) {

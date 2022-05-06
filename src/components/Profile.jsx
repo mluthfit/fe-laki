@@ -1,5 +1,5 @@
 import React from "react";
-import { capitalize } from "../scripts/Text";
+import { capitalize } from "../scripts/Helpers";
 import style from "./css/profiles.module.css";
 
 const Profile = (props) => {
