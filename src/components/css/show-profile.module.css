@@ -9,6 +9,34 @@
   flex-wrap: wrap;
 }
 
+.show .error,
+.show .success {
+    border-radius: 5px;
+    padding: .3rem 1rem;
+    width: 100%;
+}
+
+.show .error span,
+.show .success span {
+    display: block;
+    margin: .3rem 0;
+    font-size: .9rem;
+}
+
+.show .success {
+    background-color: var(--background-success);
+    color: var(--text-success);
+    border: 1px solid var(--border-success);
+    margin-bottom: .5rem;
+}
+
+.show .error {
+    background-color: var(--background-danger);
+    color: var(--text-danger);
+    border: 1px solid var(--border-danger);
+    margin-top: .5rem;
+}
+
 .show .profile {
   width: 350px;
 }
@@ -49,6 +77,31 @@
   width: 100%;
   outline: none;
   border: none;
+}
+
+.file .button {
+  border-radius: 5px;
+  padding: .5rem 1rem;
+  outline: none;
+  border: none;
+  display: block;
+  text-align: left;
+  width: 100%;
+}
+
+.show .file {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.file input {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
 }
 
 .form .submit {

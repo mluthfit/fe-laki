@@ -17,6 +17,7 @@ const Home = () => {
 
   const [clock, setClock] = useState({});
   const [tasks, setTasks] = useState([]);
+  const [image, setImage] = useState("");
 
   const onChangeSubMenu = (event) => {
     const menus = document.querySelectorAll(`.${style.title} > span`);
@@ -49,6 +50,7 @@ const Home = () => {
         });
 
         setTasks(dataUser?.data?.tasks);
+        setImage(dataUser?.data?.media?.storage_path);
         setClock(dataClock?.data);
       } catch (error) {
         console.log(error);
@@ -63,7 +65,7 @@ const Home = () => {
       <WorkingHours clock={clock}></WorkingHours>
       <div className={style.bottom}>
         <div className={style.profile}>
-          <Profile data={user} />
+          <Profile data={user} image={image} />
         </div>
         <div className={style.menu}>
           <div className={style.title}>

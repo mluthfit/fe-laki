@@ -62,10 +62,6 @@
   margin-bottom: .3rem;
 }
 
-.companies .file {
-  width: 100%;
-}
-
 .group .input,
 .file .button {
   border-radius: 5px;
@@ -78,6 +74,7 @@
 }
 
 .companies .file {
+  width: 100%;
   position: relative;
   overflow: hidden;
   display: inline-block;
