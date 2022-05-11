@@ -1,5 +1,5 @@
 import DataTable from "react-data-table-component";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faLocationArrow,
@@ -8,9 +8,23 @@ import {
   faGlobe,
 } from "@fortawesome/free-solid-svg-icons";
 import style from "./css/employee-detail.module.css";
+import axios from "axios";
+import env from "../scripts/Environment";
+import SelfTasks from "./SelfTasks";
 
 const EmployeeDetails = () => {
-  const [image, setImage] = useState("https://via.placeholder.com/151");
+  const [company, setCompany] = useState({});
+  const [employees, setEmployees] = useState([]);
+  const [tasks, setTasks] = useState([]);
+
+  const onPopupTasks = (event) => {
+    event.stopPropagation();
+    const popUp = document.querySelector(`.${style.popup}`);
+    if (!popUp) return;
+
+    popUp.classList.toggle(style.pOpen);
+  };
+
   const columns = [
     {
       name: "#",
@@ -38,124 +52,115 @@ const EmployeeDetails = () => {
       sortable: true,
     },
     {
-      name: "Details",
-      cell: (row) => (
-        <a
-          href={row.details}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="details-button"
-        >
-          Details
-        </a>
-      ),
-      grow: 0,
-    },
-    {
       name: "View Task",
-      cell: (row) => (
-        <a
-          href={row.viewtask}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="view-task-button"
-        >
-          Task
-        </a>
-      ),
+      cell: (row) =>
+        row.tasks.length > 0 && (
+          <span
+            className={style.view}
+            onClick={(e) => {
+              onPopupTasks(e);
+              setTasks(row.tasks);
+            }}
+          >
+            View
+          </span>
+        ),
       grow: 0,
     },
   ];
 
-  const data = [
-    {
-      id: 1,
-      name: "John Doe Kurniadi",
-      email: "johndoe@email.com",
-      position: "IT Manager",
-      status: "Online",
-    },
-    {
-      id: 2,
-      name: "Jane Doe Setiawati",
-      email: "jane.dodoe@gmail.com",
-      position: "Data Scientist",
-      status: "Online",
-    },
-    {
-      id: 3,
-      name: "Lewis Hamdullah",
-      email: "lewis.h@email.com",
-      position: "Cyber Security Analyst",
-      status: "Online",
-    },
-    {
-      id: 4,
-      name: "Mikael Jardon",
-      email: "jumpman23@gmail.com",
-      position: "Quality Assurance",
-      status: "Online",
-    },
-    {
-      id: 5,
-      name: "Kendrick Lamar Susanto",
-      email: "kendricklamarsus@gmail.com",
-      position: "Finance Manager",
-      status: "Online",
-    },
-    {
-      id: 6,
-      name: "Jonathan Cena",
-      email: "johncena@gmail.com",
-      position: "Marketing Manager",
-      status: "Offline",
-    },
-  ];
+  const fetchCompany = async () => {
+    try {
+      const { data } = await axios.get(
+        `${env.API_URL}/superuser/info-company`,
+        env.OPTIONS_AXIOS
+      );
+      setCompany(data?.data ?? {});
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const fetchEmployee = async () => {
+    try {
+      const { data } = await axios.get(
+        `${env.API_URL}/superuser/user-profiles`,
+        env.OPTIONS_AXIOS
+      );
+
+      const mappingData = data?.data?.map((item) => {
+        return {
+          id: item?.user?.id,
+          name: item?.name,
+          email: item?.user?.email,
+          position: item?.position,
+          status: item?.user?.status ? "Online" : "Offline",
+          tasks: item?.user?.tasks,
+        };
+      });
+
+      setEmployees(mappingData);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchCompany();
+    fetchEmployee();
+  }, []);
 
   return (
     <div className={style.users}>
       <div className={style.container}>
         <div className={style.logo}>
-          <img src={image} alt="logo" />
+          <img
+            src={`${env.STORAGE_URL}/${company?.media?.storage_path}`}
+            alt="logo"
+          />
         </div>
         <div className={style.info}>
-          <h2 className={style.title}>Land Croc Inc.</h2>
+          <h2 className={style.title}>{company?.name ?? "-"}</h2>
           <div className={style.description}>
             <div className={style.group}>
               <FontAwesomeIcon icon={faLocationArrow} />
-              <span>
-                Jl. Lorem Ipsum Dolor Sit Amet, No 15, Jakarta Timur, Indonesia
-                13330
-              </span>
+              <span>{company?.address ?? "-"}</span>
             </div>
             <div className={style.group}>
               <FontAwesomeIcon icon={faEnvelope} />
-              <span>support@lancroc.com</span>
+              <span>{company?.email ?? "-"}</span>
             </div>
             <div className={style.group}>
               <FontAwesomeIcon icon={faPhone} />
-              <span>+62 12345678</span>
+              <span>{company?.phone ?? "-"}</span>
             </div>
             <div className={style.group}>
               <FontAwesomeIcon icon={faGlobe} />
-              <span>www.land-croc.org</span>
+              <span>{company?.website ?? "-"}</span>
             </div>
           </div>
           <div className={style.data}>
             <div className={style.employee}>
               <div></div>
-              <span>105000 Employee</span>
+              <span>{company?.total_employee ?? "0"} Employees</span>
             </div>
             <div className={style.online}>
               <div></div>
-              <span>95000 Online</span>
+              <span>{company?.total_online ?? "0"} Online</span>
             </div>
           </div>
         </div>
       </div>
       <div className={style.table}>
         <h2 className={style.title}>Employee List</h2>
-        <DataTable columns={columns} data={data} pagination />
+        <DataTable columns={columns} data={employees} pagination />
+      </div>
+      <div className={style.popup}>
+        <div className={style.background} onClick={onPopupTasks}>
+          <div className={style.box}>
+            <SelfTasks tasks={tasks}></SelfTasks>
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -36,7 +36,6 @@ const Employee = () => {
   return (
     <div className={style.employee}>
       {employees.map((employee, index) => {
-        console.log(employee.image);
         return (
           <div key={index} className={style.profile}>
             <Profile

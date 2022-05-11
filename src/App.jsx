@@ -25,6 +25,7 @@ const App = () => {
   const [isMenuOpen, setMenu] = useState(false);
   const [isLoggedIn, setLogged] = useState(false);
   const [companyUser, setCompanyUser] = useState({});
+  const [userRole, setUserRole] = useState(0);
 
   const onChangePage = (page) => {
     setPage(page);
@@ -44,6 +45,7 @@ const App = () => {
           );
 
           console.log(data);
+          setUserRole(data?.data?.user?.role);
           setLogged(true);
         } catch (error) {
           setLogged(false);
@@ -118,9 +120,13 @@ const App = () => {
           element={
             isLoggedIn ? (
               <main>
-                <Sidebar onChangePage={onChangePage} isMenuOpen={isMenuOpen} />
+                <Sidebar
+                  onChangePage={onChangePage}
+                  isMenuOpen={isMenuOpen}
+                  userRole={userRole}
+                />
                 {page === "home" && <Home />}
-                {page === "tasks" && <Tasks userId={companyUser.user_id} />}
+                {page === "tasks" && <Tasks userRole={companyUser.user_id} />}
                 {page === "employee" && <Employee />}
                 {page === "presence" && <Presence />}
                 {page === "show-profile" && <ShowProfile />}
