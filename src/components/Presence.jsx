@@ -1,23 +1,154 @@
-import React from "react";
-import "./css/presence.css";
+import React, { useEffect, useState } from "react";
+import Webcam from "react-webcam";
+import style from "./css/presence.module.css";
+import axios from "axios";
+import env from "../scripts/Environment";
+import { dataURLtoFile } from "../scripts/Image";
 
-class Presence extends React.Component {
-  render() {
-    return (
-      <div className="presence">
-        <div className="content-camera">CAMERA</div>
+const WebcamComponent = () => <Webcam />;
+const videoConstraints = {
+  // width: 220,
+  // height: 200,
+  facingMode: "user",
+};
 
-        <div className="flex-container">
-          <div>
-            <input className="button" type={"submit"} value="Capture" />
-          </div>
-          <div>
-            <input className="button" type={"submit"} value="Presence" />
-          </div>
+const Presence = () => {
+  const [image, setImage] = useState("");
+  const [photo, setPhoto] = useState("");
+  const [clock, setClock] = useState({});
+  const [photoError, setPhotoError] = useState([]);
+  const [formSuccess, setFormSuccess] = useState("");
+  const [isFirstOpen, setIsFirstOpen] = useState(true);
+
+  const webcamRef = React.useRef(null);
+  const capture = React.useCallback(() => {
+    const imageSrc = webcamRef.current.getScreenshot();
+
+    setImage(imageSrc);
+    setPhoto(dataURLtoFile(imageSrc, "photo.jpeg"));
+  }, [webcamRef]);
+
+  const fetchClock = async () => {
+    try {
+      const { data } = await axios.get(
+        `${env.API_URL}/dashboard/clock-today`,
+        env.OPTIONS_AXIOS
+      );
+
+      console.log(data);
+      setClock(data?.data ?? {});
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const onClockIn = async (e) => {
+    e.preventDefault();
+    try {
+      const body = new FormData();
+      body.append("photo", photo);
+
+      const { data } = await axios.post(
+        `${env.API_URL}/presences/clock-in`,
+        body,
+        env.OPTIONS_AXIOS
+      );
+
+      setFormSuccess(data?.messages ?? "");
+      fetchClock();
+    } catch (error) {
+      const { data } = error.response;
+      if (data?.validations) {
+        setPhotoError(data?.validations?.photo);
+      }
+    }
+  };
+
+  const onClockOut = async (e) => {
+    e.preventDefault();
+    try {
+      const { data } = await axios.post(
+        `${env.API_URL}/presences/clock-out`,
+        {},
+        env.OPTIONS_AXIOS
+      );
+
+      setFormSuccess(data?.messages ?? "");
+      fetchClock();
+      setIsFirstOpen(false);
+    } catch (error) {
+      const { data } = error.response;
+      console.log(data);
+    }
+  };
+
+  useEffect(() => {
+    fetchClock();
+  }, []);
+
+  return (
+    <div className={style.presence}>
+      {formSuccess && (
+        <div className={style.success}>
+          <span>{formSuccess}</span>
         </div>
+      )}
+      <div className={style.webcam}>
+        {!clock.clock_in && !image && (
+          <Webcam
+            audio={false}
+            ref={webcamRef}
+            screenshotFormat="image/jpeg"
+            videoConstraints={videoConstraints}
+          />
+        )}
+
+        {!clock.clock_in && !!image && <img src={image} alt="Screenshoot" />}
+        {!!clock.clock_in && (
+          <img
+            src={`${env.STORAGE_URL}/${clock?.media?.storage_path}`}
+            alt="Presence's captured"
+          />
+        )}
       </div>
-    );
-  }
-}
+      {photoError.length > 0 && (
+        <div className={style.error}>
+          {photoError.map((error, index) => (
+            <span key={index}>{error}</span>
+          ))}
+        </div>
+      )}
+      <div className={style.action}>
+        {!clock.clock_in &&
+          (!image ? (
+            <button onClick={capture}>Capture</button>
+          ) : (
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                setImage("");
+              }}
+            >
+              Retake
+            </button>
+          ))}
+
+        {!!image && !clock.clock_in && (
+          <button onClick={onClockIn}>Clock In</button>
+        )}
+
+        {!!clock.clock_in && !clock.clock_out && (
+          <button onClick={onClockOut}>Clock Out</button>
+        )}
+
+        {isFirstOpen && !!clock.clock_out && !!clock.clock_in && (
+          <div className={style.success}>
+            <span>You have been clocked in and clocked out already</span>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
 
 export default Presence;

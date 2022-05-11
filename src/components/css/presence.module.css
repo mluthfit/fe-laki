@@ -1,0 +1,68 @@
+.presence {
+  padding: 2rem;
+  flex: 1;
+}
+
+.presence .webcam {
+  height: 70%;
+  margin: auto;
+}
+
+.webcam video {
+  display: block;
+  margin: 0 auto;
+  height: 100%;
+  border-radius: 10px;
+}
+
+.webcam img {
+  display: block;
+  margin: 0 auto;
+  border-radius: 10px;
+}
+
+.action {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.action button {
+  color: var(--light-green);
+  background-color: var(--black-color);
+  padding: .5rem 1rem;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  outline: none;
+}
+
+.presence .error,
+.presence .success {
+    border-radius: 5px;
+    padding: .3rem 1rem;
+    width: 100%;
+}
+
+.presence .error span,
+.presence .success span {
+    display: block;
+    margin: .3rem 0;
+    font-size: .9rem;
+}
+
+.presence .success {
+    background-color: var(--background-success);
+    color: var(--text-success);
+    border: 1px solid var(--border-success);
+    margin: .5rem 0;
+}
+
+.presence .error {
+    background-color: var(--background-danger);
+    color: var(--text-danger);
+    border: 1px solid var(--border-danger);
+    margin-top: .5rem;
+}
