@@ -36,10 +36,30 @@
 .menu .contents {
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   background-color: white;
-  flex: 1;
+  overflow-y: auto;
   border-radius: 10px;
   margin-top: .5rem;
   padding: 1rem;
+  height: 500px;
+}
+
+.menu .contents::-webkit-scrollbar-track {
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 10px;
+	background-color: #F5F5F5;
+}
+
+.menu .contents::-webkit-scrollbar {
+	width: 5px;
+	background-color: #F5F5F5;
+}
+
+.menu .contents::-webkit-scrollbar-thumb {
+	border-radius: 10px;
+	box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: var(--dark-grey);
 }
 
 @media screen and (max-width: 1100px) {
@@ -50,5 +70,10 @@
 
   .home .bottom > div {
     width: 100%;
+  }
+
+  .menu .contents {
+    height: auto;
+    overflow: auto;
   }
 }

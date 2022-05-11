@@ -1,23 +1,29 @@
 import React from "react";
+import { convertMonthName } from "../scripts/Helpers";
 import style from "./css/hours.module.css";
 
-const WorkingHours = () => {
+const WorkingHours = (props) => {
+  const { clock } = props;
+  const time = new Date();
+
   return (
     <div className={style.container}>
       <div>
         <span className={style.title}>DATE</span>
         <div>
-          <span className={style.date}>14</span>
-          <span>March 2022</span>
+          <span className={style.date}>{time.getDate()}</span>
+          <span>{`${convertMonthName(
+            time.getMonth()
+          )} ${time.getFullYear()}`}</span>
         </div>
       </div>
       <div>
         <span className={style.title}>Clock In</span>
-        <span className={style.time}>08:00</span>
+        <span className={style.time}>{clock.clock_in ?? "-"}</span>
       </div>
       <div className={style.date}>
         <span className={style.title}>Clock Out</span>
-        <span className={style.time}>15:00</span>
+        <span className={style.time}>{clock.clock_out ?? "-"}</span>
       </div>
     </div>
   );

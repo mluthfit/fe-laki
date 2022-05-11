@@ -12,7 +12,7 @@ import {
 import style from "./css/sidebar.module.css";
 
 const Sidebar = (props) => {
-  const { onChangePage, isMenuOpen } = props;
+  const { onChangePage, isMenuOpen, userRole } = props;
   const onToggleSidebar = (event) => {
     event.stopPropagation();
     const child = event.target.querySelector(`.${style.child}`);
@@ -42,34 +42,38 @@ const Sidebar = (props) => {
           <FontAwesomeIcon icon={faInfoCircle}></FontAwesomeIcon>
           <span>Employee</span>
         </li>
-        <li onClick={onToggleSidebar} className={style.parent}>
-          <FontAwesomeIcon icon={faUserLock}></FontAwesomeIcon>
-          <span>SuperUser</span>
-          <span className={style.arrow}>
-            <FontAwesomeIcon icon={faAngleRight}></FontAwesomeIcon>
-          </span>
-          <ul className={style.child}>
-            <li onClick={() => onChangePage("employee-details")}>
-              Employee Details
-            </li>
-            <li onClick={() => onChangePage("employee-accounts")}>
-              Employee Accounts
-            </li>
-          </ul>
-        </li>
-        <li onClick={onToggleSidebar} className={style.parent}>
-          <FontAwesomeIcon icon={faUserCog}></FontAwesomeIcon>
-          <span>Admin</span>
-          <span className={style.arrow}>
-            <FontAwesomeIcon icon={faAngleRight}></FontAwesomeIcon>
-          </span>
-          <ul className={style.child}>
-            <li onClick={() => onChangePage("super-user-list")}>
-              SuperUser List
-            </li>
-            <li onClick={() => onChangePage("company-list")}>Company List</li>
-          </ul>
-        </li>
+        {userRole !== 1 && (
+          <li onClick={onToggleSidebar} className={style.parent}>
+            <FontAwesomeIcon icon={faUserLock}></FontAwesomeIcon>
+            <span>SuperUser</span>
+            <span className={style.arrow}>
+              <FontAwesomeIcon icon={faAngleRight}></FontAwesomeIcon>
+            </span>
+            <ul className={style.child}>
+              <li onClick={() => onChangePage("employee-details")}>
+                Employee Details
+              </li>
+              <li onClick={() => onChangePage("employee-accounts")}>
+                Employee Accounts
+              </li>
+            </ul>
+          </li>
+        )}
+        {userRole === 3 && (
+          <li onClick={onToggleSidebar} className={style.parent}>
+            <FontAwesomeIcon icon={faUserCog}></FontAwesomeIcon>
+            <span>Admin</span>
+            <span className={style.arrow}>
+              <FontAwesomeIcon icon={faAngleRight}></FontAwesomeIcon>
+            </span>
+            <ul className={style.child}>
+              <li onClick={() => onChangePage("super-user-list")}>
+                SuperUser List
+              </li>
+              <li onClick={() => onChangePage("company-list")}>Company List</li>
+            </ul>
+          </li>
+        )}
       </ul>
     </div>
   );

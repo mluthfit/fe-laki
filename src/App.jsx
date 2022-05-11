@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import axios from "axios";
 import env from "./scripts/Environment";
+import Auth from "./scripts/Auth";
 import Topbar from "./components/Topbar";
 import Sidebar from "./components/Sidebar";
 import Home from "./components/Home";
@@ -23,7 +24,8 @@ const App = () => {
   const [page, setPage] = useState("home");
   const [isMenuOpen, setMenu] = useState(false);
   const [isLoggedIn, setLogged] = useState(false);
-  const [user, setUser] = useState({});
+  const [companyUser, setCompanyUser] = useState({});
+  const [userRole, setUserRole] = useState(0);
 
   const onChangePage = (page) => {
     setPage(page);
@@ -34,17 +36,16 @@ const App = () => {
   };
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
+    if (Auth.isTokenAvailable()) {
       const checkToken = async () => {
         try {
-          const { data } = await axios.get(`${env.API_URL}/profiles`, {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          });
+          const { data } = await axios.get(
+            `${env.API_URL}/profiles`,
+            env.OPTIONS_AXIOS
+          );
 
           console.log(data);
+          setUserRole(data?.data?.user?.role);
           setLogged(true);
         } catch (error) {
           setLogged(false);
@@ -55,6 +56,29 @@ const App = () => {
     }
   }, []);
 
+  useEffect(() => {
+    if (!Object.keys(companyUser).length && isLoggedIn) {
+      const getCompanyName = async () => {
+        try {
+          const { data } = await axios.get(
+            `${env.API_URL}/profiles`,
+            env.OPTIONS_AXIOS
+          );
+
+          setCompanyUser({
+            ...companyUser,
+            company: data?.data?.company?.name,
+            user_id: data?.data?.user_id,
+          });
+        } catch (error) {
+          console.log(error);
+        }
+      };
+
+      getCompanyName();
+    }
+  }, [companyUser, isLoggedIn]);
+
   return (
     <div className="App">
       <Topbar
@@ -62,6 +86,7 @@ const App = () => {
         onChangePage={onChangePage}
         isLoggedIn={isLoggedIn}
         setLogged={setLogged}
+        company={companyUser.company}
       />
       <Routes>
         <Route
@@ -98,10 +123,10 @@ const App = () => {
                 <Sidebar
                   onChangePage={onChangePage}
                   isMenuOpen={isMenuOpen}
-                  user={user}
+                  userRole={userRole}
                 />
                 {page === "home" && <Home />}
-                {page === "tasks" && <Tasks />}
+                {page === "tasks" && <Tasks userRole={companyUser.user_id} />}
                 {page === "employee" && <Employee />}
                 {page === "presence" && <Presence />}
                 {page === "show-profile" && <ShowProfile />}

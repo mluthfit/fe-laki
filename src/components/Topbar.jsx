@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faAngleDown,
   faUser,
-  faBell,
+  // faBell,
   faBuilding,
   faCog,
   faSignOut,
@@ -15,7 +15,7 @@ import {
 import style from "./css/topbar.module.css";
 
 const Topbar = (props) => {
-  const { onToggleMenu, onChangePage, isLoggedIn, setLogged } = props;
+  const { onToggleMenu, onChangePage, isLoggedIn, setLogged, company } = props;
   const navigate = useNavigate();
 
   const onToggleUser = (event) => {
@@ -39,14 +39,14 @@ const Topbar = (props) => {
         <div className={style.right}>
           <div className={style.company}>
             <FontAwesomeIcon icon={faBuilding}></FontAwesomeIcon>
-            <span>Creative Consultant Inc.</span>
+            <span>{company}</span>
           </div>
           <div className={style.users}>
-            <div className={style.notification}>
+            {/* <div className={style.notification}>
               <span>
                 <FontAwesomeIcon icon={faBell} size="lg"></FontAwesomeIcon>
               </span>
-            </div>
+            </div> */}
             <div className={style.accounts}>
               <span className={style.icon} onClick={onToggleUser}>
                 <FontAwesomeIcon icon={faUser} size="lg"></FontAwesomeIcon>

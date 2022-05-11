@@ -23,7 +23,7 @@
 }
 
 .content .logo {
-  background-color: red;
+  background-color: var(--dark-grey);
   width: 150px;
   height: 150px;
   border-radius: 50%;

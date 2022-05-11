@@ -4,6 +4,34 @@
     position: relative;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 4px 4px;
 }
+
+.users .error,
+.users .success {
+    border-radius: 5px;
+    padding: .3rem 1rem;
+    width: 100%;
+}
+
+.users .error span,
+.users .success span {
+    display: block;
+    margin: .3rem 0;
+    font-size: .9rem;
+}
+
+.users .success {
+    background-color: var(--background-success);
+    color: var(--text-success);
+    border: 1px solid var(--border-success);
+    margin-bottom: .5rem;
+}
+
+.users .error {
+    background-color: var(--background-danger);
+    color: var(--text-danger);
+    border: 1px solid var(--border-danger);
+    margin-top: .5rem;
+}
   
 .users .form {
     padding: 2rem;
@@ -24,6 +52,9 @@
     justify-content: center;
 }
 
+.big .group {
+    width: 300px;
+}
 
 .big .group label {
     color: white;
@@ -34,7 +65,7 @@
 .group .input {
     border-radius: 5px;
     padding: .5rem 1rem;
-    width: 300px;
+    width: 100%;
     outline: none;
     border: none;
     text-align: left;

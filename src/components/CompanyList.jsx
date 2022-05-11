@@ -1,16 +1,28 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLink, faEye } from "@fortawesome/free-solid-svg-icons";
 import DataTable from "react-data-table-component";
 import style from "./css/companies.module.css";
+import axios from "axios";
+import env from "../scripts/Environment";
 
 const CompanyList = () => {
-  const [image, setImage] = useState("https://via.placeholder.com/151");
+  const [image, setImage] = useState("");
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [website, setWebsite] = useState("");
+  const [logo, setLogo] = useState("");
+  const [nameError, setNameError] = useState([]);
+  const [addressError, setAddressError] = useState([]);
+  const [phoneError, setPhoneError] = useState([]);
+  const [emailError, setEmailError] = useState([]);
+  const [websiteError, setWebsiteError] = useState([]);
+  const [logoError, setLogoError] = useState([]);
+  const [formSuccess, setFormSuccess] = useState("");
+  const [companyId, setCompanyId] = useState(0);
+  const [companyList, setCompanyList] = useState([]);
 
   const onPopupImage = (event) => {
     event.stopPropagation();
@@ -28,10 +40,82 @@ const CompanyList = () => {
     setWebsite(row?.website ?? "");
   };
 
-  const onHandleSubmit = (event) => {
-    event.preventDefault();
-    onChangeValue();
+  const onResetError = () => {
+    setNameError([]);
+    setAddressError([]);
+    setPhoneError([]);
+    setEmailError([]);
+    setWebsiteError([]);
+    setLogoError([]);
   };
+
+  const onHandleSubmit = async (event) => {
+    event.preventDefault();
+    onResetError();
+
+    try {
+      const body = new FormData();
+
+      if (companyId) body.append("company_id", companyId);
+      body.append("name", name);
+      body.append("address", address);
+      body.append("phone", phone);
+      body.append("email", email);
+      body.append("website", website);
+      if (logo) body.append("logo", logo);
+
+      const { data } = await axios.post(
+        `${env.API_URL}/admin/companies`,
+        body,
+        env.OPTIONS_AXIOS
+      );
+
+      setFormSuccess(data?.messages ?? "");
+      onChangeValue();
+      setCompanyId(0);
+      fetchCompany();
+    } catch (error) {
+      const { data } = error.response;
+      console.log(data.message);
+      if (data?.validations) {
+        setNameError(data.validations?.name ?? []);
+        setAddressError(data.validations?.address ?? []);
+        setPhoneError(data.validations?.phone ?? []);
+        setEmailError(data.validations?.email ?? []);
+        setWebsiteError(data.validations?.website ?? []);
+        setLogoError(data.validations?.logo ?? []);
+      }
+    }
+  };
+
+  const fetchCompany = async () => {
+    try {
+      const { data } = await axios.get(
+        `${env.API_URL}/admin/companies`,
+        env.OPTIONS_AXIOS
+      );
+
+      const mappingData = data?.data.map((item) => {
+        return {
+          id: item.id,
+          name: item?.name ?? "-",
+          address: item?.address ?? "-",
+          phone: item?.phone ?? "-",
+          email: item?.email ?? "-",
+          website: item?.website,
+          logo: item?.media?.storage_path,
+        };
+      });
+
+      setCompanyList(mappingData);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchCompany();
+  }, []);
 
   const columns = [
     {
@@ -82,7 +166,7 @@ const CompanyList = () => {
           <span
             className={style.logo}
             onClick={(e) => {
-              setImage(row.logo);
+              setImage(`${env.STORAGE_URL}/${row.logo}`);
               onPopupImage(e);
             }}
           >
@@ -97,6 +181,7 @@ const CompanyList = () => {
         <span
           className={style.edit}
           onClick={() => {
+            setCompanyId(row.id);
             onChangeValue(row);
           }}
         >
@@ -107,57 +192,14 @@ const CompanyList = () => {
     },
   ];
 
-  const data = [
-    {
-      id: 1,
-      name: "Teslah Crop.",
-      address: "JL. Lorem Ipsum",
-      phone: "+62 82345679876",
-      email: "noreply@teslah.com",
-      website: null,
-      logo: "https://via.placeholder.com/151",
-    },
-    {
-      id: 2,
-      name: "Super Inc.",
-      address: "JL. Jend. Sudirman",
-      phone: null,
-      email: "admin@super.co.id",
-      website: "https://www.facebook.com",
-      logo: "https://via.placeholder.com/151",
-    },
-    {
-      id: 3,
-      name: "Teslah Crop.",
-      address: "JL. Lorem Ipsum",
-      phone: "+62 82345679876",
-      email: "noreply@teslah.com",
-      website: "https://www.google.com",
-      logo: "https://via.placeholder.com/150",
-    },
-    {
-      id: 4,
-      name: "Super Inc.",
-      address: "JL. Jend. Sudirman",
-      phone: "+62 82323487654",
-      email: "admin@super.co.id",
-      website: "https://www.facebook.com",
-      logo: "https://via.placeholder.com/151",
-    },
-    {
-      id: 5,
-      name: "Teslah Crop.",
-      address: "JL. Lorem Ipsum",
-      phone: "+62 82345679876",
-      email: "noreply@teslah.com",
-      website: "https://www.google.com",
-      logo: "https://via.placeholder.com/150",
-    },
-  ];
-
   return (
     <div className={style.companies}>
       <div className={style.form}>
+        {formSuccess && (
+          <div className={style.success}>
+            <span>{formSuccess}</span>
+          </div>
+        )}
         <h2>Form Company</h2>
         <form
           method="post"
@@ -175,6 +217,13 @@ const CompanyList = () => {
                 onChange={(e) => setName(e.target.value)}
                 placeholder="Insert Company Name Here..."
               />
+              {nameError.length > 0 && (
+                <div className={style.error}>
+                  {nameError.map((error, index) => (
+                    <span key={index}>{error}</span>
+                  ))}
+                </div>
+              )}
             </div>
             <div className={style.group}>
               <label htmlFor="address">Address</label>
@@ -186,6 +235,13 @@ const CompanyList = () => {
                 onChange={(e) => setAddress(e.target.value)}
                 placeholder="Insert Company Address Here..."
               />
+              {addressError.length > 0 && (
+                <div className={style.error}>
+                  {addressError.map((error, index) => (
+                    <span key={index}>{error}</span>
+                  ))}
+                </div>
+              )}
             </div>
             <div className={style.group}>
               <label htmlFor="phone">Phone Number</label>
@@ -197,6 +253,13 @@ const CompanyList = () => {
                 onChange={(e) => setPhone(e.target.value)}
                 placeholder="Insert Phone Number Here..."
               />
+              {phoneError.length > 0 && (
+                <div className={style.error}>
+                  {phoneError.map((error, index) => (
+                    <span key={index}>{error}</span>
+                  ))}
+                </div>
+              )}
             </div>
             <div className={style.group}>
               <label htmlFor="email">Email</label>
@@ -208,6 +271,13 @@ const CompanyList = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Insert Email Here..."
               />
+              {emailError.length > 0 && (
+                <div className={style.error}>
+                  {emailError.map((error, index) => (
+                    <span key={index}>{error}</span>
+                  ))}
+                </div>
+              )}
             </div>
             <div className={style.group}>
               <label htmlFor="website">Website</label>
@@ -219,13 +289,32 @@ const CompanyList = () => {
                 onChange={(e) => setWebsite(e.target.value)}
                 placeholder="Insert Website Link Here..."
               />
+              {websiteError.length > 0 && (
+                <div className={style.error}>
+                  {websiteError.map((error, index) => (
+                    <span key={index}>{error}</span>
+                  ))}
+                </div>
+              )}
             </div>
             <div className={style.group}>
               <label htmlFor="logo">Logo</label>
               <div className={style.file}>
                 <button className={style.button}>Insert Logo Here...</button>
-                <input type="file" id="logo" className={style.input} />
+                <input
+                  type="file"
+                  id="logo"
+                  className={style.input}
+                  onChange={(e) => setLogo(e.target.files[0])}
+                />
               </div>
+              {logoError.length > 0 && (
+                <div className={style.error}>
+                  {logoError.map((error, index) => (
+                    <span key={index}>{error}</span>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
           <button className={style.submit} type="submit">
@@ -235,7 +324,7 @@ const CompanyList = () => {
       </div>
       <div className={style.table}>
         <h2 className={style.title}>Company List</h2>
-        <DataTable columns={columns} data={data} pagination></DataTable>
+        <DataTable columns={columns} data={companyList} pagination></DataTable>
       </div>
       <div className={style.popup}>
         <div className={style.background} onClick={onPopupImage}></div>

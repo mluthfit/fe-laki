@@ -1,9 +1,18 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import Auth from "../scripts/Auth";
+import axios from "axios";
+import env from "../scripts/Environment";
 import style from "./css/tasks.module.css";
 
-const Tasks = () => {
-  const onToggleFormEdit = (event) => {
-    event.stopPropagation();
+const Tasks = (props) => {
+  const { userId } = props;
+  const [userTasks, setUserTasks] = useState([]);
+  const [bodyTask, setBodyTask] = useState("");
+  const [formSuccess, setFormSuccess] = useState("");
+  const [formError, setFormError] = useState("");
+  const [bodyError, setBodyError] = useState("");
+
+  const onToggleShowForm = () => {
     const background = document.querySelector(`.${style.background}`);
     const form = document.querySelector(`.${style.form}`);
     if (!form) return;
@@ -18,67 +27,126 @@ const Tasks = () => {
     background.classList.add(style.bOpen);
   };
 
-  const onHandleSubmit = (event) => {
-    event.preventDefault();
+  const fetchTasks = async () => {
+    try {
+      const { data } = await axios.get(
+        `${env.API_URL}/tasks`,
+        env.OPTIONS_AXIOS
+      );
+
+      setUserTasks(data.data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
-  const data = [
-    {
-      title: "Task 1",
-      description: "<ul><li>Task 1</li><li>Task 2</li><li>Task 3</li></ul>",
-      user_id: 1,
-    },
-    {
-      title: "Task 2",
-      description: "<ul><li>Task 1</li><li>Task 2</li><li>Task 3</li></ul>",
-      user_id: 2,
-    },
-    {
-      title: "Task 3",
-      description: "<ul><li>Task 1</li><li>Task 2</li><li>Task 3</li></ul>",
-      user_id: 3,
-    },
-  ];
+  const editTask = async () => {
+    try {
+      const { data } = await axios.put(
+        `${env.API_URL}/tasks`,
+        {
+          body: bodyTask,
+        },
+        env.OPTIONS_AXIOS
+      );
+
+      fetchTasks();
+      onToggleShowForm();
+
+      if (data.messages) {
+        setFormSuccess(data.messages);
+      }
+    } catch (error) {
+      const { data } = error.response;
+      if (data.message) {
+        setFormError(data.message);
+      }
+
+      if (data.validations) {
+        setBodyError(data.validations.body);
+      }
+    }
+  };
+
+  const onSubmitForm = (event) => {
+    event.preventDefault();
+    if (Auth.isTokenAvailable()) editTask();
+  };
+
+  useEffect(() => {
+    if (Auth.isTokenAvailable()) fetchTasks();
+  }, []);
 
   return (
     <div className={style.tasks}>
-      {data.map((task, index) => {
-        return (
-          <div className={style.task} key={index}>
-            <div className={style.title}>{task.title}</div>
-            <div
-              className={style.description}
-              dangerouslySetInnerHTML={{
-                __html: task.description,
-              }}
-            />
-            {task.user_id === 1 && (
-              <button className={style.edit} onClick={onToggleFormEdit}>
-                Edit
-              </button>
-            )}
-          </div>
-        );
-      })}
-      <div className={style.background} onClick={onToggleFormEdit}></div>
-      <div className={style.form}>
-        <div className={style.header}>
-          <span>Edit Task</span>
+      {formSuccess && (
+        <div className={style.success}>
+          <span>{formSuccess}</span>
         </div>
-        <div className={style.input}>
-          <form onSubmit={onHandleSubmit}>
-            <div className={style.title}>
-              <label htmlFor="title">Title</label>
-              <input type="text" name="title" id="title" />
+      )}
+      <div className={style.container}>
+        {userTasks.map((user, index) => {
+          return (
+            <div className={style.task} key={index}>
+              <div className={style.title}>{user.profile?.name}</div>
+              <div className={style.description}>
+                {user.tasks.length > 0 ? user.tasks[0].body : ""}
+              </div>
+              {user.id === userId && (
+                <button
+                  className={style.edit}
+                  onClick={() => {
+                    const description = document.querySelector(
+                      `.${style.description}`
+                    );
+
+                    setBodyTask(description.innerHTML);
+                    onToggleShowForm();
+                  }}
+                >
+                  Edit
+                </button>
+              )}
             </div>
-            <div className={style.body}>
-              <label htmlFor="body">Task</label>
-              <textarea name="body" id="body" cols="30" rows="10"></textarea>
-            </div>
-            <button type="submit" className={style.submit}>
-              Save
-            </button>
-          </form>
+          );
+        })}
+        <div
+          className={style.background}
+          onClick={() => onToggleShowForm()}
+        ></div>
+        <div className={style.form}>
+          <div className={style.header}>
+            <span>Edit Task</span>
+          </div>
+          <div className={style.input}>
+            <form onSubmit={onSubmitForm}>
+              <div className={style.body}>
+                <label htmlFor="body">Body</label>
+                <textarea
+                  onChange={(e) => setBodyTask(e.target.value)}
+                  id="body"
+                  cols="30"
+                  rows="10"
+                  value={bodyTask}
+                ></textarea>
+                {bodyError.length > 0 && (
+                  <div className={style.error}>
+                    {bodyError.map((error) => (
+                      <span>{error}</span>
+                    ))}
+                  </div>
+                )}
+              </div>
+              {formError && (
+                <div className={style.error}>
+                  <span>{formError}</span>
+                </div>
+              )}
+              <button type="submit" className={style.submit}>
+                Save
+              </button>
+            </form>
+          </div>
         </div>
       </div>
     </div>
