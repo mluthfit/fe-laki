@@ -83,7 +83,6 @@ const Home = () => {
           </div>
           <div className={style.contents}>
             {subMenu === "Task" && <SelfTasks tasks={tasks} />}
-            {console.log(chart)}
             {subMenu === "Statistic" && !!chart && (
               <div className={style.chart}>
                 <PieChart
