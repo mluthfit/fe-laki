@@ -6,6 +6,13 @@ const WorkingHours = (props) => {
   const { clock } = props;
   const time = new Date();
 
+  const formatTime = (timestamp) => {
+    if (!timestamp) return null;
+
+    const date = new Date(timestamp);
+    return `${date.getHours()}:${date.getMinutes()}`;
+  };
+
   return (
     <div className={style.container}>
       <div>
@@ -19,11 +26,13 @@ const WorkingHours = (props) => {
       </div>
       <div>
         <span className={style.title}>Clock In</span>
-        <span className={style.time}>{clock.clock_in ?? "-"}</span>
+        <span className={style.time}>{formatTime(clock?.clock_in) ?? "-"}</span>
       </div>
       <div className={style.date}>
         <span className={style.title}>Clock Out</span>
-        <span className={style.time}>{clock.clock_out ?? "-"}</span>
+        <span className={style.time}>
+          {formatTime(clock?.clock_out) ?? "-"}
+        </span>
       </div>
     </div>
   );

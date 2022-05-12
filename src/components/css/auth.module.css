@@ -37,15 +37,26 @@
 }
 
 .auth .error {
-    margin-top: .5rem;
-    border-radius: 5px;
-    padding: .3rem 1rem;
     background-color: var(--background-danger);
     color: var(--text-danger);
     border: 1px solid var(--border-danger);
 }
 
-.auth .error span {
+.auth .success {
+    background-color: var(--background-success);
+    color: var(--text-success);
+    border: 1px solid var(--border-success);
+}
+
+.auth .error,
+.auth .success {
+    margin-top: .5rem;
+    border-radius: 5px;
+    padding: .3rem 1rem;
+}
+
+.auth .error span,
+.auth .success span {
     display: block;
     margin: .3rem 0;
 }
