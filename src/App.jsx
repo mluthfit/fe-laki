@@ -126,7 +126,7 @@ const App = () => {
                   userRole={userRole}
                 />
                 {page === "home" && <Home />}
-                {page === "tasks" && <Tasks userRole={companyUser.user_id} />}
+                {page === "tasks" && <Tasks userId={companyUser.user_id} />}
                 {page === "employee" && <Employee />}
                 {page === "presence" && <Presence />}
                 {page === "show-profile" && <ShowProfile />}

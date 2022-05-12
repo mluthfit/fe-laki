@@ -5,9 +5,10 @@ import style from "./css/home.module.css";
 import axios from "axios";
 import env from "../scripts/Environment";
 import SelfTasks from "./SelfTasks";
+import { PieChart } from "react-minimal-pie-chart";
 
 const Home = () => {
-  const [subMenu, setSubMenu] = useState("Task");
+  const [subMenu, setSubMenu] = useState("Statistic");
   const [user, setUser] = useState({
     email: "",
     name: "",
@@ -18,6 +19,7 @@ const Home = () => {
   const [clock, setClock] = useState({});
   const [tasks, setTasks] = useState([]);
   const [image, setImage] = useState("");
+  const [chart, setChart] = useState(null);
 
   const onChangeSubMenu = (event) => {
     const menus = document.querySelectorAll(`.${style.title} > span`);
@@ -49,6 +51,11 @@ const Home = () => {
           company: dataUser?.data?.company?.name,
         });
 
+        setChart({
+          presences: dataUser?.data?.total_presences,
+          days: dataUser?.data?.total_days,
+        });
+
         setTasks(dataUser?.data?.tasks);
         setImage(dataUser?.data?.media?.storage_path);
         setClock(dataClock?.data);
@@ -70,12 +77,38 @@ const Home = () => {
         <div className={style.menu}>
           <div className={style.title}>
             <span className={style.open} onClick={onChangeSubMenu}>
-              Task
+              Statistic
             </span>
-            {/* <span onClick={onChangeSubMenu}>Statistic</span> */}
+            <span onClick={onChangeSubMenu}>Task</span>
           </div>
           <div className={style.contents}>
             {subMenu === "Task" && <SelfTasks tasks={tasks} />}
+            {console.log(chart)}
+            {subMenu === "Statistic" && !!chart && (
+              <div className={style.chart}>
+                <PieChart
+                  label={({ dataEntry: { title, value } }) =>
+                    `${title} : ${value}`
+                  }
+                  labelStyle={{
+                    fontSize: "5px",
+                    fontFamily: "sans-serif",
+                  }}
+                  data={[
+                    {
+                      title: "Attended",
+                      value: chart.presences,
+                      color: "#47B39C",
+                    },
+                    {
+                      title: "Absent",
+                      value: chart.days - chart.presences,
+                      color: "#EC6B56",
+                    },
+                  ].filter((item) => item.value > 0)}
+                />
+              </div>
+            )}
           </div>
         </div>
       </div>
