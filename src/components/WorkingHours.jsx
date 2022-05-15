@@ -10,7 +10,9 @@ const WorkingHours = (props) => {
     if (!timestamp) return null;
 
     const date = new Date(timestamp);
-    return `${date.getHours()}:${date.getMinutes()}`;
+    return `${date.getHours()}:${
+      date.getMinutes() >= 10 ? date.getMinutes() : `0${date.getMinutes()}`
+    }`;
   };
 
   return (
