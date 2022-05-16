@@ -119,7 +119,7 @@ const SuperUserList = () => {
 
     try {
       const { data } = await axios.get(
-        `${env.API_URL}/admin/superusers/`,
+        `${env.API_URL}/admin/superusers`,
         options
       );
 
@@ -149,7 +149,7 @@ const SuperUserList = () => {
 
       try {
         const { data } = await axios.get(
-          `${env.API_URL}/admin/list-company/`,
+          `${env.API_URL}/admin/list-company`,
           options
         );
 

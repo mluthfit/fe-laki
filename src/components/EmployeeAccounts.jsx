@@ -91,7 +91,7 @@ const EmployeeAccounts = () => {
 
     try {
       const { data } = await axios.get(
-        `${env.API_URL}/superuser/users/`,
+        `${env.API_URL}/superuser/users`,
         options
       );
 
