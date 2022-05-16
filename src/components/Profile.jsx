@@ -1,7 +1,7 @@
+import env from "../scripts/Environment";
+import style from "./css/profiles.module.css";
 import React from "react";
 import { capitalize } from "../scripts/Helpers";
-import style from "./css/profiles.module.css";
-import env from "../scripts/Environment";
 
 const Profile = (props) => {
   const { data, status, image } = props;
@@ -11,7 +11,7 @@ const Profile = (props) => {
       <span className={style.title}>Employee Profile</span>
       <div className={style.content}>
         <div className={style.logo}>
-          <img src={`${env.STORAGE_URL}/${image}`} alt="logo" />
+          {image && <img src={`${env.STORAGE_URL}/${image}`} alt="logo" />}
         </div>
         <div className={style.info}>
           {Object.keys(data).map((key, index) => {

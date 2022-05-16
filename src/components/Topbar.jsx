@@ -1,3 +1,6 @@
+import axios from "axios";
+import env from "../scripts/Environment";
+import style from "./css/topbar.module.css";
 import React from "react";
 import { logo } from "../scripts/Image";
 import { Link, useNavigate } from "react-router-dom";
@@ -12,17 +15,26 @@ import {
   faBars,
   faSignIn,
 } from "@fortawesome/free-solid-svg-icons";
-import style from "./css/topbar.module.css";
-import axios from "axios";
-import env from "../scripts/Environment";
 
 const Topbar = (props) => {
   const { onToggleMenu, onChangePage, isLoggedIn, setLogged, company } = props;
   const navigate = useNavigate();
 
   const onLogout = async () => {
+    const options = {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    };
+
     try {
-      await axios.post(`${env.API_URL}/auth/logout`, {}, env.OPTIONS_AXIOS);
+      const { data } = await axios.post(
+        `${env.API_URL}/auth/logout`,
+        {},
+        options
+      );
+
+      console.log(data.messages);
     } catch (error) {
       console.log(error.response);
     }
@@ -72,9 +84,9 @@ const Topbar = (props) => {
                     <FontAwesomeIcon icon={faSignOut}></FontAwesomeIcon>
                     <span
                       onClick={() => {
-                        localStorage.removeItem("token");
                         onLogout();
                         setLogged(false);
+                        localStorage.removeItem("token");
                         navigate("/login");
                       }}
                     >

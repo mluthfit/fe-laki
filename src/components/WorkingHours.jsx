@@ -1,6 +1,6 @@
 import React from "react";
-import { convertMonthName } from "../scripts/Helpers";
 import style from "./css/hours.module.css";
+import { convertMonthName } from "../scripts/Helpers";
 
 const WorkingHours = (props) => {
   const { clock } = props;

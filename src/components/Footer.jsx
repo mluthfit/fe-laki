@@ -1,5 +1,4 @@
 import React from "react";
-import { logo } from "../scripts/Image";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInstagram, faFacebook } from "@fortawesome/free-brands-svg-icons";
@@ -8,6 +7,7 @@ import {
   faPhoneAlt,
   faBuilding,
 } from "@fortawesome/free-solid-svg-icons";
+import { logo } from "../scripts/Image";
 import style from "./css/footer.module.css";
 
 const Footer = () => {

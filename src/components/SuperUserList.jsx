@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
-import DataTable from "react-data-table-component";
 import axios from "axios";
 import env from "../scripts/Environment";
 import style from "./css/superuser.module.css";
+import DataTable from "react-data-table-component";
+import React, { useEffect, useState } from "react";
 
 const SuperUserList = () => {
   const [name, setName] = useState("");
@@ -40,10 +40,16 @@ const SuperUserList = () => {
   };
 
   const onDeleteSuperUser = async (userId, callbackFetch = undefined) => {
+    const options = {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    };
+
     try {
       const { data } = await axios.delete(
         `${env.API_URL}/admin/superusers/${userId}`,
-        env.OPTIONS_AXIOS
+        options
       );
 
       setAlertDelete(data);
@@ -64,6 +70,12 @@ const SuperUserList = () => {
   };
 
   const onSaveSuperUser = async (fetchSuperUser = undefined) => {
+    const options = {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    };
+
     try {
       const body = {
         name,
@@ -78,7 +90,7 @@ const SuperUserList = () => {
       const { data } = await axios.post(
         `${env.API_URL}/admin/superusers`,
         body,
-        env.OPTIONS_AXIOS
+        options
       );
 
       setFormSuccess(data?.messages);
@@ -99,10 +111,16 @@ const SuperUserList = () => {
   };
 
   const fetchSuperUser = async () => {
+    const options = {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    };
+
     try {
       const { data } = await axios.get(
         `${env.API_URL}/admin/superusers/`,
-        env.OPTIONS_AXIOS
+        options
       );
 
       const mappingData = data?.data.map((item) => {
@@ -123,10 +141,16 @@ const SuperUserList = () => {
 
   useEffect(() => {
     const fetchCompanyList = async () => {
+      const options = {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      };
+
       try {
         const { data } = await axios.get(
           `${env.API_URL}/admin/list-company/`,
-          env.OPTIONS_AXIOS
+          options
         );
 
         setCompanyList(data?.data);

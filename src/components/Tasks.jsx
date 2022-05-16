@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
-import Auth from "../scripts/Auth";
 import axios from "axios";
 import env from "../scripts/Environment";
 import style from "./css/tasks.module.css";
+import React, { useState, useEffect } from "react";
 
 const Tasks = (props) => {
   const { userId } = props;
@@ -28,11 +27,14 @@ const Tasks = (props) => {
   };
 
   const fetchTasks = async () => {
+    const options = {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    };
+
     try {
-      const { data } = await axios.get(
-        `${env.API_URL}/tasks`,
-        env.OPTIONS_AXIOS
-      );
+      const { data } = await axios.get(`${env.API_URL}/tasks`, options);
 
       setUserTasks(data.data);
     } catch (error) {
@@ -41,13 +43,19 @@ const Tasks = (props) => {
   };
 
   const editTask = async () => {
+    const options = {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    };
+
     try {
       const { data } = await axios.put(
         `${env.API_URL}/tasks`,
         {
           body: bodyTask,
         },
-        env.OPTIONS_AXIOS
+        options
       );
 
       fetchTasks();
@@ -70,11 +78,11 @@ const Tasks = (props) => {
 
   const onSubmitForm = (event) => {
     event.preventDefault();
-    if (Auth.isTokenAvailable()) editTask();
+    editTask();
   };
 
   useEffect(() => {
-    if (Auth.isTokenAvailable()) fetchTasks();
+    fetchTasks();
   }, []);
 
   return (

@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
-import DataTable from "react-data-table-component";
-import style from "./css/users.module.css";
 import axios from "axios";
 import env from "../scripts/Environment";
+import style from "./css/users.module.css";
+import DataTable from "react-data-table-component";
+import React, { useEffect, useState } from "react";
 
 const EmployeeAccounts = () => {
   const [name, setName] = useState("");
@@ -43,6 +43,12 @@ const EmployeeAccounts = () => {
     onResetError();
     setAlertDelete("");
 
+    const options = {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    };
+
     try {
       const body = {
         name,
@@ -55,7 +61,7 @@ const EmployeeAccounts = () => {
       const { data } = await axios.post(
         `${env.API_URL}/superuser/users`,
         body,
-        env.OPTIONS_AXIOS
+        options
       );
 
       fetchEmployeeAccounts();
@@ -77,10 +83,16 @@ const EmployeeAccounts = () => {
   };
 
   const fetchEmployeeAccounts = async () => {
+    const options = {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    };
+
     try {
       const { data } = await axios.get(
         `${env.API_URL}/superuser/users/`,
-        env.OPTIONS_AXIOS
+        options
       );
 
       const mappingData = data?.data?.map((item) => ({
@@ -98,10 +110,16 @@ const EmployeeAccounts = () => {
   };
 
   const onDeleteUser = async (userId, fetchEmployeeAccounts = undefined) => {
+    const options = {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    };
+
     try {
       const { data } = await axios.delete(
         `${env.API_URL}/superuser/users/${userId}`,
-        env.OPTIONS_AXIOS
+        options
       );
 
       setAlertDelete(data);

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import axios from "axios";
 import env from "./scripts/Environment";
-import Auth from "./scripts/Auth";
 import Topbar from "./components/Topbar";
 import Sidebar from "./components/Sidebar";
 import Home from "./components/Home";
@@ -36,34 +35,37 @@ const App = () => {
   };
 
   useEffect(() => {
-    if (Auth.isTokenAvailable()) {
-      const checkToken = async () => {
-        try {
-          const { data } = await axios.get(
-            `${env.API_URL}/profiles`,
-            env.OPTIONS_AXIOS
-          );
+    const options = {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    };
 
-          console.log(data);
-          setUserRole(data?.data?.user?.role);
-          setLogged(true);
-        } catch (error) {
-          setLogged(false);
-        }
-      };
+    const checkToken = async () => {
+      try {
+        const { data } = await axios.get(`${env.API_URL}/profiles`, options);
 
-      checkToken();
-    }
+        setUserRole(data?.data?.user?.role);
+        setLogged(true);
+      } catch (error) {
+        setLogged(false);
+      }
+    };
+
+    checkToken();
   }, []);
 
   useEffect(() => {
+    const options = {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    };
+
     if (!Object.keys(companyUser).length && isLoggedIn) {
       const getCompanyName = async () => {
         try {
-          const { data } = await axios.get(
-            `${env.API_URL}/profiles`,
-            env.OPTIONS_AXIOS
-          );
+          const { data } = await axios.get(`${env.API_URL}/profiles`, options);
 
           setCompanyUser({
             ...companyUser,

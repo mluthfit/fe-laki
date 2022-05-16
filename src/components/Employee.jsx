@@ -1,19 +1,22 @@
-import React, { useEffect } from "react";
-import Profile from "./Profile";
-import style from "./css/employee.module.css";
 import axios from "axios";
 import env from "../scripts/Environment";
+import style from "./css/employee.module.css";
+import Profile from "./Profile";
+import React, { useEffect } from "react";
 
 const Employee = () => {
   const [employees, setEmployees] = React.useState([]);
 
   useEffect(() => {
     const fetchEmployees = async () => {
+      const options = {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      };
+
       try {
-        const { data } = await axios.get(
-          `${env.API_URL}/employees`,
-          env.OPTIONS_AXIOS
-        );
+        const { data } = await axios.get(`${env.API_URL}/employees`, options);
 
         const mappingData = data?.data.map((item) => {
           return {

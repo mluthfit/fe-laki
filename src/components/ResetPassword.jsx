@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import style from "./css/auth.module.css";
-import { useSearchParams } from "react-router-dom";
 import axios from "axios";
 import env from "../scripts/Environment";
+import style from "./css/auth.module.css";
+import React, { useState } from "react";
+import { useSearchParams } from "react-router-dom";
 
 const ResetPassword = () => {
   const [searchParams] = useSearchParams();
@@ -24,6 +24,12 @@ const ResetPassword = () => {
     e.preventDefault();
     onResetError();
 
+    const options = {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    };
+
     try {
       const body = {
         token: searchParams.get("token"),
@@ -35,7 +41,7 @@ const ResetPassword = () => {
       const { data } = await axios.post(
         `${env.API_URL}/auth/reset-password`,
         body,
-        env.OPTIONS_AXIOS
+        options
       );
 
       console.log(data);

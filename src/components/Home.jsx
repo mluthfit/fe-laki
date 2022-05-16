@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
-import WorkingHours from "./WorkingHours";
-import Profile from "./Profile";
-import style from "./css/home.module.css";
 import axios from "axios";
 import env from "../scripts/Environment";
+import style from "./css/home.module.css";
+import Profile from "./Profile";
+import React, { useEffect, useState } from "react";
 import SelfTasks from "./SelfTasks";
+import WorkingHours from "./WorkingHours";
 import { PieChart } from "react-minimal-pie-chart";
 
 const Home = () => {
@@ -33,15 +33,21 @@ const Home = () => {
 
   useEffect(() => {
     const fetchDashboard = async () => {
+      const options = {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      };
+
       try {
         const { data: dataUser } = await axios.get(
           `${env.API_URL}/dashboard/user`,
-          env.OPTIONS_AXIOS
+          options
         );
 
         const { data: dataClock } = await axios.get(
           `${env.API_URL}/dashboard/clock-today`,
-          env.OPTIONS_AXIOS
+          options
         );
 
         setUser({

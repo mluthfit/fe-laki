@@ -1,10 +1,10 @@
+import axios from "axios";
+import env from "../scripts/Environment";
+import style from "./css/companies.module.css";
+import DataTable from "react-data-table-component";
 import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLink, faEye } from "@fortawesome/free-solid-svg-icons";
-import DataTable from "react-data-table-component";
-import style from "./css/companies.module.css";
-import axios from "axios";
-import env from "../scripts/Environment";
 
 const CompanyList = () => {
   const [image, setImage] = useState("");
@@ -53,6 +53,12 @@ const CompanyList = () => {
     event.preventDefault();
     onResetError();
 
+    const options = {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    };
+
     try {
       const body = new FormData();
 
@@ -67,7 +73,7 @@ const CompanyList = () => {
       const { data } = await axios.post(
         `${env.API_URL}/admin/companies`,
         body,
-        env.OPTIONS_AXIOS
+        options
       );
 
       setFormSuccess(data?.messages ?? "");
@@ -89,10 +95,16 @@ const CompanyList = () => {
   };
 
   const fetchCompany = async () => {
+    const options = {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    };
+
     try {
       const { data } = await axios.get(
         `${env.API_URL}/admin/companies`,
-        env.OPTIONS_AXIOS
+        options
       );
 
       const mappingData = data?.data.map((item) => {

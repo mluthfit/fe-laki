@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
-import Profile from "./Profile";
-import style from "./css/show-profile.module.css";
 import axios from "axios";
 import env from "../scripts/Environment";
+import style from "./css/show-profile.module.css";
+import Profile from "./Profile";
+import React, { useState, useEffect } from "react";
 
 const ShowProfile = () => {
   const [image, setImage] = useState("");
@@ -37,6 +37,12 @@ const ShowProfile = () => {
   };
 
   const onSaveProfile = async (e) => {
+    const options = {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    };
+
     try {
       e.preventDefault();
       onResetError();
@@ -49,7 +55,7 @@ const ShowProfile = () => {
       const { data } = await axios.post(
         `${env.API_URL}/profiles/edit-profile`,
         body,
-        env.OPTIONS_AXIOS
+        options
       );
 
       console.log(data);
@@ -67,6 +73,12 @@ const ShowProfile = () => {
   };
 
   const onSavePassword = async (e) => {
+    const options = {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    };
+
     try {
       e.preventDefault();
       onResetError();
@@ -80,7 +92,7 @@ const ShowProfile = () => {
       const { data } = await axios.post(
         `${env.API_URL}/profiles/edit-password`,
         body,
-        env.OPTIONS_AXIOS
+        options
       );
 
       setFormSuccess(data?.messages ?? "");
@@ -99,11 +111,14 @@ const ShowProfile = () => {
   };
 
   const fetchProfile = async () => {
+    const options = {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    };
+
     try {
-      const { data } = await axios.get(
-        `${env.API_URL}/profiles`,
-        env.OPTIONS_AXIOS
-      );
+      const { data } = await axios.get(`${env.API_URL}/profiles`, options);
 
       setUser({
         email: data?.data?.user?.email,

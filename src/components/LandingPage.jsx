@@ -1,6 +1,5 @@
-import React from "react";
 import Footer from "./Footer";
-import style from "./css/landing.module.css";
+import React from "react";
 import {
   activity,
   analysis,
@@ -9,6 +8,7 @@ import {
   laptop,
   pc,
 } from "../scripts/Image";
+import style from "./css/landing.module.css";
 
 const LandingPage = () => {
   return (

@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
-import Webcam from "react-webcam";
-import style from "./css/presence.module.css";
 import axios from "axios";
 import env from "../scripts/Environment";
+import style from "./css/presence.module.css";
 import { dataURLtoFile } from "../scripts/Image";
+import React, { useEffect, useState } from "react";
+import Webcam from "react-webcam";
 
 const WebcamComponent = () => <Webcam />;
 const videoConstraints = {
@@ -29,10 +29,16 @@ const Presence = () => {
   }, [webcamRef]);
 
   const fetchClock = async () => {
+    const options = {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    };
+
     try {
       const { data } = await axios.get(
         `${env.API_URL}/dashboard/clock-today`,
-        env.OPTIONS_AXIOS
+        options
       );
 
       console.log(data);
@@ -44,6 +50,13 @@ const Presence = () => {
 
   const onClockIn = async (e) => {
     e.preventDefault();
+
+    const options = {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    };
+
     try {
       const body = new FormData();
       body.append("photo", photo);
@@ -51,7 +64,7 @@ const Presence = () => {
       const { data } = await axios.post(
         `${env.API_URL}/presences/clock-in`,
         body,
-        env.OPTIONS_AXIOS
+        options
       );
 
       setFormSuccess(data?.messages ?? "");
@@ -66,11 +79,18 @@ const Presence = () => {
 
   const onClockOut = async (e) => {
     e.preventDefault();
+
+    const options = {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    };
+
     try {
       const { data } = await axios.post(
         `${env.API_URL}/presences/clock-out`,
         {},
-        env.OPTIONS_AXIOS
+        options
       );
 
       setFormSuccess(data?.messages ?? "");

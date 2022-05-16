@@ -1,3 +1,6 @@
+import axios from "axios";
+import env from "../scripts/Environment";
+import style from "./css/employee-detail.module.css";
 import DataTable from "react-data-table-component";
 import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -7,9 +10,6 @@ import {
   faPhone,
   faGlobe,
 } from "@fortawesome/free-solid-svg-icons";
-import style from "./css/employee-detail.module.css";
-import axios from "axios";
-import env from "../scripts/Environment";
 import SelfTasks from "./SelfTasks";
 
 const EmployeeDetails = () => {
@@ -70,10 +70,16 @@ const EmployeeDetails = () => {
   ];
 
   const fetchCompany = async () => {
+    const options = {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    };
+
     try {
       const { data } = await axios.get(
         `${env.API_URL}/superuser/info-company`,
-        env.OPTIONS_AXIOS
+        options
       );
       setCompany(data?.data ?? {});
     } catch (error) {
@@ -82,10 +88,16 @@ const EmployeeDetails = () => {
   };
 
   const fetchEmployee = async () => {
+    const options = {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    };
+
     try {
       const { data } = await axios.get(
         `${env.API_URL}/superuser/user-profiles`,
-        env.OPTIONS_AXIOS
+        options
       );
 
       const mappingData = data?.data?.map((item) => {

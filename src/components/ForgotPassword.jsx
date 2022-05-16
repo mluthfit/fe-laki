@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import style from "./css/auth.module.css";
 import axios from "axios";
 import env from "../scripts/Environment";
+import style from "./css/auth.module.css";
+import React, { useState } from "react";
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");
@@ -11,12 +11,19 @@ const ForgotPassword = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     setEmailError([]);
+
+    const options = {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    };
+
     try {
       const body = { email };
       const { data } = await axios.post(
         `${env.API_URL}/auth/forgot-password`,
         body,
-        env.OPTIONS_AXIOS
+        options
       );
 
       setAlertForm(data);
