@@ -1,4 +1,7 @@
-import React from "react";
+import axios from "axios";
+import env from "../scripts/Environment";
+import style from "./css/sidebar.module.css";
+import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHome,
@@ -9,10 +12,11 @@ import {
   faUserCog,
   faAngleRight,
 } from "@fortawesome/free-solid-svg-icons";
-import style from "./css/sidebar.module.css";
 
 const Sidebar = (props) => {
-  const { onChangePage, isMenuOpen, userRole } = props;
+  const { onChangePage, isMenuOpen } = props;
+  const [userRole, setUserRole] = useState(0);
+
   const onToggleSidebar = (event) => {
     event.stopPropagation();
     const child = event.target.querySelector(`.${style.child}`);
@@ -22,6 +26,26 @@ const Sidebar = (props) => {
     child.classList.toggle(style.cOpen);
     arrow.classList.toggle(style.aOpen);
   };
+
+  useEffect(() => {
+    const options = {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    };
+
+    const checkToken = async () => {
+      try {
+        const { data } = await axios.get(`${env.API_URL}/profiles`, options);
+
+        setUserRole(data?.data?.user?.role);
+      } catch (error) {
+        console.log(error.response);
+      }
+    };
+
+    checkToken();
+  }, []);
 
   return (
     <div className={`${style.sidebar} ${isMenuOpen ? style.sOpen : ""}`}>

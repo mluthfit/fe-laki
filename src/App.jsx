@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
 import axios from "axios";
 import env from "./scripts/Environment";
+import React, { useEffect, useState } from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Topbar from "./components/Topbar";
 import Sidebar from "./components/Sidebar";
 import Home from "./components/Home";
@@ -24,7 +24,6 @@ const App = () => {
   const [isMenuOpen, setMenu] = useState(false);
   const [isLoggedIn, setLogged] = useState(false);
   const [companyUser, setCompanyUser] = useState({});
-  const [userRole, setUserRole] = useState(0);
 
   const onChangePage = (page) => {
     setPage(page);
@@ -43,9 +42,7 @@ const App = () => {
 
     const checkToken = async () => {
       try {
-        const { data } = await axios.get(`${env.API_URL}/profiles`, options);
-
-        setUserRole(data?.data?.user?.role);
+        await axios.get(`${env.API_URL}/profiles`, options);
         setLogged(true);
       } catch (error) {
         setLogged(false);
@@ -122,11 +119,7 @@ const App = () => {
           element={
             isLoggedIn ? (
               <main>
-                <Sidebar
-                  onChangePage={onChangePage}
-                  isMenuOpen={isMenuOpen}
-                  userRole={userRole}
-                />
+                <Sidebar onChangePage={onChangePage} isMenuOpen={isMenuOpen} />
                 {page === "home" && <Home />}
                 {page === "tasks" && <Tasks userId={companyUser.user_id} />}
                 {page === "employee" && <Employee />}
