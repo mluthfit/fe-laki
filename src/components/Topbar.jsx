@@ -13,10 +13,20 @@ import {
   faSignIn,
 } from "@fortawesome/free-solid-svg-icons";
 import style from "./css/topbar.module.css";
+import axios from "axios";
+import env from "../scripts/Environment";
 
 const Topbar = (props) => {
   const { onToggleMenu, onChangePage, isLoggedIn, setLogged, company } = props;
   const navigate = useNavigate();
+
+  const onLogout = async () => {
+    try {
+      await axios.post(`${env.API_URL}/auth/logout`, {}, env.OPTIONS_AXIOS);
+    } catch (error) {
+      console.log(error.response);
+    }
+  };
 
   const onToggleUser = (event) => {
     event.stopPropagation();
@@ -63,6 +73,7 @@ const Topbar = (props) => {
                     <span
                       onClick={() => {
                         localStorage.removeItem("token");
+                        onLogout();
                         setLogged(false);
                         navigate("/login");
                       }}

@@ -114,10 +114,12 @@ const EmployeeDetails = () => {
     <div className={style.users}>
       <div className={style.container}>
         <div className={style.logo}>
-          <img
-            src={`${env.STORAGE_URL}/${company?.media?.storage_path}`}
-            alt="logo"
-          />
+          {company?.media && (
+            <img
+              src={`${env.STORAGE_URL}/${company?.media?.storage_path}`}
+              alt="logo"
+            />
+          )}
         </div>
         <div className={style.info}>
           <h2 className={style.title}>{company?.name ?? "-"}</h2>
