@@ -26,7 +26,8 @@ const CompanyList = () => {
 
   const onPopupImage = (event) => {
     event.stopPropagation();
-    const popUp = document.querySelector(`.${style.popup}`);
+    const popUp = document.getElementsByClassName(style.popup)[0];
+    console.log(popUp);
     if (!popUp) return;
 
     popUp.classList.toggle(style.pOpen);

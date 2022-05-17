@@ -186,7 +186,7 @@ const EmployeeAccounts = () => {
             <span>{formSuccess}</span>
           </div>
         )}
-        <h2>Form Employee</h2>
+        <h2>Form New Employee</h2>
         <form
           method="post"
           encType="multipart/form-data"
@@ -201,7 +201,7 @@ const EmployeeAccounts = () => {
                 id="name"
                 value={name}
                 onChange={(event) => setName(event.target.value)}
-                placeholder="Insert SuperUser Name Here..."
+                placeholder="Insert Employee Name Here..."
               />
               {nameError.length > 0 && (
                 <div className={style.error}>
@@ -219,7 +219,7 @@ const EmployeeAccounts = () => {
                 id="email"
                 value={email}
                 onChange={(event) => setEmail(event.target.value)}
-                placeholder="Insert SuperUser Email Here..."
+                placeholder="Insert Employee Email Here..."
               />
               {emailError.length > 0 && (
                 <div className={style.error}>
@@ -237,7 +237,7 @@ const EmployeeAccounts = () => {
                 id="position"
                 value={position}
                 onChange={(event) => setPosition(event.target.value)}
-                placeholder="Insert SuperUser Position Here..."
+                placeholder="Insert Employee Position Here..."
               />
               {positionError.length > 0 && (
                 <div className={style.error}>
@@ -255,7 +255,7 @@ const EmployeeAccounts = () => {
                 id="password"
                 value={password}
                 onChange={(event) => setPassword(event.target.value)}
-                placeholder="Insert SuperUser Job Title Here..."
+                placeholder="Insert Employee Job Title Here..."
               />
               {passwordError.length > 0 && (
                 <div className={style.error}>
@@ -273,7 +273,7 @@ const EmployeeAccounts = () => {
                 id="confirm_password"
                 value={confirmPass}
                 onChange={(event) => setConfirmPass(event.target.value)}
-                placeholder="Confirm SuperUser Password Here..."
+                placeholder="Confirm Employee Password Here..."
               />
               {confirmPassError.length > 0 && (
                 <div className={style.error}>
