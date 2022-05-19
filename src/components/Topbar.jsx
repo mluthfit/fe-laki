@@ -1,7 +1,7 @@
 import axios from "axios";
 import env from "../scripts/Environment";
 import style from "./css/topbar.module.css";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { logo } from "../scripts/Image";
 import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -17,7 +17,9 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 const Topbar = (props) => {
-  const { onToggleMenu, onChangePage, isLoggedIn, setLogged, company } = props;
+  const { onToggleMenu, onChangePage, isLoggedIn, setLogged } = props;
+  const [companyName, setCompanyName] = useState("");
+
   const navigate = useNavigate();
 
   const onLogout = async () => {
@@ -48,6 +50,27 @@ const Topbar = (props) => {
     menuAccount.classList.toggle(style.open);
   };
 
+  useEffect(() => {
+    const options = {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    };
+
+    if (isLoggedIn) {
+      const fetchCompanyName = async () => {
+        try {
+          const { data } = await axios.get(`${env.API_URL}/profiles`, options);
+          setCompanyName(data?.data?.company?.name);
+        } catch (error) {
+          console.log(error.response);
+        }
+      };
+
+      fetchCompanyName();
+    }
+  }, [isLoggedIn]);
+
   return (
     <div className={style.topbar}>
       <FontAwesomeIcon
@@ -56,12 +79,17 @@ const Topbar = (props) => {
         className={style.menu}
         onClick={onToggleMenu}
       ></FontAwesomeIcon>
-      <img src={logo} alt="LAKI's logo" className={style.logo} />
+      <img
+        src={logo}
+        alt="LAKI's logo"
+        className={style.logo}
+        onClick={() => navigate("/")}
+      />
       {isLoggedIn ? (
         <div className={style.right}>
           <div className={style.company}>
             <FontAwesomeIcon icon={faBuilding}></FontAwesomeIcon>
-            <span>{company}</span>
+            <span>{companyName}</span>
           </div>
           <div className={style.users}>
             {/* <div className={style.notification}>

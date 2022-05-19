@@ -14,6 +14,7 @@
 
 .topbar .logo {
   width: 75px;
+  cursor: pointer;
 }
 
 .topbar .right {

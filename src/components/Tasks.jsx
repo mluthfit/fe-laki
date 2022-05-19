@@ -4,12 +4,12 @@ import style from "./css/tasks.module.css";
 import React, { useState, useEffect } from "react";
 
 const Tasks = (props) => {
-  const { userId } = props;
   const [userTasks, setUserTasks] = useState([]);
   const [bodyTask, setBodyTask] = useState("");
   const [formSuccess, setFormSuccess] = useState("");
   const [formError, setFormError] = useState("");
   const [bodyError, setBodyError] = useState("");
+  const [userId, setUserId] = useState(0);
 
   const onToggleShowForm = () => {
     const background = document.querySelector(`.${style.background}`);
@@ -39,6 +39,21 @@ const Tasks = (props) => {
       setUserTasks(data.data);
     } catch (error) {
       console.log(error);
+    }
+  };
+
+  const fetchUserId = async () => {
+    const options = {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    };
+
+    try {
+      const { data } = await axios.get(`${env.API_URL}/profiles`, options);
+      setUserId(data?.data?.id);
+    } catch (error) {
+      console.log(error.response);
     }
   };
 
@@ -83,6 +98,7 @@ const Tasks = (props) => {
 
   useEffect(() => {
     fetchTasks();
+    fetchUserId();
   }, []);
 
   return (

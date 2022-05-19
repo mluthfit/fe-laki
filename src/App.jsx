@@ -23,7 +23,6 @@ const App = () => {
   const [page, setPage] = useState("home");
   const [isMenuOpen, setMenu] = useState(false);
   const [isLoggedIn, setLogged] = useState(false);
-  const [companyUser, setCompanyUser] = useState({});
 
   const onChangePage = (page) => {
     setPage(page);
@@ -52,32 +51,6 @@ const App = () => {
     checkToken();
   }, []);
 
-  useEffect(() => {
-    const options = {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
-    };
-
-    if (!Object.keys(companyUser).length && isLoggedIn) {
-      const getCompanyName = async () => {
-        try {
-          const { data } = await axios.get(`${env.API_URL}/profiles`, options);
-
-          setCompanyUser({
-            ...companyUser,
-            company: data?.data?.company?.name,
-            user_id: data?.data?.user_id,
-          });
-        } catch (error) {
-          console.log(error);
-        }
-      };
-
-      getCompanyName();
-    }
-  }, [companyUser, isLoggedIn]);
-
   return (
     <div className="App">
       <Topbar
@@ -85,7 +58,6 @@ const App = () => {
         onChangePage={onChangePage}
         isLoggedIn={isLoggedIn}
         setLogged={setLogged}
-        company={companyUser.company}
       />
       <Routes>
         <Route
@@ -121,7 +93,7 @@ const App = () => {
               <main>
                 <Sidebar onChangePage={onChangePage} isMenuOpen={isMenuOpen} />
                 {page === "home" && <Home />}
-                {page === "tasks" && <Tasks userId={companyUser.user_id} />}
+                {page === "tasks" && <Tasks />}
                 {page === "employee" && <Employee />}
                 {page === "presence" && <Presence />}
                 {page === "show-profile" && <ShowProfile />}
