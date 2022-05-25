@@ -23,6 +23,7 @@ const CompanyList = () => {
   const [formSuccess, setFormSuccess] = useState("");
   const [companyId, setCompanyId] = useState(0);
   const [companyList, setCompanyList] = useState([]);
+  const [uploadInfo, setUploadInfo] = useState("Insert Logo Here...");
 
   const onPopupImage = (event) => {
     event.stopPropagation();
@@ -79,6 +80,7 @@ const CompanyList = () => {
       setFormSuccess(data?.messages ?? "");
       onChangeValue();
       setCompanyId(0);
+      setUploadInfo("Insert Logo Here...");
       fetchCompany();
     } catch (error) {
       const { data } = error.response;
@@ -195,6 +197,8 @@ const CompanyList = () => {
           onClick={() => {
             setCompanyId(row.id);
             onChangeValue(row);
+            setUploadInfo("Insert Logo Here...");
+            onResetError();
           }}
         >
           Edit
@@ -312,12 +316,16 @@ const CompanyList = () => {
             <div className={style.group}>
               <label htmlFor="logo">Logo</label>
               <div className={style.file}>
-                <button className={style.button}>Insert Logo Here...</button>
+                <button className={style.button}>{uploadInfo}</button>
                 <input
                   type="file"
                   id="logo"
                   className={style.input}
-                  onChange={(e) => setLogo(e.target.files[0])}
+                  onChange={(e) => {
+                    const file = e.target.files[0];
+                    setLogo(file);
+                    setUploadInfo(file.name);
+                  }}
                 />
               </div>
               {logoError.length > 0 && (

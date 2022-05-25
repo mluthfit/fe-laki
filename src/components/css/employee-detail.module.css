@@ -103,6 +103,12 @@
   cursor: pointer;
 }
 
+.table .view:hover {
+  background-color: var(--light-green);
+  border: 1px solid var(--light-green);
+  color: var(--black-color);
+}
+
 .users .popup {
   display: none;
   justify-content: center;

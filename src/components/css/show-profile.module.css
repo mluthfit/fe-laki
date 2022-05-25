@@ -109,11 +109,17 @@
   margin: 0 auto;
   padding: .5rem 1.5rem;
   background-color: var(--light-green);
+  border: 1px solid var(--light-green);
   color: var(--black-color);
   border-radius: 5px;
   outline: none;
-  border: none;
   cursor: pointer;
+}
+
+.form .submit:hover {
+  color: var(--light-green);
+  background-color: transparent;
+  border: 1px solid var(--light-green);
 }
 
 @media screen and (max-width: 1220px) {

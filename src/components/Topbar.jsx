@@ -3,7 +3,7 @@ import env from "../scripts/Environment";
 import style from "./css/topbar.module.css";
 import React, { useState, useEffect } from "react";
 import { logo } from "../scripts/Image";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faAngleDown,
@@ -50,7 +50,18 @@ const Topbar = (props) => {
     menuAccount.classList.toggle(style.open);
   };
 
+  const checkOutside = (event) => {
+    event.stopPropagation();
+
+    const menuAccount = document.querySelector(`.${style.bars}`);
+    if (!menuAccount) return;
+
+    menuAccount.classList.remove(style.open);
+  };
+
   useEffect(() => {
+    document.addEventListener("click", checkOutside);
+
     const options = {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -129,24 +140,22 @@ const Topbar = (props) => {
       ) : (
         <div className={style.right}>
           <span>
-            <Link to="/#home" className={style.pages}>
+            <a href="/#home" className={style.pages}>
               Home
-            </Link>
+            </a>
           </span>
           <span>
-            <Link to="/#about-us" className={style.pages}>
+            <a href="/#about-us" className={style.pages}>
               About Us
-            </Link>
+            </a>
           </span>
           <span>
-            <Link to="/#features" className={style.pages}>
+            <a href="/#features" className={style.pages}>
               Features
-            </Link>
+            </a>
           </span>
-          <div className={style.login}>
-            <span>
-              <Link to="/login">Login</Link>
-            </span>
+          <div className={style.login} onClick={() => navigate("/login")}>
+            <span>Login</span>
             <FontAwesomeIcon icon={faSignIn}></FontAwesomeIcon>
           </div>
         </div>

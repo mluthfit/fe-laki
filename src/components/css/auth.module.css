@@ -74,10 +74,17 @@
     margin-top: 5rem;
     padding: .5rem 2rem;
     background-color: var(--light-green);
+    border: 1px solid var(--light-green);
     outline: none;
-    border: none;
     border-radius: 5px;
     cursor: pointer;
     font-size: 1rem;
     font-weight: bold;
 }
+
+.auth .submit:hover {
+    color: var(--light-green);
+    background-color: transparent;
+    border: 1px solid var(--light-green);
+  }
+  

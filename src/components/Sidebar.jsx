@@ -17,10 +17,18 @@ const Sidebar = (props) => {
   const { onChangePage, isMenuOpen } = props;
   const [userRole, setUserRole] = useState(0);
 
+  const checkParent = (parentClass, target) => {
+    if (!target.classList.contains(parentClass)) {
+      return checkParent(parentClass, target.parentElement);
+    }
+
+    return target;
+  };
+
   const onToggleSidebar = (event) => {
-    event.stopPropagation();
-    const child = event.target.querySelector(`.${style.child}`);
-    const arrow = event.target.querySelector(`.${style.arrow}`);
+    let target = checkParent(style.parent, event.target);
+    const child = target.querySelector(`.${style.child}`);
+    const arrow = target.querySelector(`.${style.arrow}`);
     if (!child) return;
 
     child.classList.toggle(style.cOpen);
@@ -50,23 +58,28 @@ const Sidebar = (props) => {
   return (
     <div className={`${style.sidebar} ${isMenuOpen ? style.sOpen : ""}`}>
       <ul>
-        <li onClick={() => onChangePage("home")}>
-          <FontAwesomeIcon icon={faHome}></FontAwesomeIcon>
-          <span>Home</span>
-        </li>
-        <li onClick={() => onChangePage("presence")}>
-          <FontAwesomeIcon icon={faCamera}></FontAwesomeIcon>
-          <span>Presences</span>
-        </li>
-        <li onClick={() => onChangePage("tasks")}>
-          <FontAwesomeIcon icon={faTasks}></FontAwesomeIcon>
-          <span>Tasks</span>
-        </li>
-        <li onClick={() => onChangePage("employee")}>
-          <FontAwesomeIcon icon={faInfoCircle}></FontAwesomeIcon>
-          <span>Employee</span>
-        </li>
-        {userRole !== 1 && (
+        {[1, 2].includes(userRole) && (
+          <>
+            <li onClick={() => onChangePage("home")}>
+              <FontAwesomeIcon icon={faHome}></FontAwesomeIcon>
+              <span>Home</span>
+            </li>
+            <li onClick={() => onChangePage("presence")}>
+              <FontAwesomeIcon icon={faCamera}></FontAwesomeIcon>
+              <span>Presences</span>
+            </li>
+            <li onClick={() => onChangePage("tasks")}>
+              <FontAwesomeIcon icon={faTasks}></FontAwesomeIcon>
+              <span>Tasks</span>
+            </li>
+            <li onClick={() => onChangePage("employee")}>
+              <FontAwesomeIcon icon={faInfoCircle}></FontAwesomeIcon>
+              <span>Employee</span>
+            </li>
+          </>
+        )}
+
+        {userRole === 2 && (
           <li onClick={onToggleSidebar} className={style.parent}>
             <FontAwesomeIcon icon={faUserLock}></FontAwesomeIcon>
             <span>SuperUser</span>
