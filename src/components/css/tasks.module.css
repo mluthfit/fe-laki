@@ -53,13 +53,19 @@
   padding: .5rem 1.2rem;
   color: var(--light-green);
   background-color: var(--black-color);
+  border: 1px solid var(--black-color);
   border-radius: 5px;
   position: absolute;
   bottom: 10px;
   right: 10px;
   cursor: pointer;
-  border: none;
   outline: none;
+}
+
+.task .edit:hover {
+  background-color: var(--light-green);
+  border: 1px solid var(--light-green);
+  color: var(--black-color);
 }
 
 .tasks .background {
@@ -130,8 +136,16 @@
   border: none;
   outline: none;
   background-color: var(--light-green);
+  border: 1px solid var(--light-green);
   padding: .5rem 2rem;
   border-radius: 5px;
+  cursor: pointer;
+}
+
+.form .submit:hover {
+  color: var(--light-green);
+  background-color: transparent;
+  border: 1px solid var(--light-green);
 }
 
 .form .error {

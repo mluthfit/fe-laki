@@ -96,8 +96,14 @@
   border-radius: 5px;
   background-color: var(--light-green);
   color: var(--black-color);
+  border: 1px solid var(--light-green);
   outline: none;
-  border: none;
+}
+
+.form .submit:hover {
+  color: var(--light-green);
+  background-color: transparent;
+  border: 1px solid var(--light-green);
 }
 
 .companies .table {
@@ -121,20 +127,19 @@
   padding: .5rem 1.2rem;
 }
 
-.table .web {
-  color: var(--black-color);
-  border: 1px solid var(--black-color);
-  background-color: var(--light-green);
-  border-radius: 5px;
-}
-
-.table .logo,
-.table .edit {
+.table :is(.logo, .edit, .web) {
   color: var(--light-green);
   background-color: var(--black-color);
+  border: 1px solid var(--black-color);
   display: inline-block;
   cursor: pointer;
   border-radius: 5px;
+}
+
+.table :is(.logo, .edit, .web):hover {
+  background-color: var(--light-green);
+  border: 1px solid var(--light-green);
+  color: var(--black-color);
 }
 
 .companies .popup {

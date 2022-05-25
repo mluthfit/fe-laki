@@ -17,10 +17,18 @@ const Sidebar = (props) => {
   const { onChangePage, isMenuOpen } = props;
   const [userRole, setUserRole] = useState(0);
 
+  const checkParent = (parentClass, target) => {
+    if (!target.classList.contains(parentClass)) {
+      return checkParent(parentClass, target.parentElement);
+    }
+
+    return target;
+  };
+
   const onToggleSidebar = (event) => {
-    event.stopPropagation();
-    const child = event.target.querySelector(`.${style.child}`);
-    const arrow = event.target.querySelector(`.${style.arrow}`);
+    let target = checkParent(style.parent, event.target);
+    const child = target.querySelector(`.${style.child}`);
+    const arrow = target.querySelector(`.${style.arrow}`);
     if (!child) return;
 
     child.classList.toggle(style.cOpen);

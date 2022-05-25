@@ -20,6 +20,7 @@ const ShowProfile = () => {
   const [newPasswordError, setNewPasswordError] = useState([]);
   const [newConfirmPasswordError, setNewConfirmPasswordError] = useState([]);
   const [formSuccess, setFormSuccess] = useState("");
+  const [uploadInfo, setUploadInfo] = useState("Insert Photo Here...");
 
   const onClearPassword = () => {
     setOldPassword("");
@@ -60,6 +61,7 @@ const ShowProfile = () => {
 
       console.log(data);
       setFormSuccess(data?.messages ?? "");
+      setUploadInfo("Insert Photo Here...");
       fetchProfile();
     } catch (error) {
       const { data } = error.response;
@@ -188,11 +190,15 @@ const ShowProfile = () => {
             <div className={style.group}>
               <label htmlFor="photo">Photo</label>
               <div className={style.file}>
-                <button className={style.button}>Insert Photo Here...</button>
+                <button className={style.button}>{uploadInfo}</button>
                 <input
                   type="file"
                   id="photo"
-                  onChange={(e) => setPhoto(e.target.files[0])}
+                  onChange={(e) => {
+                    const file = e.target.files[0];
+                    setPhoto(file);
+                    setUploadInfo(file.name);
+                  }}
                 />
               </div>
               {photoError.length > 0 && (
@@ -204,7 +210,7 @@ const ShowProfile = () => {
               )}
             </div>
             <button type="submit" className={style.submit}>
-              SAVE
+              Save
             </button>
           </form>
         </div>
@@ -260,7 +266,7 @@ const ShowProfile = () => {
               )}
             </div>
             <button type="submit" className={style.submit}>
-              SAVE
+              Save
             </button>
           </form>
         </div>
