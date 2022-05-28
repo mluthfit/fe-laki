@@ -74,7 +74,7 @@ const EmployeeDetails = () => {
     {
       name: "Presence",
       cell: (row) =>
-        row.presences.length > 0 && (
+        row.presences?.length > 0 && (
           <span
             className={style.view}
             onClick={(e) => {
