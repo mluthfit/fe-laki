@@ -17,6 +17,10 @@ const Sidebar = (props) => {
   const { onChangePage, isMenuOpen } = props;
   const [userRole, setUserRole] = useState(0);
 
+  const userMenu = [1, 2, 3];
+  const superUserMenu = [2, 3];
+  const adminMenu = [3];
+
   const checkParent = (parentClass, target) => {
     if (!target.classList.contains(parentClass)) {
       return checkParent(parentClass, target.parentElement);
@@ -58,7 +62,7 @@ const Sidebar = (props) => {
   return (
     <div className={`${style.sidebar} ${isMenuOpen ? style.sOpen : ""}`}>
       <ul>
-        {[1, 2].includes(userRole) && (
+        {userMenu.includes(userRole) && (
           <>
             <li onClick={() => onChangePage("home")}>
               <FontAwesomeIcon icon={faHome}></FontAwesomeIcon>
@@ -79,7 +83,7 @@ const Sidebar = (props) => {
           </>
         )}
 
-        {userRole === 2 && (
+        {superUserMenu.includes(userRole) && (
           <li onClick={onToggleSidebar} className={style.parent}>
             <FontAwesomeIcon icon={faUserLock}></FontAwesomeIcon>
             <span>SuperUser</span>
@@ -96,7 +100,7 @@ const Sidebar = (props) => {
             </ul>
           </li>
         )}
-        {userRole === 3 && (
+        {adminMenu.includes(userRole) && (
           <li onClick={onToggleSidebar} className={style.parent}>
             <FontAwesomeIcon icon={faUserCog}></FontAwesomeIcon>
             <span>Admin</span>

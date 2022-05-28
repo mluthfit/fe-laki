@@ -11,11 +11,14 @@ import {
   faGlobe,
 } from "@fortawesome/free-solid-svg-icons";
 import SelfTasks from "./SelfTasks";
+import ShowPresences from "./ShowPresences";
 
 const EmployeeDetails = () => {
   const [company, setCompany] = useState({});
   const [employees, setEmployees] = useState([]);
   const [tasks, setTasks] = useState([]);
+  const [presences, setPresences] = useState([]);
+  const [popUp, setPopUp] = useState("Tasks");
 
   const onPopupTasks = (event) => {
     event.stopPropagation();
@@ -52,7 +55,7 @@ const EmployeeDetails = () => {
       sortable: true,
     },
     {
-      name: "View Task",
+      name: "Task",
       cell: (row) =>
         row.tasks.length > 0 && (
           <span
@@ -60,6 +63,25 @@ const EmployeeDetails = () => {
             onClick={(e) => {
               onPopupTasks(e);
               setTasks(row.tasks);
+              setPopUp("Tasks");
+            }}
+          >
+            View
+          </span>
+        ),
+      grow: 0,
+    },
+    {
+      name: "Presence",
+      cell: (row) =>
+        row.presences.length > 0 && (
+          <span
+            className={style.view}
+            onClick={(e) => {
+              onPopupTasks(e);
+              setPresences(row.presences);
+              console.log(row.presences);
+              setPopUp("Presences");
             }}
           >
             View
@@ -108,6 +130,7 @@ const EmployeeDetails = () => {
           position: item?.position,
           status: item?.user?.status ? "Online" : "Offline",
           tasks: item?.user?.tasks,
+          presences: item?.user?.presences,
         };
       });
 
@@ -172,7 +195,10 @@ const EmployeeDetails = () => {
       <div className={style.popup}>
         <div className={style.background} onClick={onPopupTasks}>
           <div className={style.box}>
-            <SelfTasks tasks={tasks}></SelfTasks>
+            {popUp === "Tasks" && <SelfTasks tasks={tasks}></SelfTasks>}
+            {popUp === "Presences" && (
+              <ShowPresences presences={presences}></ShowPresences>
+            )}
           </div>
         </div>
       </div>
